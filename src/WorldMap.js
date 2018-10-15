@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
-import WorldMap from './WorldMap'
 
-class App extends Component {
+class WorldMap extends Component {
   render() {
     return (
       <div>
-        <WorldMap />
+        <h1>World Map</h1>
       </div>
     );
   }
 }
 
-export default App;
+export default WorldMap;

@@ -28,6 +28,8 @@
     "@babel/preset-react": "^7.0.0",
     "@cypress/webpack-preprocessor": "^3.0.0",
     "cypress": "^3.1.0",
-    "cypress-react-unit-test": "^1.2.1"
+    "cypress-react-unit-test": "^1.2.1",
+    "enzyme": "^3.7.0",
+    "enzyme-adapter-react-16": "^1.6.0"
   }
 }
