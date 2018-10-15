@@ -31,7 +31,6 @@
     "cypress": "^3.1.0",
     "cypress-react-unit-test": "^1.2.1",
     "enzyme": "^3.7.0",
-    "enzyme-adapter-react-16": "^1.6.0",
-    "eslint": "^5.7.0"
+    "enzyme-adapter-react-16": "^1.6.0"
   }
 }

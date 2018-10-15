@@ -5,6 +5,12 @@ class WorldMap extends Component {
     return (
       <div>
         <h1>World Map</h1>
+        
+        <canvas className="world-map">
+          <button className="city-button">London</button>
+          <button className="city-button">Oxford</button>
+        </canvas>
+        
       </div>
     );
   }
