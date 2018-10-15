@@ -4,6 +4,13 @@
 Create a Javascript game using the react framework.
 
 
+https://learntdd.in/react/
+open the app and yarn start
+to run tests yarn cypress
+
+
+
+
 
 MVP: version 1
 
