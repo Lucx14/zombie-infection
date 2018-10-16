@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
+import LocalGameModel from "../model/LocalGameModel.js"
 import "./LocalGame.css"
 
 class LocalGame extends Component {
+
+  componentDidMount() {
+    var localGameModel = new LocalGameModel();
+    localGameModel.eventListen()
+    localGameModel.tickDraw()
+  }
 
   render() {
     return (
