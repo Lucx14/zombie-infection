@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import City from "./City.js";
-import "./worldmap.css"
 import {
     Route,
     NavLink,

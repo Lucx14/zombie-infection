@@ -2,10 +2,8 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import WorldMap from '../WorldMap.js'
 
-
-
 describe('WorldMap', () => {
-  let wrapper
+  let wrapper;
 
   beforeAll(() => {
     wrapper = shallow(<WorldMap />)

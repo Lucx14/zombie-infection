@@ -9,18 +9,20 @@ describe('World map', () => {
   });
 
   it('shows the available cities', () => {
-
     cy.get('button.city-button')
       .should('have.length', 2)
   });
   
   it('reroutes to city', () => {
-
     cy.get('button.city-button:first').click().location()
       .should((loc) => {
         expect(loc.hash).to.eq('#/london')
       });
   });
 
+  it('should contain a grid of cells', () => {
+    cy.get('grid')
+      .should('have.length', 16)
+  });
 
 });
