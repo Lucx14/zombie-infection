@@ -13,9 +13,14 @@ describe('World map', () => {
     cy.get('button.city-button')
       .should('have.length', 2)
   });
+  
+  it('reroutes to city', () => {
 
-  it('redirects to playable city', () => {
-    cy.get('canvas')
-    .should('have.length', 2)
+    cy.get('button.city-button:first').click().location()
+      .should((loc) => {
+        expect(loc.hash).to.eq('#/london')
+      });
   });
+
+
 });
