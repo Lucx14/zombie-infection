@@ -1,15 +1,21 @@
 describe('World map', () => {
-  it('shows the game title', () => {
-    cy.visit('http://localhost:3000');
+  beforeEach(function () {
+    cy.visit('http://localhost:3000')
+  })
 
+  it('shows the game title', () => {
     cy.get('h1')
       .should('contain', 'World Map');
   });
 
-  it('shows the available levels', () => {
-    cy.visit('http://localhost:3000');
+  it('shows the available cities', () => {
 
-    cy.get('container button')
+    cy.get('button.city-button')
       .should('have.length', 2)
+  });
+
+  it('redirects to playable city', () => {
+    cy.get('canvas')
+    .should('have.length', 2)
   });
 });
