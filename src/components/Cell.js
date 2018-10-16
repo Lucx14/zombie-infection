@@ -4,7 +4,7 @@ import "./worldmap.css"
 class Cell extends Component {
   render() {
     return(
-      <button 
+      <button
         className="cell" 
         value={this.props.thing} 
         key={this.props.index}>   

@@ -1,7 +1,16 @@
 import React, { Component } from 'react';
-// import "./City.css"
+import "./worldmap.css"
+import {
+  Route,
+  NavLink,
+  HashRouter
+} from "react-router-dom";
 
 class City extends Component {
+  cityRoute() {
+    return `/${this.props.city}`
+  }
+
   render() {
     return (
       <div>

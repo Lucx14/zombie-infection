@@ -14,7 +14,7 @@ describe('World map', () => {
   });
   
   it('reroutes to city', () => {
-    cy.get('button.city-button:first').click().location()
+    cy.get('.grid button.city-button:first').click().location()
       .should((loc) => {
         expect(loc.hash).to.eq('#/london')
       });

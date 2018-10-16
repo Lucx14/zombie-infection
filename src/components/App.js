@@ -14,8 +14,8 @@ class App extends Component {
         <div>
           <div>
             <Route exact path="/"  component={WorldMap}/>
-            <Route path="/london" render={() =><City city="London"/>}/>
-            <Route path="/oxford" render={() =><City city="Oxford"/>}/>
+            <Route path="/london" render={() =><City city="london"/>}/>
+            <Route path="/oxford" render={() =><City city="oxford"/>}/>
           </div>
         </div>
       </HashRouter>

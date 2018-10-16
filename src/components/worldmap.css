@@ -13,3 +13,10 @@
 .grid {
   width: 500px;
 }
+
+.city-button {
+  float: left;
+  width: 100px;
+  height: 100px;
+  background-color: rgb(100, 214, 106);
+}
