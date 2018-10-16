@@ -8,7 +8,7 @@ class WorldMap extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      grid: Array(5).fill(Array(5).fill(0))
+      grid: Array(35).fill(Array(50).fill(0))
     }
   }
 
@@ -18,9 +18,9 @@ class WorldMap extends Component {
 
   populateGrid() {
     var populatedGrid = 
-    this.state.grid.map((row) => (
+    this.state.grid.map((row, rowIndex) => (
       row.map((x, index) => (
-        <Cell thing={x} key={index}/> 
+        <Cell thing={x} key={index} index={index + rowIndex}/> 
       ))
     ))
     populatedGrid[0][4] = <CityLink city="London" key="london"/>
