@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import WorldMap from '../WorldMap.js'
 
 describe('WorldMap', () => {
@@ -13,8 +13,10 @@ describe('WorldMap', () => {
     expect(wrapper.find('h1').text()).toMatch('World Map')
   });
 
+  // refactor this test to mock CityLink
   it('renders two buttons', () => {
-    expect(wrapper.find('button.city-button').length).toEqual(2)
+    wrapper = mount(<WorldMap/>)
+    expect(wrapper.find('.city-link button').length).toEqual(2)
   });
   
 });

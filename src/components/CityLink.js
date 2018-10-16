@@ -14,11 +14,15 @@ class CityLink extends Component {
 
   render() {
     return (
-      <div>
-        <button className="city-button" href={this.cityRoute()}>
-          {this.props.city}
-        </button>
-      </div>
+      <HashRouter>
+        <div className="city-link">
+          <NavLink to={this.cityRoute()}>
+            <button className="city-button" key={this.props.index}>
+              {this.props.city}
+            </button>
+          </NavLink>
+        </div>
+      </HashRouter>
     )
   }
 }

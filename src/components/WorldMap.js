@@ -29,27 +29,23 @@ class WorldMap extends Component {
         <Cell thing={x} key={index}/> 
       ))
     ))
-    populatedGrid[0][4] = <CityLink city="London"/>
-    populatedGrid[3][1] = <CityLink city="Oxford"/>
+    populatedGrid[0][4] = <CityLink city="London" key="london"/>
+    populatedGrid[3][1] = <CityLink city="Oxford" key="oxford"/>
     this.setState({grid: populatedGrid})
   }
 
   render() {
     return (
-      <HashRouter>
-        <div>
-          <h1>
-            World Map
-          </h1>
-          <div className="world-map">
-            {/* <button className="city-button"><NavLink to="/london">London</NavLink></button>
-            <button className="city-button"><NavLink to="/oxford">Oxford</NavLink></button> */}
-            <div className="grid">
-              {this.state.grid}
-            </div>
+      <div>
+        <h1>
+          World Map
+        </h1>
+        <div className="world-map">
+          <div className="grid">
+            {this.state.grid}
           </div>
         </div>
-      </HashRouter>
+      </div>
     );
   }
 }
