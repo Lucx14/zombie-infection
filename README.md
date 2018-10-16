@@ -1,7 +1,22 @@
 # Zombie infection
 
 
-Create a Javascript game using the react framework.
+Code by:
+- [Malachy Gilchrist](https://github.com/Mallig)
+- [Josh Nickson](https://github.com/joshnickson)
+- [James Sutherland](https://github.com/LondonJim)
+- [Lucien Najev](https://github.com/Lucx14)
+
+
+## Technology
+
+This project was built with Javascript and React.
+We are using Cypress and Jest as our testing frameworks
+
+## How to install
+
+
+
 
 
 https://learntdd.in/react/
