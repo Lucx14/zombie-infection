@@ -16,8 +16,5 @@ describe('WorldMap', () => {
   it('renders two buttons', () => {
     expect(wrapper.find('button.city-button').length).toEqual(2)
   });
-
-  it('reroutes to local area map', () => {
-    
-  });
+  
 });

@@ -21,8 +21,8 @@ describe('World map', () => {
   });
 
   it('should contain a grid of cells', () => {
-    cy.get('grid')
-      .should('have.length', 16)
+    cy.get('.grid .cell')
+      .should('have.length', 25)
   });
 
 });

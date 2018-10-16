@@ -3,3 +3,13 @@
   width: 800px;
   height: 600px;
 }
+
+.cell {
+  float: left;
+  width: 100px;
+  height: 100px;
+}
+
+.grid {
+  width: 500px;
+}
