@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import WorldMap from './WorldMap.js'
+import WorldMap from '../WorldMap.js'
 
 describe('WorldMap', () => {
   it('renders without crashing', () => {

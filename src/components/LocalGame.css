@@ -1,0 +1,14 @@
+canvas {
+border: solid 1px black;
+position:relative;
+}
+
+#holder {
+display:block;
+border: solid 2px black;
+position:relative;
+background:grey;
+margin: 0 auto 0 auto;
+width:800px;
+height:600px;
+}
