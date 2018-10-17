@@ -36,6 +36,8 @@ before_script:
   - npm start -- --silent &
 
 script:
+  - sed -i '/eval $(ssh-agent)/d' ~/.bash_profile
+  - sed -i '/ssh-add -k/d' ~/.bash_profile
   ## now run cypress headlessly
   ## and record all of the tests.
   ## Cypress will search for a
@@ -43,6 +45,7 @@ script:
   ## variable by default and apply
   ## this to the run.
   - npm run cypress:open
+  - npm test
 
   ## alternatively we could specify
   ## a specific record key to use
