@@ -13,7 +13,7 @@ class WorldMap extends Component {
   }
 
   componentDidMount() {
-    this.populateGrid()
+    this.populateGrid();
   }
 
   populateGrid() {
@@ -25,7 +25,14 @@ class WorldMap extends Component {
     ))
     populatedGrid[0][4] = <CityLink city="London" key="london"/>
     populatedGrid[3][1] = <CityLink city="Oxford" key="oxford"/>
+    this.infectCell(populatedGrid, 15, 25)
     this.setState({grid: populatedGrid})
+  }
+
+  infectCell(grid, row, col) {
+    let newGrid = grid
+    newGrid[row][col] = <Cell key={col} infected={true} />
+    this.setState({grid: newGrid})
   }
 
   render() {

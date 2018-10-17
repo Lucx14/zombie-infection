@@ -1,10 +1,15 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow, mount, render } from 'enzyme';
 import WorldMap from '../WorldMap.js'
 
 jest.mock('../CityLink', () => () => 
   <div className="city-link">  
     <button className="city-button"/>
+  </div>
+)
+
+jest.mock('../Cell', () => () => 
+  <div>  
   </div>
 )
 
@@ -24,10 +29,9 @@ describe('WorldMap', () => {
     expect(wrapper.find('.city-link button').length).toEqual(2)
   });
 
-  it('populates grid on initial mount', () => {
-  });
-
-  it('infects a single cell on initial mount', () => {
+  it('populates the grid with 35 rows and 50 columns', () => {
+    wrapper = mount(<WorldMap/>)
+    expect(wrapper.find('.grid div').length).toEqual(35*50)
   });
 
 });
