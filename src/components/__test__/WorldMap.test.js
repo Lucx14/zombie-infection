@@ -8,7 +8,7 @@ describe('WorldMap', () => {
   beforeAll(() => {
     wrapper = shallow(<WorldMap />)
   });
-  
+
   it('renders a header', () => {
     expect(wrapper.find('h1').text()).toMatch('World Map')
   });
@@ -18,5 +18,5 @@ describe('WorldMap', () => {
     wrapper = mount(<WorldMap/>)
     expect(wrapper.find('.city-link button').length).toEqual(2)
   });
-  
+
 });

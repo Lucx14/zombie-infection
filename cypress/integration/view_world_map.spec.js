@@ -12,7 +12,7 @@ describe('World map', () => {
     cy.get('button.city-button')
       .should('have.length', 2)
   });
-  
+
   it('reroutes to city', () => {
     cy.get('.grid button.city-button:first').click().location()
       .should((loc) => {
@@ -20,8 +20,4 @@ describe('World map', () => {
       });
   });
 
-  it('should contain a grid of cells', () => {
-    cy.get('.grid button')
-      .should('have.length', 25)
-  });
 });
