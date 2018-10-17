@@ -20,24 +20,38 @@ LocalGameModel.prototype.mainDraw = function () {
   this.canvasDraw.clearRect(0, 0, this.WIDTH, this.HEIGHT);
   this.canvasDraw.fillStyle="red";
   this.canvasDraw.beginPath();
+
   this.canvasDraw.rect(this.player.x, this.player.y ,this.player.w , this.player.h);
   this.canvasDraw.fill();
+
   this.playerMovement()
 }
 
 LocalGameModel.prototype.playerMovement = function(e) {
   if (this.keys[87]) {
-    this.player.y --
+    if (this.player.y > 0) {
+      this.player.y -= 2
+    }
   }
+
   if (this.keys[83]) {
-    this.player.y ++
+    if (this.player.y < this.HEIGHT - this.player.h) {
+      this.player.y += 2
+    }
   }
+
   if (this.keys[65]) {
-    this.player.x --
+    if (this.player.x > 0) {
+      this.player.x -= 2
+    }
   }
+
   if (this.keys[68]) {
-    this.player.x ++
+    if (this.player.x < this.WIDTH - this.player.w) {
+      this.player.x += 2
+    }
   }
+
   return false;
 };
 
