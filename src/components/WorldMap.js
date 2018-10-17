@@ -17,10 +17,10 @@ class WorldMap extends Component {
   }
 
   populateGrid() {
-    var populatedGrid = 
+    var populatedGrid =
     this.state.grid.map((row, rowIndex) => (
       row.map((x, index) => (
-        <Cell thing={x} key={index} index={index + rowIndex}/> 
+        <Cell thing={x} key={index} index={index + rowIndex}/>
       ))
     ))
     populatedGrid[0][4] = <CityLink city="London" key="london"/>
