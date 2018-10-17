@@ -4,21 +4,21 @@ node_js:
   # Node 10.3+ includes npm@6 which has good "npm ci" command
   - 10.8
 
-cache:
-  # cache both npm modules and Cypress binary
-  directories:
-    - ~/.npm
-    - ~/.cache
-  override:
-    - npm ci
-    - npm run cypress:open
+# cache:
+#   # cache both npm modules and Cypress binary
+#   directories:
+#     - ~/.npm
+#     - ~/.cache
+#   override:
+#     - npm ci
+#     - npm run cypress:open
 
 defaults: &defaults
   script:
     #   ## print all Travis environment variables for debugging
     - $(npm bin)/print-env TRAVIS
     - npm start -- --silent &
-    - npm run cypress:open -- --record --parallel --group $STAGE_NAME
+    - npm run cypress:open # -- --record --parallel --group $STAGE_NAME
     # after all tests finish running we need
     # to kill all background jobs (like "npm start &")
     - kill $(jobs -p) || true
