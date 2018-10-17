@@ -25,7 +25,7 @@ LocalGameModel.prototype.mainDraw = function () {
   this.playerMovement()
 }
 
-LocalGameModel.prototype.playerMovement = function(e) {
+LocalGameModel.prototype.playerMovement = function() {
   if (this.keys[87]) {
     this.player.y --
   }

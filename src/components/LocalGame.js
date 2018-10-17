@@ -19,7 +19,7 @@ class LocalGame extends Component {
         </div>
       </div>
     );
-  };
-};
+  }
+}
 
 export default LocalGame;
