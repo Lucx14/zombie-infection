@@ -18,6 +18,13 @@
     "cypress:open": "cypress open",
     "lint": "eslint src/**/*.js"
   },
+
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}",
+      "!src/index.js"
+    ]
+  },
   "eslintConfig": {
     "extends": "react-app"
   },
