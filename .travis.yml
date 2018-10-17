@@ -42,7 +42,7 @@ script:
   ## CYPRESS_RECORD_KEY environment
   ## variable by default and apply
   ## this to the run.
-  - npm run cypress:run
+  - npm run cypress:open
   - npm test
 
   ## alternatively we could specify
