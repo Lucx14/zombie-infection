@@ -22,4 +22,3 @@ defaults: &defaults
     # after all tests finish running we need
     # to kill all background jobs (like "npm start &")
     - kill $(jobs -p) || true
-    - npm test
