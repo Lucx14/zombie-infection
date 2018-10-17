@@ -13,12 +13,11 @@ node_js:
 #     - npm ci
 #     - npm run cypress:open
 
-defaults: &defaults
-  script:
+script:
     #   ## print all Travis environment variables for debugging
-    - $(npm bin)/print-env TRAVIS
-    - npm start -- --silent &
-    - npm run cypress:open # -- --record --parallel --group $STAGE_NAME
+  - $(npm bin)/print-env TRAVIS
+  - npm start -- --silent &
+  - npm run cypress:open # -- --record --parallel --group $STAGE_NAME
     # after all tests finish running we need
     # to kill all background jobs (like "npm start &")
-    - kill $(jobs -p) || true
+  - kill $(jobs -p) || true
