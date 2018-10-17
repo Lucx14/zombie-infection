@@ -1,4 +1,4 @@
-import { Player } from "./Player.js"
+import Player from "./Player.js"
 
 export default function LocalGameModel() {
   this.player = new Player()
