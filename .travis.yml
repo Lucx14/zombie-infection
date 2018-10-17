@@ -15,7 +15,7 @@ node_js:
 
 script:
   - npm start -- --silent &
-  - npm run cypress:open -- --record --parallel --group $STAGE_NAME
+  - npm run cypress:open --record --parallel --group $STAGE_NAME
     # after all tests finish running we need
     # to kill all background jobs (like "npm start &")
   - kill $(jobs -p) || true
