@@ -1,0 +1,21 @@
+language: node_js
+
+node_js:
+  # Node 10.3+ includes npm@6 which has good "npm ci" command
+  - 10.8
+
+cache:
+  # cache both npm modules and Cypress binary
+  directories:
+    - ~/.npm
+    - ~/.cache
+  override:
+    - npm ci
+    - npm test
+
+script:
+  - npm start -- --silent &
+  - npm test
+    # after all tests finish running we need
+    # to kill all background jobs (like "npm start &")
+  - kill $(jobs -p) || true
