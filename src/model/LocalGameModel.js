@@ -23,7 +23,8 @@ LocalGameModel.prototype._mainDraw = function () {
   this._canvasDraw.beginPath();
   this._canvasDraw.rect(this._player.x, this._player.y ,this._player.w , this._player.h);
   this._canvasDraw.fill();
-  this._playerMovement()
+  this._playerMovement();
+  return "main draw run"
 }
 
 LocalGameModel.prototype._playerMovement = function() {

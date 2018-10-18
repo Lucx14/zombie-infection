@@ -9,11 +9,18 @@ describe('LocalGameModel', () => {
   beforeEach(() => {
 
     const createElement = document.createElement.bind(document);
+    const mockCanvasDraw = {
+      fillStyle: "",
+      clearRect: () => {},
+      beginPath: () => {},
+      rect: () => {},
+      fill: () => {}
+    };
 
     document.getElementById = (tagName) => {
         if (tagName === 'canvas') {
             return {
-                getContext: () => ({}),
+                getContext: () => (mockCanvasDraw),
                 addEventListener: () => ({}),
                 width: 800,
                 height: 600
@@ -79,4 +86,7 @@ describe('LocalGameModel', () => {
     })
   })
 
+  it('running _mainDraw', () => {
+    expect(localGameModel._mainDraw()).toEqual("main draw run")
+  })
 });
