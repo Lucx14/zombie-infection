@@ -24,6 +24,15 @@ Npc.prototype.isCollidingWith = function(otherNPC) {
   }
 };
 
+Npc.prototype.isNear = function(otherNPC) {
+  if (Math.abs(this.x - otherNPC.x) < 25 && 
+      Math.abs(this.y - otherNPC.y) < 25) {
+    return true
+  } else {
+    return false
+  } 
+}
+
 Npc.prototype.moveTowards = function(player) {
   if (this.x < player.x) {this.x += this.speed}
   if (this.x > player.x) {this.x -= this.speed}

@@ -49,6 +49,7 @@ LocalGameModel.prototype._npcMovement = function() {
   const local = this
 
   this._groupNpc.forEach(function(npc) {
+    // infecting npc is not this methods responsibility
     if (npc.isCollidingWith(local._player)) {
       npc.infect()
     }
@@ -61,8 +62,9 @@ LocalGameModel.prototype._npcMovement = function() {
       })
     }
 
+    // these are the only two methds which should be in here
     local._groupNpc.forEach((otherNpcs) => {
-      if (npc.isCollidingWith(otherNpcs) &&
+      if (npc.isNear(otherNpcs) &&
           npc !== otherNpcs) {
         npc.moveAwayFrom(otherNpcs)
       }
@@ -72,6 +74,7 @@ LocalGameModel.prototype._npcMovement = function() {
        !npc.isCollidingWith(local._player)) {
       npc.moveTowards(local._player)
     }
+
   })
 }
 
