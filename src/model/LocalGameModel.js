@@ -14,6 +14,7 @@ export default function LocalGameModel(player = new Player()) {
 
 LocalGameModel.prototype.tickDraw = function () {
   setInterval(this._mainDraw.bind(this), this.gameSpeed);
+  return "new frame"
 }
 
 LocalGameModel.prototype._mainDraw = function () {
@@ -25,7 +26,7 @@ LocalGameModel.prototype._mainDraw = function () {
   this._playerMovement()
 }
 
-LocalGameModel.prototype._playerMovement = function(e) {
+LocalGameModel.prototype._playerMovement = function() {
   if (this._keys[87]) {
     this._player.y --
   }
@@ -38,10 +39,10 @@ LocalGameModel.prototype._playerMovement = function(e) {
   if (this._keys[68]) {
     this._player.x ++
   }
-  return false;
 };
 
 LocalGameModel.prototype.eventListen = function() {
   this._canvas.addEventListener('keydown', function(e) { this._keys[e.keyCode] = true; }.bind(this));
   this._canvas.addEventListener('keyup', function(e) { this._keys[e.keyCode] = false; }.bind(this));
+  return "keystroke listeners activated"
 }
