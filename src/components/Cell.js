@@ -8,7 +8,7 @@ class Cell extends Component {
     if (this.props.infected) {
       return "infected"
     }
-    return this.props.index % 2 === 0 ? "cell" : "cell-alt"
+    return "cell"
   }
 
   render() {
