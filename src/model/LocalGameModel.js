@@ -30,7 +30,7 @@ LocalGameModel.prototype._mainDraw = function () {
 
   const local = this
   this._groupNpc.forEach(function(npc) {
-    if (npc.zombie === true) {
+    if (npc.isInfected()) {
       local._canvasDraw.fillStyle="green";
     } else {
       local._canvasDraw.fillStyle="black";
@@ -47,36 +47,30 @@ LocalGameModel.prototype._mainDraw = function () {
 
 LocalGameModel.prototype._npcMovement = function() {
   const local = this
+
   this._groupNpc.forEach(function(npc) {
-    if ((npc.x + 10 >= local._player.x && npc.x <= local._player.x + 10) &&
-        (npc.y + 10 >= local._player.y && npc.y <= local._player.y + 10)) {
-      npc.zombie = true
+    if (npc.isCollidingWith(local._player)) {
+      npc.infect()
     }
 
-    if (npc.zombie === false) {
+    if (!npc.isInfected()) {
       local._groupNpc.forEach(function(otherNpcs) {
-        if ((otherNpcs.x + 10 >= npc.x && otherNpcs.x <= npc.x + 10) &&
-            (otherNpcs.y + 10 >= npc.y && otherNpcs.y <= npc.y + 10) &&
-            otherNpcs.zombie === true) {
-          npc.zombie = true
+        if (otherNpcs.isInfected() && npc.isCollidingWith(otherNpcs)) {
+          npc.infect()
         }
       })
     }
 
     local._groupNpc.forEach((otherNpcs) => {
-      if ((npc.x + 10 >= otherNpcs.x && npc.x <= otherNpcs.x + 10) &&
-          (npc.y + 10 >= otherNpcs.y && npc.y <= otherNpcs.y + 10) &&
-          (npc !== otherNpcs)) {
-        npc.x = npc.x + (npc.x - otherNpcs.x) * 0.1 + npc.speed * (npc.x - otherNpcs.x) * 0.1
-        npc.y = npc.y + (npc.y - otherNpcs.y) * 0.1 + npc.speed * (npc.y - otherNpcs.y) * 0.1
+      if (npc.isCollidingWith(otherNpcs) &&
+          npc !== otherNpcs) {
+        npc.moveAwayFrom(otherNpcs)
       }
     })
 
-    if (npc.zombie === true) {
-      if (npc.x < local._player.x) {npc.x += npc.speed}
-      if (npc.x > local._player.x) {npc.x -= npc.speed}
-      if (npc.y < local._player.y) {npc.y += npc.speed}
-      if (npc.y > local._player.y) {npc.y -= npc.speed}
+    if (npc.isInfected() &&
+       !npc.isCollidingWith(local._player)) {
+      npc.moveTowards(local._player)
     }
   })
 }
