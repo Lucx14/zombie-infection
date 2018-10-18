@@ -16,7 +16,7 @@ class City extends Component {
   }
 }
 
-// double check that these prop validations are correct - as it is now all tests and the game build run correctly
+
 City.propTypes = {
   city: PropTypes.string
 };

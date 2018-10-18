@@ -25,7 +25,7 @@ class Cell extends Component {
 }
 
 
-// check that these are the c orrect prop types - all tests and the running npm start is working correctly with these!
+
 Cell.propTypes = {
   index: PropTypes.number,
   infected: PropTypes.bool,
