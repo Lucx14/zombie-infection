@@ -1,6 +1,5 @@
 # Zombie infection
 
-
 Code by:
 - [Malachy Gilchrist](https://github.com/Mallig)
 - [Josh Nickson](https://github.com/joshnickson)
@@ -22,6 +21,13 @@ https://learntdd.in/react/
 open the app and yarn start
 to run tests yarn cypress
 
+## How to run
+
+clone the project and then npm install
+Yarn or npm start   (this will run the program and get it running in the browser on localhost:3000)
+Yarn or npm test    (this will run the unit tests in jest)
+yarn or npm cypress:open  (This will run the cypress feature testing)
+yarn or npm lint    (linting with eslint)
 
 ### MVP
 #### Version 1

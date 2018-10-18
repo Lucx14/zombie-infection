@@ -1,4 +1,4 @@
-import { Player } from "./Player.js"
+import Player from "./Player.js"
 
 export default function LocalGameModel() {
   this.player = new Player()
@@ -9,7 +9,7 @@ export default function LocalGameModel() {
   this.WIDTH = this.canvas.width;
   this.HEIGHT = this.canvas.height;
   this.keys = []
-  this.gameSpeed = 15
+  this.gameSpeed = 10
 }
 
 LocalGameModel.prototype.tickDraw = function () {
@@ -25,7 +25,7 @@ LocalGameModel.prototype.mainDraw = function () {
   this.playerMovement()
 }
 
-LocalGameModel.prototype.playerMovement = function(e) {
+LocalGameModel.prototype.playerMovement = function() {
   if (this.keys[87]) {
     this.player.y --
   }
