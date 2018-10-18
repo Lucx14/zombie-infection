@@ -51,7 +51,7 @@ class WorldMap extends Component {
     }
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     this.interval = setInterval(() => this.tick(), 0)
     this.populateGrid();
   }
