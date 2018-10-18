@@ -9,7 +9,7 @@ export default function LocalGameModel() {
   this.WIDTH = this.canvas.width;
   this.HEIGHT = this.canvas.height;
   this.keys = []
-  this.gameSpeed = 15
+  this.gameSpeed = 10
 }
 
 LocalGameModel.prototype.tickDraw = function () {
