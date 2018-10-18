@@ -1,81 +1,83 @@
-import { Player } from "./Player.js"
+import Player from "./Player.js"
 import { Npc } from "./Npc.js"
 
-export default function LocalGameModel() {
-  this.player = new Player()
-  this.npc = new Npc()
-  this.canvas = document.getElementById("canvas");
-  this.canvas.width = 800;
-  this.canvas.height = 600;
-  this.canvasDraw = this.canvas.getContext("2d");
-  this.WIDTH = this.canvas.width;
-  this.HEIGHT = this.canvas.height;
-  this.keys = []
+export default function LocalGameModel(player = new Player(), npc = new Npc()) {
+  this._player = player
+  this._npc = new Npc()
+  this._canvas = document.getElementById("canvas");
+  this._canvas.width = 800;
+  this._canvas.height = 600;
+  this._canvasDraw = this._canvas.getContext("2d");
+  this._WIDTH = this._canvas.width;
+  this._HEIGHT = this._canvas.height;
+  this._keys = []
   this.gameSpeed = 15
 }
 
 LocalGameModel.prototype.tickDraw = function () {
-  setInterval(this.mainDraw.bind(this), this.gameSpeed);
+  setInterval(this._mainDraw.bind(this), this.gameSpeed);
+  return "new frame"
 }
 
-LocalGameModel.prototype.mainDraw = function () {
-  this.canvasDraw.clearRect(0, 0, this.WIDTH, this.HEIGHT);
+LocalGameModel.prototype._mainDraw = function () {
+  this._canvasDraw.clearRect(0, 0, this._WIDTH, this._HEIGHT);
 
-  this.canvasDraw.fillStyle="red";
-  this.canvasDraw.beginPath();
-  this.canvasDraw.rect(this.player.x, this.player.y ,this.player.w , this.player.h);
-  this.canvasDraw.fill();
+  this._canvasDraw.fillStyle="red";
+  this._canvasDraw.beginPath();
+  this._canvasDraw.rect(this._player.x, this._player.y ,this._player.w , this._player.h);
+  this._canvasDraw.fill();
 
-  if (this.npc.zombie === true) {
-    this.canvasDraw.fillStyle="green";
+  if (this._npc.zombie === true) {
+    this._canvasDraw.fillStyle="green";
   } else {
-    this.canvasDraw.fillStyle="black";
+    this._canvasDraw.fillStyle="black";
   }
 
-  this.canvasDraw.beginPath();
-  this.canvasDraw.rect(this.npc.x, this.npc.y ,this.npc.w , this.npc.h);
-  this.canvasDraw.fill();
+  this._canvasDraw.beginPath();
+  this._canvasDraw.rect(this._npc.x, this._npc.y ,this._npc.w , this._npc.h);
+  this._canvasDraw.fill();
 
-  this.npcMovement();
-  this.playerMovement();
+  this._npcMovement();
+  this._playerMovement();
+  return "main draw run"
 }
 
-LocalGameModel.prototype.npcMovement = function() {
-  if ((this.npc.x >= this.player.x - 5 && this.npc.x <= this.player.x + 15) &&
-      (this.npc.y >= this.player.y - 5 && this.npc.y <= this.player.y + 15)) {
-    this.npc.zombie = true
+LocalGameModel.prototype._npcMovement = function() {
+  if ((this._npc.x >= this._player.x - 5 && this._npc.x <= this._player.x + 15) &&
+      (this._npc.y >= this._player.y - 5 && this._npc.y <= this._player.y + 15)) {
+    this._npc.zombie = true
   }
 
-  if (this.npc.zombie === true) {
-    if (this.npc.x < this.player.x) {this.npc.x ++}
-    if (this.npc.x > this.player.x) {this.npc.x --}
-    if (this.npc.y < this.player.y) {this.npc.y ++}
-    if (this.npc.y > this.player.y) {this.npc.y --}
+  if (this._npc.zombie === true) {
+    if (this._npc.x < this._player.x) {this._npc.x += this._npc.speed}
+    if (this._npc.x > this._player.x) {this._npc.x -= this._npc.speed}
+    if (this._npc.y < this._player.y) {this._npc.y += this._npc.speed}
+    if (this._npc.y > this._player.y) {this._npc.y -= this._npc.speed}
   }
 }
 
-LocalGameModel.prototype.playerMovement = function(e) {
-  if (this.keys[87]) {
-    if (this.player.y > 0) {
-      this.player.y -= 2
+LocalGameModel.prototype._playerMovement = function(e) {
+  if (this._keys[87]) {
+    if (this._player.y > 0) {
+      this._player.y -= this._player.speed
     }
   }
 
-  if (this.keys[83]) {
-    if (this.player.y < this.HEIGHT - this.player.h) {
-      this.player.y += 2
+  if (this._keys[83]) {
+    if (this._player.y < this._HEIGHT - this._player.h) {
+      this._player.y += this._player.speed
     }
   }
 
-  if (this.keys[65]) {
-    if (this.player.x > 0) {
-      this.player.x -= 2
+  if (this._keys[65]) {
+    if (this._player.x > 0) {
+      this._player.x -= this._player.speed
     }
   }
 
-  if (this.keys[68]) {
-    if (this.player.x < this.WIDTH - this.player.w) {
-      this.player.x += 2
+  if (this._keys[68]) {
+    if (this._player.x < this._WIDTH - this._player.w) {
+      this._player.x += this._player.speed
     }
   }
 
@@ -83,6 +85,7 @@ LocalGameModel.prototype.playerMovement = function(e) {
 };
 
 LocalGameModel.prototype.eventListen = function() {
-  this.canvas.addEventListener('keydown', function(e) { this.keys[e.keyCode] = true; }.bind(this));
-  this.canvas.addEventListener('keyup', function(e) { this.keys[e.keyCode] = false; }.bind(this));
+  this._canvas.addEventListener('keydown', function(e) { this._keys[e.keyCode] = true; }.bind(this));
+  this._canvas.addEventListener('keyup', function(e) { this._keys[e.keyCode] = false; }.bind(this));
+  return "keystroke listeners activated"
 }

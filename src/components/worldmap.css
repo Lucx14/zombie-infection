@@ -9,6 +9,8 @@
   width: 16px;
   height: 16px;
   background-color: gainsboro;
+  outline-style: solid;
+  outline-width: 1px;
 }
 
 .cell-alt {
@@ -28,4 +30,15 @@
   height: 16px;
   background-color: rgb(247, 78, 0);
   font-size: 0%;
+  outline-style: solid;
+  outline-width: 1px;
+}
+
+.infected {
+  float: left;
+  width: 16px;
+  height: 16px;
+  background-color: greenyellow;
+  outline-style: solid;
+  outline-width: 1px;
 }
