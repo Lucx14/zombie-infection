@@ -33,7 +33,7 @@ describe('LocalGameModel', () => {
     const localGameModel = new LocalGameModel()
 
 
-    expect(localGameModel.gameSpeed).toBe(15)
+    expect(localGameModel.gameSpeed).toBe(10)
   });
 
 });

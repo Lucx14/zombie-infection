@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import "./worldmap.css"
 import CityLink from "./CityLink.js";
 import Cell from "./Cell.js";
-import { randomBytes } from 'crypto';
 
 function InitialGrid() {
   return [
@@ -53,7 +52,7 @@ class WorldMap extends Component {
   }
 
   componentWillMount() {
-    this.interval = setInterval(() => this.tick(), 100)
+    this.interval = setInterval(() => this.tick(), 0)
     this.populateGrid();
   }
 
@@ -67,7 +66,7 @@ class WorldMap extends Component {
     var populatedGrid =
     this.state.grid.map((row, rowIndex) => (
       row.map((cell, index) => {
-          if (typeof cell == 'number' && this.checkNeighbours(rowIndex, index) && Math.random() < 0.01) {
+          if (typeof cell == 'number' && this.checkNeighbours(rowIndex, index) && Math.random() < 0.1) {
             return 1;
           } else{
             return cell;
@@ -88,7 +87,6 @@ class WorldMap extends Component {
       this.state.grid[row+1][col-1]===1 ||
       this.state.grid[row+1][col]===1 || 
       this.state.grid[row+1][col+1]===1 
-
     ){
       return true;
     }
@@ -96,7 +94,7 @@ class WorldMap extends Component {
 
   renderGrid() {
     return (
-      this.state.grid.map((row, rowIndex) => (
+      this.state.grid.map((row) => (
         row.map((cell, index) => {
           if (cell===0) {
             return <Cell key={index} infected={false}/>;
