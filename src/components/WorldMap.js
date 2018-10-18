@@ -52,23 +52,22 @@ class WorldMap extends Component {
   }
 
   componentWillMount() {
-    this.interval = setInterval(() => this.tick(), 0)
+    this.interval = setInterval(() => this.tick(), 1000)
     this.populateGrid();
   }
 
   tick() {
     this.setState({ticker: this.state.ticker +1})
     this.populateGrid();
-
   }
 
   populateGrid() {
     var populatedGrid =
     this.state.grid.map((row, rowIndex) => (
       row.map((cell, index) => {
-          if (typeof cell == 'number' && this.checkNeighbours(rowIndex, index) && Math.random() < 0.1) {
+          if (typeof cell == 'number' && this.checkNeighbours(rowIndex, index) && Math.random() < 0.05) {
             return 1;
-          } else{
+          } else {
             return cell;
           }
       })
@@ -78,6 +77,7 @@ class WorldMap extends Component {
 
   checkNeighbours(row, col) {
     if (row === 0 || row === 34) {
+      return false;
     } else if (
       this.state.grid[row-1][col-1]===1 || 
       this.state.grid[row-1][col]===1 ||
@@ -94,14 +94,14 @@ class WorldMap extends Component {
 
   renderGrid() {
     return (
-      this.state.grid.map((row) => (
+      this.state.grid.map((row, rowIndex) => (
         row.map((cell, index) => {
           if (cell===0) {
             return <Cell key={index} infected={false}/>;
           } else if (cell===1){
             return <Cell key={index} infected={true}/>;
           } else {
-            return <CityLink key={index} city={cell}/>;
+            return <CityLink key={index} city={cell} active={this.checkNeighbours(rowIndex, index)}/>; 
           }
         })
       ))
@@ -126,3 +126,7 @@ class WorldMap extends Component {
 }
 
 export default WorldMap;
+
+
+
+// active={this.checkNeighbours(row, index)

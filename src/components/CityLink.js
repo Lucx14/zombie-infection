@@ -6,7 +6,17 @@ import {
 
 class CityLink extends Component {
   cityRoute() {
-    return `/${this.props.city.toLowerCase()}`
+    if (this.props.active) {
+      return `/${this.props.city.toLowerCase()}`
+    }
+    return '/'
+  }
+
+  determineClass() {
+    if (this.props.active) {
+      return "clickable"
+    }
+    return "unclickable"
   }
 
   render() {
@@ -14,7 +24,7 @@ class CityLink extends Component {
       <HashRouter>
         <div className="city-link">
           <NavLink to={this.cityRoute()}>
-            <button className="city-button" key={this.props.index}>
+            <button className={this.determineClass()} key={this.props.index}>
               {this.props.city}
             </button>
           </NavLink>

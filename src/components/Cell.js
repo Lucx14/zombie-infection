@@ -15,7 +15,6 @@ class Cell extends Component {
     return(
       <div
         className={this.determineClass()}
-        value={this.props.thing} 
         key={this.props.index}
       >   
       </div>

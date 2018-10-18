@@ -11,7 +11,7 @@ describe('CityLink', () => {
 
 describe('#cityRoute', () => {
   it('returns the route path for a city', () => {
-    const wrapper = shallow(<CityLink city="city"/>)
+    const wrapper = shallow(<CityLink city="city" active={true}/>)
     expect(wrapper.instance().cityRoute()).toMatch("/city")
   });
 });
