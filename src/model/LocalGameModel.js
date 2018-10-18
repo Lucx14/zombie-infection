@@ -3,7 +3,7 @@ import { Npc } from "./Npc.js"
 
 export default function LocalGameModel(player = new Player(), npc = new Npc()) {
   this._player = player
-  this._npc = new Npc()
+  this._npc = npc
   this._canvas = document.getElementById("canvas");
   this._canvas.width = 800;
   this._canvas.height = 600;
@@ -11,6 +11,7 @@ export default function LocalGameModel(player = new Player(), npc = new Npc()) {
   this._WIDTH = this._canvas.width;
   this._HEIGHT = this._canvas.height;
   this._keys = []
+  this._groupNpc = Array.from({length:200}, () => new Npc(Math.random() * 2))
   this.gameSpeed = 15
 }
 
@@ -27,15 +28,17 @@ LocalGameModel.prototype._mainDraw = function () {
   this._canvasDraw.rect(this._player.x, this._player.y ,this._player.w , this._player.h);
   this._canvasDraw.fill();
 
-  if (this._npc.zombie === true) {
-    this._canvasDraw.fillStyle="green";
-  } else {
-    this._canvasDraw.fillStyle="black";
-  }
-
-  this._canvasDraw.beginPath();
-  this._canvasDraw.rect(this._npc.x, this._npc.y ,this._npc.w , this._npc.h);
-  this._canvasDraw.fill();
+  const local = this
+  this._groupNpc.forEach(function(npc) {
+    if (npc.zombie === true) {
+      local._canvasDraw.fillStyle="green";
+    } else {
+      local._canvasDraw.fillStyle="black";
+    }
+    local._canvasDraw.beginPath();
+    local._canvasDraw.rect(npc.x, npc.y, npc.w, npc.h);
+    local._canvasDraw.fill();
+  })
 
   this._npcMovement();
   this._playerMovement();
@@ -43,17 +46,39 @@ LocalGameModel.prototype._mainDraw = function () {
 }
 
 LocalGameModel.prototype._npcMovement = function() {
-  if ((this._npc.x >= this._player.x - 5 && this._npc.x <= this._player.x + 15) &&
-      (this._npc.y >= this._player.y - 5 && this._npc.y <= this._player.y + 15)) {
-    this._npc.zombie = true
-  }
+  const local = this
+  this._groupNpc.forEach(function(npc) {
+    if ((npc.x + 10 >= local._player.x && npc.x <= local._player.x + 10) &&
+        (npc.y + 10 >= local._player.y && npc.y <= local._player.y + 10)) {
+      npc.zombie = true
+    }
 
-  if (this._npc.zombie === true) {
-    if (this._npc.x < this._player.x) {this._npc.x += this._npc.speed}
-    if (this._npc.x > this._player.x) {this._npc.x -= this._npc.speed}
-    if (this._npc.y < this._player.y) {this._npc.y += this._npc.speed}
-    if (this._npc.y > this._player.y) {this._npc.y -= this._npc.speed}
-  }
+    if (npc.zombie === false) {
+      local._groupNpc.forEach(function(otherNpcs) {
+        if ((otherNpcs.x + 10 >= npc.x && otherNpcs.x <= npc.x + 10) &&
+            (otherNpcs.y + 10 >= npc.y && otherNpcs.y <= npc.y + 10) &&
+            otherNpcs.zombie === true) {
+          npc.zombie = true
+        }
+      })
+    }
+
+    local._groupNpc.forEach((otherNpcs) => {
+      if ((npc.x + 10 >= otherNpcs.x && npc.x <= otherNpcs.x + 10) &&
+          (npc.y + 10 >= otherNpcs.y && npc.y <= otherNpcs.y + 10) &&
+          (npc !== otherNpcs)) {
+        npc.x = npc.x + (npc.x - otherNpcs.x) * 0.1 + npc.speed * (npc.x - otherNpcs.x) * 0.1
+        npc.y = npc.y + (npc.y - otherNpcs.y) * 0.1 + npc.speed * (npc.y - otherNpcs.y) * 0.1
+      }
+    })
+
+    if (npc.zombie === true) {
+      if (npc.x < local._player.x) {npc.x += npc.speed}
+      if (npc.x > local._player.x) {npc.x -= npc.speed}
+      if (npc.y < local._player.y) {npc.y += npc.speed}
+      if (npc.y > local._player.y) {npc.y -= npc.speed}
+    }
+  })
 }
 
 LocalGameModel.prototype._playerMovement = function(e) {
