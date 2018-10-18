@@ -6,6 +6,7 @@ import {
 import PropTypes from 'prop-types';
 
 class CityLink extends Component {
+  // Entry point for town entry logic
   cityRoute() {
     return `/${this.props.city.toLowerCase()}`
   }
