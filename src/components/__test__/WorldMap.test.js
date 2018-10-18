@@ -15,7 +15,7 @@ describe('WorldMap', () => {
 
   // refactor this test to mock CityLink
   it('renders two buttons', () => {
-    wrapper = mount(<WorldMap/>)
+    wrapper = mount(<WorldMap />)
     expect(wrapper.find('.city-link button').length).toEqual(2)
   });
 
