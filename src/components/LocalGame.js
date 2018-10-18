@@ -6,8 +6,8 @@ class LocalGame extends Component {
 
   componentDidMount() {
     var localGameModel = new LocalGameModel();
-    localGameModel.eventListen()
-    localGameModel.tickDraw()
+    localGameModel.eventListen();
+    localGameModel.tickDraw();
   }
 
   render() {
@@ -19,7 +19,7 @@ class LocalGame extends Component {
         </div>
       </div>
     );
-  };
-};
+  }
+}
 
 export default LocalGame;
