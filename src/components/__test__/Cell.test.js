@@ -4,7 +4,7 @@ import Cell from '../Cell.js'
 
 describe('Cell', () => {
   it('renders a button', () => {
-    const wrapper = shallow(<Cell value={1} key={1}/>)
-    expect(wrapper.find('.cell').length).toEqual(1)
+    const wrapper = shallow(<Cell land={0} key={1}/>)
+    expect(wrapper.find('.sea').length).toEqual(1)
   });
 });

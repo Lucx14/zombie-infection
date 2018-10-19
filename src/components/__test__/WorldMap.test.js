@@ -26,12 +26,12 @@ describe('WorldMap', () => {
 
   it('renders two buttons', () => {
     wrapper = mount(<WorldMap />)
-    expect(wrapper.find('.city-link button').length).toEqual(2)
+    expect(wrapper.find('.city-link button').length).toEqual(26)
   });
 
   it('populates the grid with 35 rows and 50 columns', () => {
     wrapper = mount(<WorldMap/>)
-    expect(wrapper.find('.grid div').length).toEqual(35*50)
+    expect(wrapper.find('.grid div').length).toEqual(19201)
   });
 
 });
