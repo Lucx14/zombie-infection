@@ -49,62 +49,64 @@ LocalGameModel.prototype._npcMovement = function() {
   const local = this
 
   this._groupNpc.forEach(function(npc) {
-    // infecting npc is not this methods responsibility
-    if (npc.isCollidingWith(local._player)) {
+    if (npc.isNear(local._player, 10)) {
       npc.infect()
     }
 
     if (!npc.isInfected()) {
       local._groupNpc.forEach(function(otherNpcs) {
-        if (otherNpcs.isInfected() && npc.isCollidingWith(otherNpcs)) {
+        if (otherNpcs.isInfected() && npc.isNear(otherNpcs, 10)) {
           npc.infect()
         }
       })
     }
 
-    // these are the only two methds which should be in here
     local._groupNpc.forEach((otherNpcs) => {
-      if (npc.isNear(otherNpcs) &&
-          npc !== otherNpcs) {
-        npc.moveAwayFrom(otherNpcs)
+      if (!npc.isInfected()) {
+        if ( npc.isNear(otherNpcs, 50) &&
+             otherNpcs.isInfected() &&
+             npc !== otherNpcs) {
+          npc.move(otherNpcs, 'away')
+        } else if (!otherNpcs.isInfected() &&
+                    npc.isNear(otherNpcs, 15)) {
+          npc.move(otherNpcs, 'away')
+        }
+      } else if (npc.isInfected()) {
+        if (otherNpcs.isInfected() &&
+          npc.isNear(otherNpcs, 12)) {       
+          npc.move(otherNpcs, 'away')
+        } 
+        // else if (!otherNpcs.isInfected() &&
+        //             npc.isNear(otherNpcs, 75)) {
+        //   npc.move(otherNpcs, 'towards')
+        // }
       }
     })
 
     if (npc.isInfected() &&
-       !npc.isCollidingWith(local._player)) {
-      npc.moveTowards(local._player)
+       !npc.isNear(local._player, 10)) {
+      npc.move(local._player, 'towards')
     }
-
   })
 }
 
 LocalGameModel.prototype._playerMovement = function(e) {
+  if (this._player.isAtBoundary(this._WIDTH, this._HEIGHT)) {
+    this._player.moveFromBoundary(this._WIDTH, this._HEIGHT)
+  }
   if (this._keys[87]) {
-    if (this._player.y > 0) {
-      this._player.y -= this._player.speed
-    }
+    this._player.y -= this._player.speed
   }
-
   if (this._keys[83]) {
-    if (this._player.y < this._HEIGHT - this._player.h) {
-      this._player.y += this._player.speed
-    }
+    this._player.y += this._player.speed
   }
-
   if (this._keys[65]) {
-    if (this._player.x > 0) {
-      this._player.x -= this._player.speed
-    }
+    this._player.x -= this._player.speed
   }
-
   if (this._keys[68]) {
-    if (this._player.x < this._WIDTH - this._player.w) {
-      this._player.x += this._player.speed
-    }
+    this._player.x += this._player.speed
   }
-
-  return false;
-};
+}
 
 LocalGameModel.prototype.eventListen = function() {
   this._canvas.addEventListener('keydown', function(e) { this._keys[e.keyCode] = true; }.bind(this));

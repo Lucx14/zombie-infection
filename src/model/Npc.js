@@ -15,34 +15,33 @@ Npc.prototype.infect = function() {
   this.zombie = true
 };
 
-Npc.prototype.isCollidingWith = function(otherNPC) {
-  if (Math.abs(this.x - otherNPC.x) < 10 && 
-      Math.abs(this.y - otherNPC.y) < 10) {
-    return true
-  } else {
-    return false
-  }
-};
-
-Npc.prototype.isNear = function(otherNPC) {
-  if (Math.abs(this.x - otherNPC.x) < 25 && 
-      Math.abs(this.y - otherNPC.y) < 25) {
+Npc.prototype.isNear = function(otherNPC, proximity) {
+  if (Math.abs(this.x - otherNPC.x) < proximity && 
+      Math.abs(this.y - otherNPC.y) < proximity) {
     return true
   } else {
     return false
   } 
 }
 
-Npc.prototype.moveTowards = function(player) {
-  if (this.x < player.x) {this.x += this.speed}
-  if (this.x > player.x) {this.x -= this.speed}
-  if (this.y < player.y) {this.y += this.speed}
-  if (this.y > player.y) {this.y -= this.speed}
+Npc.prototype.move = function(target, direction) {
+  if (direction === 'towards') {
+    this._moveTowards(target)
+  } else if (direction === 'away') {
+    this._moveAwayFrom(target)
+  }
 }
 
-Npc.prototype.moveAwayFrom = function(character) {
-  if (this.x < character.x) {this.x -= this.speed}
-  if (this.x > character.x) {this.x += this.speed}
-  if (this.y < character.y) {this.y -= this.speed}
-  if (this.y > character.y) {this.y += this.speed}
+Npc.prototype._moveTowards = function(target) {
+  if (this.x < target.x) {this.x += this.speed}
+  if (this.x > target.x) {this.x -= this.speed}
+  if (this.y < target.y) {this.y += this.speed}
+  if (this.y > target.y) {this.y -= this.speed}
+}
+
+Npc.prototype._moveAwayFrom = function(target) {
+  if (this.x < target.x) {this.x -= this.speed}
+  if (this.x > target.x) {this.x += this.speed}
+  if (this.y < target.y) {this.y -= this.speed}
+  if (this.y > target.y) {this.y += this.speed}
 }

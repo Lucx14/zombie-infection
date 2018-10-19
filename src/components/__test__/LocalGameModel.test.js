@@ -34,6 +34,9 @@ describe('LocalGameModel', () => {
       this.y = 295
       this.w = 10
       this.h = 10
+      this.speed = 2
+
+      this.isAtBoundary = function() { return false }
     }
 
     function mockNpc() {
