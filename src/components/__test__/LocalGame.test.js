@@ -5,14 +5,15 @@ import LocalGame from '../LocalGame.js'
 describe('LocalGame', () => {
 
   beforeAll(() => {
-    
+
     const createElement = document.createElement.bind(document);
     document.getElementById = (tagName) => {
         if (tagName === 'canvas') {
             return {
                 getContext: () => ({}),
                 measureText: () => ({}),
-                addEventListener: () => ({})
+                addEventListener: () => ({}),
+                focus: () => ({})
             };
         }
         return getElementById(tagName);
