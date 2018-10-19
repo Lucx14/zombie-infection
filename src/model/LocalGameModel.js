@@ -29,6 +29,11 @@ LocalGameModel.prototype._mainDraw = function () {
   this._canvasDraw.rect(this._player.x, this._player.y ,this._player.w , this._player.h);
   this._canvasDraw.fill();
 
+  this._canvasDraw.setTransform();
+  this._canvasDraw.translate(-this._player.x, -this._player.y);
+  this._canvasDraw.scale(2,2);
+
+
   const local = this
   this._groupNpc.forEach(function(npc) {
     if (npc.isInfected()) {
