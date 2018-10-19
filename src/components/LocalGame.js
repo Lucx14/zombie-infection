@@ -8,7 +8,6 @@ class LocalGame extends Component {
     var localGameModel = new LocalGameModel();
     localGameModel.eventListen();
     localGameModel.tickDraw();
-    document.getElementById("canvas").focus();
   }
 
   render() {

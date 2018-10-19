@@ -16,12 +16,12 @@ Npc.prototype.infect = function() {
 };
 
 Npc.prototype.isNear = function(otherNPC, proximity) {
-  if (Math.abs(this.x - otherNPC.x) < proximity && 
+  if (Math.abs(this.x - otherNPC.x) < proximity &&
       Math.abs(this.y - otherNPC.y) < proximity) {
     return true
   } else {
     return false
-  } 
+  }
 }
 
 Npc.prototype.move = function(target, direction) {

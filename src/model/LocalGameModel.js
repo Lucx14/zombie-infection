@@ -13,6 +13,7 @@ export default function LocalGameModel(player = new Player(), npc = new Npc()) {
   this._keys = []
   this._groupNpc = Array.from({length:200}, () => new Npc(Math.random() * 2))
   this.gameSpeed = 15
+  document.getElementById("canvas").focus();
 }
 
 LocalGameModel.prototype.tickDraw = function () {
@@ -21,7 +22,7 @@ LocalGameModel.prototype.tickDraw = function () {
 }
 
 LocalGameModel.prototype._mainDraw = function () {
-  this._canvasDraw.clearRect(0, 0, this._WIDTH, this._HEIGHT);
+  this._canvasDraw.clearRect(0, 0, this._WIDTH, this._HEIGHT)
 
   this._canvasDraw.fillStyle="red";
   this._canvasDraw.beginPath();
@@ -73,9 +74,9 @@ LocalGameModel.prototype._npcMovement = function() {
         }
       } else if (npc.isInfected()) {
         if (otherNpcs.isInfected() &&
-          npc.isNear(otherNpcs, 12)) {       
+          npc.isNear(otherNpcs, 12)) {
           npc.move(otherNpcs, 'away')
-        } 
+        }
         // else if (!otherNpcs.isInfected() &&
         //             npc.isNear(otherNpcs, 75)) {
         //   npc.move(otherNpcs, 'towards')
