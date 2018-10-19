@@ -7,7 +7,7 @@ describe('Infection spread', () => {
     it('has an infected cell', () => {
       
       cy.get('.grid .infected')
-        .should('have.length',  2)
+        .should('have.length', 265)
     });
   });
 });

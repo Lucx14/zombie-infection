@@ -22,6 +22,7 @@ describe('LocalGameModel', () => {
             return {
                 getContext: () => (mockCanvasDraw),
                 addEventListener: () => ({}),
+                focus: () => ({}),
                 width: 800,
                 height: 600
             };
@@ -34,9 +35,19 @@ describe('LocalGameModel', () => {
       this.y = 295
       this.w = 10
       this.h = 10
+      this.speed = 2
+
+      this.isAtBoundary = function() { return false }
     }
 
-    localGameModel = new LocalGameModel(new mockPlayer())
+    function mockNpc() {
+      this.x = 390
+      this.y = 290
+      this.w = 10
+      this.h = 10
+    }
+
+    localGameModel = new LocalGameModel(new mockPlayer(), new mockNpc())
 
   });
 
@@ -64,25 +75,25 @@ describe('LocalGameModel', () => {
     it("keystroke 'w'", () => {
       localGameModel._keys[87] = true
       localGameModel._playerMovement()
-      expect(localGameModel._player.y).toEqual(294)
+      expect(localGameModel._player.y).toEqual(293)
     })
 
     it("keystroke 's'", () => {
       localGameModel._keys[83] = true
       localGameModel._playerMovement()
-      expect(localGameModel._player.y).toEqual(296)
+      expect(localGameModel._player.y).toEqual(297)
     })
 
     it("keystroke 'a'", () => {
       localGameModel._keys[65] = true
       localGameModel._playerMovement()
-      expect(localGameModel._player.x).toEqual(394)
+      expect(localGameModel._player.x).toEqual(393)
     })
 
     it("keystroke 'd'", () => {
       localGameModel._keys[68] = true
       localGameModel._playerMovement()
-      expect(localGameModel._player.x).toEqual(396)
+      expect(localGameModel._player.x).toEqual(397)
     })
   })
 

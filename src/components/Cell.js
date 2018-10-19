@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import "./worldmap.css"
+import "./worldmap.css";
+import PropTypes from 'prop-types';
 
 class Cell extends Component {
 
@@ -33,5 +34,13 @@ class Cell extends Component {
         </div>
     )}
 }
+
+
+
+Cell.propTypes = {
+  index: PropTypes.number,
+  infected: PropTypes.bool,
+  thing: PropTypes.number
+};
 
 export default Cell;

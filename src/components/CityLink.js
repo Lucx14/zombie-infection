@@ -3,8 +3,10 @@ import {
   NavLink,
   HashRouter
 } from "react-router-dom";
+import PropTypes from 'prop-types';
 
 class CityLink extends Component {
+  // Entry point for town entry logic
   cityRoute() {
     if (this.props.active) {
       return `/${this.props.city.toLowerCase()}`
@@ -33,5 +35,11 @@ class CityLink extends Component {
     )
   }
 }
+
+
+CityLink.propTypes = {
+  city: PropTypes.string,
+  index: PropTypes.number
+};
 
 export default CityLink;
