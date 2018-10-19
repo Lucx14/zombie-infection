@@ -51,7 +51,7 @@ class WorldMap extends Component {
     }
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     this.interval = setInterval(() => this.tick(), 0)
     this.populateGrid();
   }
@@ -78,6 +78,7 @@ class WorldMap extends Component {
 
   checkNeighbours(row, col) {
     if (row === 0 || row === 34) {
+      return false;
     } else if (
       this.state.grid[row-1][col-1]===1 || 
       this.state.grid[row-1][col]===1 ||
