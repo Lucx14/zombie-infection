@@ -1,5 +1,7 @@
 # Zombie infection
 
+[![Build Status](https://travis-ci.com/Lucx14/zombie-infection.svg?branch=master)](https://travis-ci.com/Lucx14/zombie-infection)
+
 Code by:
 - [Malachy Gilchrist](https://github.com/Mallig)
 - [Josh Nickson](https://github.com/joshnickson)

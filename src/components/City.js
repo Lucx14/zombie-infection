@@ -3,9 +3,6 @@ import "./worldmap.css";
 import PropTypes from 'prop-types';
 
 class City extends Component {
-  // cityRoute() {
-  //   return `/${this.props.city}`
-  // }
 
   render() {
     return (
