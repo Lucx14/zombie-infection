@@ -22,6 +22,7 @@ describe('LocalGameModel', () => {
             return {
                 getContext: () => (mockCanvasDraw),
                 addEventListener: () => ({}),
+                focus: () => ({}),
                 width: 800,
                 height: 600
             };
