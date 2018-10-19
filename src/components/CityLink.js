@@ -24,9 +24,9 @@ class CityLink extends Component {
       <HashRouter>
         <div className="city-link">
           <NavLink to={this.cityRoute()}>
-            <button className={this.determineClass()} key={this.props.index}>
+            <div className={this.determineClass()} key={this.props.index}>
               {this.props.city}
-            </button>
+            </div>
           </NavLink>
         </div>
       </HashRouter>

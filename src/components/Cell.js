@@ -4,8 +4,9 @@ import "./worldmap.css"
 class Cell extends Component {
 
   determineClass() {
-
-    if (this.props.land === 0) {
+    if (this.props.infected) {
+      return "infected"
+    } else if (this.props.land === 0) {
       return "sea"
     } else if (this.props.land === 1) {
       return "north-america"
@@ -22,18 +23,14 @@ class Cell extends Component {
     } else if (this.props.land === 7) {
       return "middle-east"
     }
-  
   }
 
   render() {
     return(
-      
         <div
           className={this.determineClass()}
           key={this.props.index}>   
         </div>
-      
-     
     )}
 }
 

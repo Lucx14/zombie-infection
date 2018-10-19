@@ -12,7 +12,7 @@
   float: left;
   width: 5px;
   height: 5px;
-  background-color: rgb(247, 78, 0);
+  background-color: rgb(247, 173, 0);
   font-size: 0%;
   outline-style: solid;
   outline-width: 1px;
@@ -22,8 +22,17 @@
   float: left;
   width: 5px;
   height: 5px;
-  background-color: rgb(10, 10, 10);
+  background-color: rgb(142, 8, 8);
   font-size: 0%;
+  outline-style: solid;
+  outline-width: 1px;
+}
+
+.infected {
+  float: left;
+  width: 5px;
+  height: 5px;
+  background-color: orangered;
   outline-style: solid;
   outline-width: 1px;
 }
@@ -32,14 +41,14 @@
   float: left;
   width: 5px;
   height: 5px;
-  background-color: rgb(80, 178, 235)
+  background-color: #333;
 }
 
 .north-america {
   float: left;
   width: 5px;
   height: 5px;
-  background-color: rgb(200, 241, 14);
+  background-color: dodgerblue;
   outline-style: solid;
   outline-width: 1px;
 }
@@ -48,7 +57,7 @@
   float: left;
   width: 5px;
   height: 5px;
-  background-color: rgb(57, 19, 224);
+  background-color: rgb(161, 185, 209);
   outline-style: solid;
   outline-width: 1px;
 }
@@ -57,7 +66,7 @@
   float: left;
   width: 5px;
   height: 5px;
-  background-color: rgb(185, 42, 166);
+  background-color: rgb(140, 219, 255);
   outline-style: solid;
   outline-width: 1px;
 }
@@ -66,7 +75,7 @@
   float: left;
   width: 5px;
   height: 5px;
-  background-color: rgb(204, 4, 54);
+  background-color: rgb(11, 88, 165);
   outline-style: solid;
   outline-width: 1px;
 }
@@ -75,7 +84,7 @@
   float: left;
   width: 5px;
   height: 5px;
-  background-color: rgb(248, 152, 8);
+  background-color: rgb(80, 134, 189);
   outline-style: solid;
   outline-width: 1px;
 }
@@ -84,7 +93,7 @@
   float: left;
   width: 5px;
   height: 5px;
-  background-color: rgb(10, 22, 128);
+  background-color: rgb(88, 95, 155);
   outline-style: solid;
   outline-width: 1px;
 }
@@ -93,7 +102,7 @@
   float: left;
   width: 5px;
   height: 5px;
-  background-color: rgb(50, 59, 63);
+  background-color: rgb(141, 171, 184);
   outline-style: solid;
   outline-width: 1px;
 }
