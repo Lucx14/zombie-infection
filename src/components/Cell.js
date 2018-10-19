@@ -4,9 +4,9 @@ import "./worldmap.css"
 class Cell extends Component {
 
   determineClass() {
-    let cellClass;
-    if (this.props.infected) {
-      return "infected"
+
+    if (this.props.land) {
+      return "land"
     }
     return "cell"
   }

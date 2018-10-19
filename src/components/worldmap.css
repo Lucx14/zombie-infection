@@ -6,17 +6,17 @@
 
 .cell {
   float: left;
-  width: 16px;
-  height: 16px;
-  background-color: gainsboro;
-  outline-style: solid;
-  outline-width: 1px;
+  width: 5px;
+  height: 5px;
+  background-color: rgb(40, 135, 179);
+  
+  
 }
 
 .cell-alt {
   float: left;
-  width: 16px;
-  height: 16px;
+  width: 5px;
+  height: 5px;
   background-color: white;
 }
 
@@ -26,8 +26,8 @@
 
 .clickable {
   float: left;
-  width: 16px;
-  height: 16px;
+  width: 5px;
+  height: 5px;
   background-color: rgb(247, 78, 0);
   font-size: 0%;
   outline-style: solid;
@@ -36,19 +36,20 @@
 
 .unclickable {
   float: left;
-  width: 16px;
-  height: 16px;
+  width: 5px;
+  height: 5px;
   background-color: rgb(10, 10, 10);
   font-size: 0%;
   outline-style: solid;
   outline-width: 1px;
 }
 
-.infected {
+.land {
   float: left;
-  width: 16px;
-  height: 16px;
+  width: 5px;
+  height: 5px;
   background-color: greenyellow;
   outline-style: solid;
   outline-width: 1px;
 }
+
