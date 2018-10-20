@@ -139,7 +139,7 @@ class WorldMap extends PureComponent {
 
   componentDidMount() {
     this.setState({ticker: this.state.ticker +1})
-    this.interval = setInterval(() => this.tick(), 0)
+    this.interval = setInterval(() => this.tick(), 1000)
   }
 
   componentWillUnmount() {
@@ -207,7 +207,7 @@ class WorldMap extends PureComponent {
         <h1>
           <center>
             World Map
-            <p>{this.state.ticker}</p>
+            {this.state.ticker}
           </center>
         </h1>
           <div className="grid">
