@@ -9,7 +9,6 @@ class Cell extends Component {
       return "infected" 
     } else { 
       switch (this.props.land) {
-        case 0: return "sea";
         case 5: return "asia";
         case 1: return "north-america";
         case 3: return "europe";
@@ -32,8 +31,7 @@ class Cell extends Component {
 
 Cell.propTypes = {
   index: PropTypes.number,
-  infected: PropTypes.bool,
-  thing: PropTypes.number
+  land: PropTypes.number
 };
 
 export default Cell;

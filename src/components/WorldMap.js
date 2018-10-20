@@ -188,11 +188,11 @@ class WorldMap extends Component {
       this.state.grid.map((row, rowIndex) => (
         row.map((cell, index) => {
           if (typeof cell == 'number'){
-            if (cell < 0) {
-              return <Cell key={index} infected={true} land={cell}/>;
+            if (cell===0){
+              return <div className="sea" />;
             } else {
-              return <Cell key={index} infected={false} land={cell}/>;
-            }
+              return <Cell key={index} land={cell}/>;
+            } 
           } else {
             return <CityLink key={index} city={cell} active={this.checkNeighbours(rowIndex, index)}/>; 
           }
