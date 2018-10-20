@@ -1,8 +1,8 @@
 describe('Local Game', () => {
 
   beforeEach(function () {
-    cy.visit('http://localhost:3000/#/london')
-    // cy.get('button.city-button:first').click()
+    cy.visit('http://localhost:3000')
+    cy.get('button:first').click()
   })
 
   it('shows the game title', () => {

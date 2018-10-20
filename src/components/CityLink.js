@@ -1,19 +1,7 @@
-import React, { Component } from 'react';
-import {
-  NavLink,
-  HashRouter
-} from "react-router-dom";
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-class CityLink extends Component {
-  // Entry point for town entry logic
-  cityRoute() {
-    if (this.props.active) {
-      return `/${this.props.city.toLowerCase()}`
-    }
-    return '/'
-  }
-
+class CityLink extends PureComponent { 
   determineClass() {
     if (this.props.active) {
       return "clickable"
@@ -23,19 +11,14 @@ class CityLink extends Component {
 
   render() {
     return (
-      <HashRouter>
-        <div className="city-link">
-          <NavLink to={this.cityRoute()}>
-            <div className={this.determineClass()} key={this.props.index}>
-              {this.props.city}
-            </div>
-          </NavLink>
+      <div>
+        <div className={this.determineClass()} key={this.props.index}>
+          {this.props.city}
         </div>
-      </HashRouter>
+      </div>
     )
   }
 }
-
 
 CityLink.propTypes = {
   city: PropTypes.string,
