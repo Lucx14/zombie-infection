@@ -131,7 +131,7 @@ class WorldMap extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      grid: InitialGrid(),
+      grid: props.grid || InitialGrid(),
       ticker: -1,
       renderGrid : []
     }
@@ -219,7 +219,3 @@ class WorldMap extends PureComponent {
 }
 
 export default WorldMap;
-
-
-
-// active={this.checkNeighbours(row, index)

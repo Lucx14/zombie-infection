@@ -1,8 +1,4 @@
 import React, { PureComponent } from 'react';
-import {
-  NavLink,
-  HashRouter
-} from "react-router-dom";
 import PropTypes from 'prop-types';
 
 class CityLink extends PureComponent {
@@ -23,15 +19,9 @@ class CityLink extends PureComponent {
 
   render() {
     return (
-      <HashRouter>
-        <div className="city-link">
-          <NavLink to={this.cityRoute()}>
             <div className={this.determineClass()} key={this.props.index}>
               {this.props.city}
             </div>
-          </NavLink>
-        </div>
-      </HashRouter>
     )
   }
 }

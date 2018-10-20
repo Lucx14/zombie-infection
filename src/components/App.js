@@ -20,7 +20,7 @@ class App extends Component {
                     "hong kong","melbourne","wellington"]
     return(cities.map((city) => {
       return(
-        <button onClick={() => { this.setSelected((city)) }}>
+        <button key={city} onClick={() => { this.setSelected((city)) }}>
         {city}
         </button>
       )
