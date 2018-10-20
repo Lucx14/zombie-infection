@@ -132,13 +132,18 @@ class WorldMap extends Component {
     super(props);
     this.state = {
       grid: InitialGrid(),
-      ticker: 0
+      ticker: 0,
+      renderGrid : []
     }
   }
 
 
   componentDidMount() {
-    this.interval = setInterval(() => this.tick(), 10)
+    this.interval = setInterval(() => this.tick(), 0)
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval)
   }
 
   tick() {
@@ -158,6 +163,7 @@ class WorldMap extends Component {
       })
     ))
     this.setState({grid: populatedGrid})
+    this.setState({renderGrid: this.renderGrid()})
   }
 
   checkNeighbours(row, col) {
@@ -204,7 +210,7 @@ class WorldMap extends Component {
         <h2>{this.state.ticker}</h2>
         <div className="world-map">
           <div className="grid">
-            {this.renderGrid()}
+            {this.state.renderGrid}
           </div>
         </div>
       </div>
