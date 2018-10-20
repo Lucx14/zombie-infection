@@ -1,15 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-class CityLink extends PureComponent {
-  // Entry point for town entry logic
-  cityRoute() {
-    if (this.props.active) {
-      return `/${this.props.city.toLowerCase()}`
-    }
-    return '/'
-  }
-
+class CityLink extends PureComponent { 
   determineClass() {
     if (this.props.active) {
       return "clickable"
@@ -19,13 +11,14 @@ class CityLink extends PureComponent {
 
   render() {
     return (
-            <div className={this.determineClass()} key={this.props.index}>
-              {this.props.city}
-            </div>
+      <div>
+        <div className={this.determineClass()} key={this.props.index}>
+          {this.props.city}
+        </div>
+      </div>
     )
   }
 }
-
 
 CityLink.propTypes = {
   city: PropTypes.string,
