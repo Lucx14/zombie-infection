@@ -14,7 +14,10 @@ describe('LocalGameModel', () => {
       clearRect: () => {},
       beginPath: () => {},
       rect: () => {},
-      fill: () => {}
+      fill: () => {},
+      setTransform: () => {},
+      translate: () => {},
+      scale: () => {}
     };
 
     document.getElementById = (tagName) => {
