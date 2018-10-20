@@ -6,6 +6,7 @@
 
 .grid {
   width: 800px;
+  margin: 0 auto 0 auto;
 }
 
 .clickable {
@@ -42,6 +43,9 @@
   width: 5px;
   height: 5px;
   background-color: #333;
+  outline-style: solid;
+  outline-width: 1px;
+  outline-color: rgb(70, 70, 70);
 }
 
 .north-america {
