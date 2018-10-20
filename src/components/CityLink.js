@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import {
   NavLink,
   HashRouter
 } from "react-router-dom";
 import PropTypes from 'prop-types';
 
-class CityLink extends Component {
+class CityLink extends PureComponent {
   // Entry point for town entry logic
   cityRoute() {
     if (this.props.active) {

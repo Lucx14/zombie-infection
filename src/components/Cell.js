@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import "./worldmap.css";
 import PropTypes from 'prop-types';
 
-class Cell extends Component {
+class Cell extends PureComponent {
 
   determineClass() {
     if (this.props.land < 0) { 
