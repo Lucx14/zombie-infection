@@ -7,7 +7,7 @@ class App extends Component {
     this.setState({ city: false });
   }
 
-  setSelected = (city) => {
+  setSelected(city) {
     this.setState({ city: city });
   };
 
@@ -28,6 +28,7 @@ class App extends Component {
   }
 
   render() {
+
     if (this.state.city) {
       return (
         <div>
