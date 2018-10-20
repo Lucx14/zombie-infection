@@ -137,9 +137,8 @@ class WorldMap extends Component {
   }
 
 
-  UNSAFE_componentWillMount() {
-    this.interval = setInterval(() => this.tick(), 0)
-    this.populateGrid();
+  componentDidMount() {
+    this.interval = setInterval(() => this.tick(), 10)
   }
 
   tick() {
@@ -151,7 +150,7 @@ class WorldMap extends Component {
     var populatedGrid =
     this.state.grid.map((row, rowIndex) => (
       row.map((cell, index) => {
-          if (cell > 0 && this.checkNeighbours(rowIndex, index) && Math.random() < 0.5) {
+          if (cell > 0 && Math.random() < 0.5 && this.checkNeighbours(rowIndex, index)) {
             return cell*(-1);
           } else {
             return cell;
