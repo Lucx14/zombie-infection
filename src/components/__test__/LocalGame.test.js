@@ -7,6 +7,7 @@ describe('LocalGame', () => {
   beforeAll(() => {
 
     const createElement = document.createElement.bind(document);
+
     document.getElementById = (tagName) => {
         if (tagName === 'canvas') {
             return {
@@ -16,7 +17,6 @@ describe('LocalGame', () => {
                 focus: () => ({})
             };
         }
-        return getElementById(tagName);
     };
 
   });

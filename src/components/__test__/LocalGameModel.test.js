@@ -17,7 +17,8 @@ describe('LocalGameModel', () => {
       fill: () => {},
       setTransform: () => {},
       translate: () => {},
-      scale: () => {}
+      scale: () => {},
+      drawImage: () => {}
     };
 
     document.getElementById = (tagName) => {
@@ -30,7 +31,6 @@ describe('LocalGameModel', () => {
                 height: 600
             };
         }
-        return getElementById(tagName);
     };
 
     function mockPlayer() {

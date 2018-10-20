@@ -11,43 +11,43 @@ export default function LocalGameModel(player = new Player(), npc = new Npc()) {
   this._WIDTH = this._canvas.width;
   this._HEIGHT = this._canvas.height;
   this._keys = []
-  this._groupNpc = Array.from({length:200}, () => new Npc(Math.random() * 2))
+  this._groupNpc = Array.from({length:300}, () => new Npc(Math.random() * 2))
   this.gameSpeed = 15
-  document.getElementById("canvas").focus();
+
+  this._bg = document.getElementById("background")
+  this._zombie = document.getElementById("zombie")
+
 }
 
 LocalGameModel.prototype.tickDraw = function () {
+  document.getElementById("canvas").focus();
   setInterval(this._mainDraw.bind(this), this.gameSpeed);
   return "new frame"
 }
 
 LocalGameModel.prototype._mainDraw = function () {
+  const local = this
   this._canvasDraw.clearRect(0, 0, this._WIDTH, this._HEIGHT)
-
-  this._canvasDraw.fillStyle="red";
-  this._canvasDraw.beginPath();
-  this._canvasDraw.rect(this._player.x, this._player.y ,this._player.w , this._player.h);
-  this._canvasDraw.fill();
 
   this._canvasDraw.setTransform();
   this._canvasDraw.translate(-this._player.x, -this._player.y);
   this._canvasDraw.scale(2,2);
 
+  this._canvasDraw.drawImage(this._bg, 0,0)
 
-  const local = this
+  this._canvasDraw.drawImage(this._zombie, this._player.x - 2.5, this._player.y - 12.5, 15, 25)
+
   this._groupNpc.forEach(function(npc) {
     if (npc.isInfected()) {
-      local._canvasDraw.fillStyle="green";
+      local._canvasDraw.drawImage(local._zombie, npc.x - 2.5, npc.y - 12.5, 15, 25)
     } else {
-      local._canvasDraw.fillStyle="black";
+      local._canvasDraw.drawImage(npc.type, npc.x - 2.5, npc.y - 12.5, 15, 25)
     }
-    local._canvasDraw.beginPath();
-    local._canvasDraw.rect(npc.x, npc.y, npc.w, npc.h);
-    local._canvasDraw.fill();
   })
 
   this._npcMovement();
   this._playerMovement();
+
   return "main draw run"
 }
 
