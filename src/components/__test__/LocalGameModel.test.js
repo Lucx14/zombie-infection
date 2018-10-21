@@ -22,7 +22,7 @@ describe('LocalGameModel', () => {
     };
 
     document.getElementById = (tagName) => {
-        if (tagName === 'canvas') {
+        if (tagName === 'canvas' || tagName === 'underCanvas') {
             return {
                 getContext: () => (mockCanvasDraw),
                 addEventListener: () => ({}),

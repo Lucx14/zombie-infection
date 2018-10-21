@@ -9,7 +9,7 @@ describe('LocalGame', () => {
     const createElement = document.createElement.bind(document);
 
     document.getElementById = (tagName) => {
-        if (tagName === 'canvas') {
+        if (tagName === 'canvas' || tagName === 'underCanvas') {
             return {
                 getContext: () => ({}),
                 measureText: () => ({}),
