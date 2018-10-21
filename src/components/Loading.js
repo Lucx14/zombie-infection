@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import "./worldmap.css";
+import "./loading.css";
 import PropTypes from 'prop-types';
 
 class Loading extends Component {
@@ -7,12 +7,13 @@ class Loading extends Component {
   render() {
     return (
       <div>
-        <h1>Loading...{this.props.city}</h1>
+        <div id="loading-container">
+        <h2>Loading...{this.props.city}</h2>
+        </div>
       </div>
     );
   }
 }
-
 
 Loading.propTypes = {
   city: PropTypes.string

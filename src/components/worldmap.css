@@ -1,3 +1,11 @@
+@import 'https://fonts.googleapis.com/css?family=Press+Start+2P';
+body {
+  background-color: black;
+  font-family: 'Press Start 2P';
+}
+h1 {
+  color: white;
+}
 .world-map {
   background-color: aquamarine;
   width: 800px;
