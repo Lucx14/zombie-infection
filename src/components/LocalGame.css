@@ -1,6 +1,16 @@
 canvas {
 border: solid 1px black;
-position:relative;
+position:absolute;
+}
+
+#canvas {
+  position: absolute;
+  z-index:1;
+}
+
+#underCanvas {
+  position: absolute;
+  z-index:0;
 }
 
 #holder {
