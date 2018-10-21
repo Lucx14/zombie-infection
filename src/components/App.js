@@ -18,11 +18,9 @@ class App extends Component {
                     "los angeles","mexico city","bogota","rio de janeiro",
                     "tehran","new dehli","bangkok","shanghai","tokyo",
                     "hong kong","melbourne","wellington"]
-    return(cities.map((city) => {
+    return(cities.map((city, index) => {
       return(
-        <button key={city} onClick={() => { this.setSelected((city)) }}>
-        {city}
-        </button>
+        <button className="city-button" key={index} title={city} onClick={() => { this.setSelected((city)) }}></button>
       )
     }))
   }

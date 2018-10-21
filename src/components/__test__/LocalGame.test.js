@@ -22,8 +22,8 @@ describe('LocalGame', () => {
   });
 
   it('renders a header', () => {
-    var wrapper = shallow(<LocalGame />)
-    expect(wrapper.find('h1').text()).toMatch('Local Map')
+    var wrapper = shallow(<LocalGame city="london"/>)
+    expect(wrapper.find('h1').text()).toMatch("london")
   });
 
 });
