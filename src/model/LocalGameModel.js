@@ -27,7 +27,10 @@ LocalGameModel.prototype.tickDraw = function () {
 
 LocalGameModel.prototype._mainDraw = function () {
   const local = this
+
   this._canvasDraw.clearRect(0, 0, this._WIDTH, this._HEIGHT)
+
+  this._groupNpc = this._groupNpc.sort(this._sortNpcs);
 
   this._canvasDraw.setTransform();
   this._canvasDraw.translate(-this._player.x, -this._player.y);
@@ -118,4 +121,13 @@ LocalGameModel.prototype.eventListen = function() {
   this._canvas.addEventListener('keydown', function(e) { this._keys[e.keyCode] = true; }.bind(this));
   this._canvas.addEventListener('keyup', function(e) { this._keys[e.keyCode] = false; }.bind(this));
   return "keystroke listeners activated"
+}
+
+// prevent NPCs being drawn on top of each other if one is in fron of the other
+LocalGameModel.prototype._sortNpcs = function(a, b) {
+  if (a.y < b.y)
+    return -1;
+  if (a.y > b.y)
+    return 1;
+  return 0;
 }
