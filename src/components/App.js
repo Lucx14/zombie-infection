@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import WorldMap from './WorldMap';
 import LocalGame from './LocalGame';
+import Loading from './Loading';
 
 class App extends Component {
   componentWillMount() {
@@ -32,7 +33,7 @@ class App extends Component {
     if (this.state.city) {
       return (
         <div>
-          <LocalGame city={this.state.city}/>
+          <Loading city={this.state.city} />
         </div>
       );
     }
