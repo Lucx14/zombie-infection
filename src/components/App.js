@@ -9,6 +9,7 @@ class App extends Component {
       city: false, 
       playing: false,
       map: InitialGrid(),
+      ticker: -1
     });
   }
 
@@ -18,6 +19,14 @@ class App extends Component {
 
   startGame() {
     this.setState({ playing: true });
+  }
+
+  updateState(map, ticker) {
+    this.setState({ map: map, ticker: ticker });
+  }
+
+  clearCity() {
+    this.setState({ city: false });
   }
 
   renderButtons() {
@@ -45,14 +54,14 @@ class App extends Component {
     } else if (this.state.city) {
       return (
         <div>
-          <LocalGame city={this.state.city} />
+          <LocalGame city={this.state.city} clearCity={this.clearCity.bind(this)}/>
         </div>
       );
     } else {
       return (
         <div>
           {this.state.city}
-          <WorldMap map={this.state.map} />
+          <WorldMap map={this.state.map} updateAppMap={this.updateState.bind(this)} ticker={this.state.ticker}/>
           {this.renderButtons()}
         </div>
       )

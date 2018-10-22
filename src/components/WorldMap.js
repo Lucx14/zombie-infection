@@ -9,19 +9,19 @@ class WorldMap extends PureComponent {
     super(props);
     this.state = {
       grid: props.map,
-      ticker: -1,
+      ticker: props.ticker,
       renderGrid : [],
       loading: true
     }
   }
 
   componentDidMount() {
-    this.setState({ticker: this.state.ticker +1})
-    this.interval = setInterval(() => this.tick(), 1000)
+    this.interval = setInterval(() => this.tick(), 100)
   }
 
   componentWillUnmount() {
     clearInterval(this.interval)
+    this.props.updateAppMap(this.state.grid, this.state.ticker)
   }
 
   tick() {
@@ -33,7 +33,7 @@ class WorldMap extends PureComponent {
     var populatedGrid =
     this.state.grid.map((row, rowIndex) => (
       row.map((cell, index) => {
-          if (cell > 0 && Math.random() < 0.05 && this.checkNeighbours(rowIndex, index)) {
+          if (cell > 0 && Math.random() < 0.9 && this.checkNeighbours(rowIndex, index)) {
             return cell*(-1);
           } else {
             return cell;
