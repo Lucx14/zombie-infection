@@ -1,6 +1,7 @@
 describe('World map', () => {
   beforeEach(function () {
     cy.visit('http://localhost:3000')
+    cy.get('#start-button').click()
   })
 
   it('shows the game title', () => {
