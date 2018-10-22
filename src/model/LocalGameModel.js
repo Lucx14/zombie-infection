@@ -62,6 +62,10 @@ LocalGameModel.prototype._timeRemaining = function() {
   return this._endDate - new Date().getTime()
 }
 
+LocalGameModel.prototype._drawXYModify = function(canvas, imgFile, position, xModifier, yModifier, xWidth, yWidth) {
+  canvas.drawImage(imgFile, position.x + xModifier, position.y + yModifier, xWidth, yWidth)
+}
+
 LocalGameModel.prototype._mainDraw = function () {
   if (this._timeUp()) { this._localGameOver(); }
 
@@ -69,36 +73,39 @@ LocalGameModel.prototype._mainDraw = function () {
   const local = this
 
   this._underCanvasDraw.drawImage(this._bg, 0, 0)
-  this._bloodsplats.forEach(function(bloodsplat) {
-    local._underCanvasDraw.drawImage(local._bloodsplat, bloodsplat.x - 5, bloodsplat.y + 15, 30, 20)
-  })
-
   this._canvasDraw.clearRect(0, 0, this._WIDTH, this._HEIGHT)
+
+  this._bloodsplats.forEach(function(bloodsplat) {
+    local._drawXYModify(local._underCanvasDraw,
+                        local._bloodsplat,
+                        bloodsplat,
+                        -5, 15, 30, 20)
+  })
 
   this._groupNpc = this._groupNpc.sort(this._sortNpcs);
 
-  this._canvasDraw.setTransform();
-  this._canvasDraw.translate(-this._player.x, -this._player.y);
-  this._canvasDraw.scale(2,2);
-
-  this._underCanvasDraw.setTransform();
-  this._underCanvasDraw.translate(-this._player.x, -this._player.y);
-  this._underCanvasDraw.scale(2,2);
+  this._setViewZoom(this._canvasDraw, this._player, [2,2])
+  this._setViewZoom(this._underCanvasDraw, this._player, [2,2])
 
   this._canvasDraw.drawImage(this._zombie, this._player.x - 2.5, this._player.y - 12.5, 15, 25)
 
   this._groupNpc.forEach(function(npc) {
-    if (npc.isInfected()) {
-      local._canvasDraw.drawImage(local._zombie, npc.x - 2.5, npc.y - 12.5, 15, 25)
-    } else {
-      local._canvasDraw.drawImage(npc.type, npc.x - 2.5, npc.y - 12.5, 15, 25)
-    }
+    local._drawXYModify(local._canvasDraw,
+                        npc.isInfected() ? local._zombie : npc.type,
+                        npc,
+                        -2.5, -12.5, 15, 25)
   })
 
   this._npcMovement();
   this._playerMovement();
 
   return "main draw run"
+}
+
+LocalGameModel.prototype._setViewZoom = function(canvas, target, scale) {
+  canvas.setTransform();
+  canvas.translate(-target.x, -target.y);
+  canvas.scale(scale[0],scale[1]);
 }
 
 LocalGameModel.prototype._npcMovement = function() {

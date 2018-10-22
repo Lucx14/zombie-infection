@@ -37,3 +37,7 @@ Player.prototype.moveFromBoundary = function(width, height) {
   if (this.x + this.w > width) { this.x -= this.speed }
   if (this.y + this.h > height) { this.y -= this.speed }
 }
+
+Player.prototype.coordinates = function() {
+  return [this.x, this.y]
+}
