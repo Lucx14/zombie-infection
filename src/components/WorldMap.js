@@ -17,7 +17,7 @@ class WorldMap extends PureComponent {
   }
 
   componentDidMount() {
-    this.interval = setInterval(() => this.tick(), 1000)
+    this.interval = setInterval(() => this.tick(), 100)
   }
 
   componentWillUnmount() {
@@ -39,11 +39,15 @@ class WorldMap extends PureComponent {
     this.setState({paused: !this.state.paused})
   }
 
+
+
   populateGrid() {
     var populatedGrid =
     this.state.grid.map((row, rowIndex) => (
       row.map((cell, index) => {
-          if (cell > 0 && Math.random() < 0.9 && this.checkNeighbours(rowIndex, index)) {
+          if (cell > 0 && Math.random() < 0.05 && this.checkNeighbours(rowIndex, index)) {
+            return cell*(-1);
+          } else if (cell > 0 && this.props.flyingZombies && Math.random() < 0.001 && this.state.ticker % 10 === 0) {
             return cell*(-1);
           } else {
             return cell;

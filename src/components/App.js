@@ -10,7 +10,8 @@ class App extends Component {
       playing: false,
       map: InitialGrid(),
       ticker: -1,
-      playableCities: []
+      playableCities: [],
+      flyingZombies: false
     });
   }
 
@@ -36,6 +37,14 @@ class App extends Component {
     }
   }
 
+  flyingZombies() {
+    if (this.state.playableCities.length > 10 && this.state.flyingZombies ===false) {
+      this.setState({ flyingZombies: true });
+    }
+
+  }
+  
+
   renderButtons() {
     const cities = this.state.playableCities
     return(cities.map((city, index) => {
@@ -49,6 +58,7 @@ class App extends Component {
   }
 
   render() {
+    this.flyingZombies()
     if (this.playing) {
       return (
         <div>
@@ -70,6 +80,7 @@ class App extends Component {
                     updateAppMap={this.updateState.bind(this)}
                     ticker={this.state.ticker}
                     activateCity={this.activateCity.bind(this)}
+                    flyingZombies={this.state.flyingZombies}
                     />
           {this.renderButtons()}
         </div>
