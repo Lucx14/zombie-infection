@@ -16,29 +16,31 @@ jest.mock('../Cell', () => () =>
 describe('WorldMap', () => {
   let wrapper;
 
+  let testGrid1 = [
+    [0,0,0,0,0],
+    [0,0,0,0,0],
+    [0,0,0,0,0],
+    [0,0,0,0,0],
+    [0,0,0,0,0]
+  ]
+
   beforeAll(() => {
-    wrapper = shallow(<WorldMap />)
+    wrapper = shallow(<WorldMap map={testGrid1}/>)
   });
 
   describe('pause', () => {
     it('pauses the game', () => {
-      wrapper.instance().pause()
+      wrapper.instance().pauseGame()
     })
   })
 
   it('renders the map grid', () => {
-    wrapper = mount(<WorldMap/>)
-    expect(wrapper.instance().renderGrid().length).toBeGreaterThan(50)
+    
+    expect(wrapper.instance().renderGrid().length).toEqual(5)
   });
 
   it('checks cells for infected neighbors', () => {
-    let testGrid1 = [
-      [0,0,0,0,0],
-      [0,0,0,0,0],
-      [0,0,0,0,0],
-      [0,0,0,0,0],
-      [0,0,0,0,0]
-    ]
+    
     let testGrid2 = [
       [0,0,0,0,0],
       [0,0,0,0,0],
