@@ -17,20 +17,24 @@ describe('LocalGameModel', () => {
       fill: () => {},
       setTransform: () => {},
       translate: () => {},
-      scale: () => {}
+      scale: () => {},
+      drawImage: () => {}
     };
 
     document.getElementById = (tagName) => {
-        if (tagName === 'canvas') {
+        if (tagName === 'canvas' || tagName === 'underCanvas') {
             return {
                 getContext: () => (mockCanvasDraw),
                 addEventListener: () => ({}),
                 focus: () => ({}),
                 width: 800,
-                height: 600
+                height: 600,
             };
+        } else if (tagName == 'timer') {
+            return {
+              innerHTML: () => ({})
+            }
         }
-        return getElementById(tagName);
     };
 
     function mockPlayer() {

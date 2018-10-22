@@ -27,11 +27,16 @@ class App extends Component {
     }))
   }
 
+  endGame = () => {
+    this.setState({city: false})
+    console.log('in here')
+  }
+
   render() {
     if (this.state.city) {
       return (
         <div>
-          <LocalGame city={this.state.city}/>
+          <LocalGame city={this.state.city} endGame={this.endGame.bind(this)}/>
         </div>
       );
     }
