@@ -40,7 +40,7 @@ LocalGameModel.prototype._mainDraw = function () {
 
   this._underCanvasDraw.drawImage(this._bg, 0, 0)
   this._bloodsplats.forEach(function(bloodsplat) {
-    local._underCanvasDraw.drawImage(local._bloodsplat, bloodsplat.x - 5, bloodsplat.y + 20, 30, 20)
+    local._underCanvasDraw.drawImage(local._bloodsplat, bloodsplat.x - 5, bloodsplat.y + 15, 30, 20)
   })
 
   this._canvasDraw.clearRect(0, 0, this._WIDTH, this._HEIGHT)
@@ -118,7 +118,7 @@ LocalGameModel.prototype._npcMovement = function() {
   })
 }
 
-LocalGameModel.prototype._playerMovement = function(e) {
+LocalGameModel.prototype._playerMovement = function() {
   if (this._player.isAtBoundary(this._WIDTH, this._HEIGHT)) {
     this._player.moveFromBoundary(this._WIDTH, this._HEIGHT)
   }
