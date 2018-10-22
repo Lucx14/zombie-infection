@@ -3,7 +3,19 @@ import WorldMap from './WorldMap';
 import LocalGame from './LocalGame';
 import "./app.css"
 
+const headlines = {
+  "london": ["East London Pub attacked by Horde of Ravenous flesh-munchers", "Queen seen roaming Westminster in a tank wearing full-body armour"],
+  "paris": ["Zombies spotted sampling wine in local vineyard", "Holiday makers leave 2-star tripadvisor review due to zombie in soup"]
+}
+
 class App extends Component {
+  constructor (props) {
+    super(props);
+    this.state = {
+      headlines: props.headlines || headlines,
+      playableCities: props.playableCities || [],
+    }
+  }
   componentWillMount() {
     this.setState({ 
       city: false, 
@@ -11,7 +23,7 @@ class App extends Component {
       map: InitialGrid(),
       ticker: -1,
       playableCities: [],
-      flyingZombies: false
+      flyingZombies: false,
     });
   }
 
@@ -40,6 +52,13 @@ class App extends Component {
   flyingZombies() {
     if (this.state.playableCities.length > 10 && this.state.flyingZombies ===false) {
       this.setState({ flyingZombies: true });
+    }
+  }
+  
+  getHeadline(headlines, playableCities) {
+    if (playableCities.length > 0) {
+      let cityHeadlines = headlines[playableCities[Math.floor(Math.random() * playableCities.length)]]
+      return cityHeadlines[Math.floor(Math.random() * cityHeadlines.length)];
     }
   }
 
@@ -81,6 +100,9 @@ class App extends Component {
                     flyingZombies={this.state.flyingZombies}
                     />
           {this.renderButtons()}
+          <p id="headline">
+            {this.getHeadline(this.state.headlines, this.state.playableCities)}
+          </p>
         </div>
       )
     }

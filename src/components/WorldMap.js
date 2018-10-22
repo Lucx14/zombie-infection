@@ -39,8 +39,6 @@ class WorldMap extends PureComponent {
     this.setState({paused: !this.state.paused})
   }
 
-
-
   populateGrid() {
     var populatedGrid =
     this.state.grid.map((row, rowIndex) => (
