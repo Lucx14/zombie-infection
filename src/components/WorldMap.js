@@ -5,8 +5,7 @@ import Cell from "./Cell.js";
 import TheWorld from '../TheWorld';
 
 function InitialGrid() {
-  const array = TheWorld;
-  return (array);
+  return TheWorld;
 }
 
 class WorldMap extends PureComponent {

@@ -134,10 +134,10 @@ LocalGameModel.prototype._npcMovement = function() {
           npc.isNear(otherNpcs, 12)) {
           npc.move(otherNpcs, 'away')
         }
-        // else if (!otherNpcs.isInfected() &&
-        //             npc.isNear(otherNpcs, 30)) {
-        //   npc.move(otherNpcs, 'towards')
-        // }
+        else if (!otherNpcs.isInfected() &&
+                    npc.isNear(otherNpcs, 10)) {
+          npc.move(otherNpcs, 'towards')
+        }
       }
     })
 
@@ -153,16 +153,16 @@ LocalGameModel.prototype._playerMovement = function() {
     this._player.moveFromBoundary(this._WIDTH, this._HEIGHT)
   }
   if (this._keys[87] || this._keys[38]) {
-    this._player.y -= this._player.speed
+    this._player.moveUp()
   }
   if (this._keys[83] || this._keys[40]) {
-    this._player.y += this._player.speed
+    this._player.moveDown()
   }
   if (this._keys[65] || this._keys[37]) {
-    this._player.x -= this._player.speed
+    this._player.moveLeft()
   }
   if (this._keys[68] || this._keys[39]) {
-    this._player.x += this._player.speed
+    this._player.moveRight()
   }
 }
 
