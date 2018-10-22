@@ -9,7 +9,8 @@ class App extends Component {
       city: false, 
       playing: false,
       map: InitialGrid(),
-      ticker: -1
+      ticker: -1,
+      playableCities: []
     });
   }
 
@@ -29,16 +30,20 @@ class App extends Component {
     this.setState({ city: false });
   }
 
+  activateCity(newCity) {
+    if(this.state.playableCities.includes(newCity) === false) {
+      this.setState({ playableCities: [this.state.playableCities, newCity].flat()});
+    }
+  }
+
   renderButtons() {
-    const cities = ["london","oxford","paris","rome","oslo",
-                    "reykjavik","new york","madrid","marrakech",
-                    "cairo","nairobi","istanbul" ,"dubai","cape town",
-                    "los angeles","mexico city","bogota","rio de janeiro",
-                    "tehran","new dehli","bangkok","shanghai","tokyo",
-                    "hong kong","melbourne","wellington"]
+    const cities = this.state.playableCities
     return(cities.map((city, index) => {
       return(
-        <button className="city-button" key={index} title={city} onClick={() => { this.setSelected(city) }}></button>
+        <button className="city-button" 
+                key={index}
+                title={city} 
+                onClick={() => { this.setSelected(city) }}></button>
       )
     }))
   }
@@ -61,7 +66,11 @@ class App extends Component {
       return (
         <div>
           {this.state.city}
-          <WorldMap map={this.state.map} updateAppMap={this.updateState.bind(this)} ticker={this.state.ticker}/>
+          <WorldMap map={this.state.map}
+                    updateAppMap={this.updateState.bind(this)}
+                    ticker={this.state.ticker}
+                    activateCity={this.activateCity.bind(this)}
+                    />
           {this.renderButtons()}
         </div>
       )
