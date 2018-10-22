@@ -24,11 +24,13 @@ p {
   background-color: aquamarine;
   width: 800px;
   height: 560px;
+  z-index: -2;
 }
 
 .grid {
   width: 800px;
   margin: 0 auto 0 auto;
+  z-index: -1;
 }
 
 .clickable {
