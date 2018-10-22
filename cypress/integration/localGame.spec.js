@@ -2,7 +2,7 @@ describe('Local Game', () => {
 
   beforeEach(function () {
     cy.visit('http://localhost:3000')
-    cy.get('button.city-button:first').click()
+    cy.get('button:first').click()
   })
 
   it('shows the game title', () => {
@@ -11,29 +11,48 @@ describe('Local Game', () => {
   });
 });
 
-describe ('player movement', () => {
+describe ('canvas accepts movement keys', () => {
 
   describe ('up', () =>  {
     it ('responds to w press for up', () => {
-      cy.get('canvas').type('w')
+      cy.get('canvas').last().type('w')
+    });
+    it ('responds to up arrow press for up', () => {
+      cy.get('canvas').last().type('↑')
     });
   });
 
   describe ('down', () =>  {
     it ('responds to s press for down', () => {
-      cy.get('canvas').type('s')
+      cy.get('canvas').last().type('s')
+    });
+    it ('responds to down arrow press for down', () => {
+      cy.get('canvas').last().type('↓')
     });
   });
 
   describe ('left', () =>  {
     it ('responds to a press for left', () => {
-      cy.get('canvas').type('a')
+      cy.get('canvas').last().type('a')
+    });
+    it ('responds to left arrow press for down', () => {
+      cy.get('canvas').last().type('←')
     });
   });
 
   describe ('right', () =>  {
     it ('responds to d press for right', () => {
-      cy.get('canvas').type('d')
+      cy.get('canvas').last().type('d')
+    });
+    it ('responds to right arrow press for down', () => {
+      cy.get('canvas').last().type('→')
+    });
+  });
+
+  describe ('game timer end local game', () => {
+    it ('responds to space bar to take user back to world map', () => {
+      cy.wait(11000)
+      cy.get('#holder').find('#local-game-over').contains('TIMES UP!')
     });
   });
 });

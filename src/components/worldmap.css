@@ -4,31 +4,26 @@
   height: 560px;
 }
 
-.cell {
+.grid {
+  width: 800px;
+  margin: 0 auto 0 auto;
+}
+
+.clickable {
   float: left;
-  width: 16px;
-  height: 16px;
-  background-color: gainsboro;
+  width: 5px;
+  height: 5px;
+  background-color: rgb(247, 173, 0);
+  font-size: 0%;
   outline-style: solid;
   outline-width: 1px;
 }
 
-.cell-alt {
+.unclickable {
   float: left;
-  width: 16px;
-  height: 16px;
-  background-color: white;
-}
-
-.grid {
-  width: 800px;
-}
-
-.city-button {
-  float: left;
-  width: 16px;
-  height: 16px;
-  background-color: rgb(247, 78, 0);
+  width: 5px;
+  height: 5px;
+  background-color: rgb(142, 8, 8);
   font-size: 0%;
   outline-style: solid;
   outline-width: 1px;
@@ -36,9 +31,83 @@
 
 .infected {
   float: left;
-  width: 16px;
-  height: 16px;
-  background-color: greenyellow;
+  width: 5px;
+  height: 5px;
+  background-color: orangered;
   outline-style: solid;
   outline-width: 1px;
 }
+
+.sea {
+  float: left;
+  width: 5px;
+  height: 5px;
+  background-color: #333;
+  outline-style: solid;
+  outline-width: 1px;
+  outline-color: rgb(70, 70, 70);
+}
+
+.north-america {
+  float: left;
+  width: 5px;
+  height: 5px;
+  background-color: dodgerblue;
+  outline-style: solid;
+  outline-width: 1px;
+}
+
+.south-america {
+  float: left;
+  width: 5px;
+  height: 5px;
+  background-color: rgb(161, 185, 209);
+  outline-style: solid;
+  outline-width: 1px;
+}
+
+.europe {
+  float: left;
+  width: 5px;
+  height: 5px;
+  background-color: rgb(140, 219, 255);
+  outline-style: solid;
+  outline-width: 1px;
+}
+
+.africa {
+  float: left;
+  width: 5px;
+  height: 5px;
+  background-color: rgb(11, 88, 165);
+  outline-style: solid;
+  outline-width: 1px;
+}
+
+.asia {
+  float: left;
+  width: 5px;
+  height: 5px;
+  background-color: rgb(80, 134, 189);
+  outline-style: solid;
+  outline-width: 1px;
+}
+
+.oceana {
+  float: left;
+  width: 5px;
+  height: 5px;
+  background-color: rgb(88, 95, 155);
+  outline-style: solid;
+  outline-width: 1px;
+}
+
+.middle-east {
+  float: left;
+  width: 5px;
+  height: 5px;
+  background-color: rgb(141, 171, 184);
+  outline-style: solid;
+  outline-width: 1px;
+}
+

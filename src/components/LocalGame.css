@@ -1,14 +1,56 @@
 canvas {
 border: solid 1px black;
-position:relative;
+position:absolute;
+}
+
+#canvas {
+  position: absolute;
+  z-index:1;
+}
+
+#underCanvas {
+  position: absolute;
+  z-index:0;
 }
 
 #holder {
 display:block;
 border: solid 2px black;
 position:relative;
-background:grey;
+background:transparent;
 margin: 0 auto 0 auto;
 width:800px;
 height:600px;
+}
+
+#timer {
+  position: absolute;
+  transform: translateY(-75%);
+  z-index:2;
+  font-family: 'Press Start 2P';
+  color: white;
+  font-size: 27px;
+  text-shadow: -3px 0 black, 0 3px black, 3px 0 black, 0 -3px black;
+}
+
+#local-game-over {
+  position: absolute;
+  top: 45%;
+  left: 33%;
+  z-index:2;
+  font-family: 'Press Start 2P';
+  color: white;
+  font-size: 30px;
+  text-shadow: -4px 0 black, 0 4px black, 4px 0 black, 0 -4px black;
+}
+
+#end-message {
+  position: absolute;
+  top: 58%;
+  left: 12.5%;
+  z-index:2;
+  font-family: 'Press Start 2P';
+  color: white;
+  font-size: 20px;
+  text-shadow: -2.5px 0 black, 0 2.5px black, 2.5px 0 black, 0 -2.5px black;
 }

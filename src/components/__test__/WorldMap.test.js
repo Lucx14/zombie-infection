@@ -24,14 +24,32 @@ describe('WorldMap', () => {
     expect(wrapper.find('h1').text()).toMatch('World Map')
   });
 
-  it('renders two buttons', () => {
-    wrapper = mount(<WorldMap />)
-    expect(wrapper.find('.city-link button').length).toEqual(2)
-  });
-
-  it('populates the grid with 35 rows and 50 columns', () => {
+  it('renders the map grid', () => {
     wrapper = mount(<WorldMap/>)
-    expect(wrapper.find('.grid div').length).toEqual(35*50)
+    expect(wrapper.instance().renderGrid().length).toEqual(120)
   });
 
+  it('checks cells for infected neighbors', () => {
+    let testGrid1 = [
+      [0,0,0,0,0],
+      [0,0,0,0,0],
+      [0,0,0,0,0],
+      [0,0,0,0,0],
+      [0,0,0,0,0]
+    ]
+    let testGrid2 = [
+      [0,0,0,0,0],
+      [0,0,0,0,0],
+      [0,0,0,0,0],
+      [0,0,0,1,0],
+      [0,0,0,0,0]
+    ]
+    // const wrapper1 = shallow(<WorldMap grid={testGrid1}/>)
+    // const wrapper2 = shallow(<WorldMap grid={testGrid2}/>)
+    // wrapper = mount(<WorldMap/>)
+
+// TEST NOT WORKING. SEE 'grid: props.grid..' in WorldMap constructor
+    // expect(wrapper2.instance().checkNeighbours(2,2)).toEqual(false)
+    // expect(wrapper2.instance().checkNeighbours(2,2)).toEqual(t)
+  });
 });
