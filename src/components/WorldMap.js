@@ -11,12 +11,13 @@ class WorldMap extends PureComponent {
       grid: props.map,
       ticker: props.ticker,
       renderGrid : [],
-      loading: true
+      loading: true,
+      playableCities: []
     }
   }
 
   componentDidMount() {
-    this.interval = setInterval(() => this.tick(), 100)
+    this.interval = setInterval(() => this.tick(), 1000)
   }
 
   componentWillUnmount() {
@@ -42,6 +43,12 @@ class WorldMap extends PureComponent {
     ))
     this.setState({grid: populatedGrid})
     this.setState({renderGrid: this.renderGrid()})
+  }
+
+  activateCity(newCity) {
+    if(this.state.playableCities.includes(newCity) === false) {
+      this.setState({ playableCities: [this.state.playableCities, newCity].flat()});
+    }
   }
 
   checkNeighbours(row, col) {
@@ -72,6 +79,9 @@ class WorldMap extends PureComponent {
               return <Cell key={index} land={cell}/>;
             } 
           } else if (cell !== "END") {
+            if (this.checkNeighbours(rowIndex, index) === true) {
+              this.activateCity(cell);
+            }
             return <CityLink key={index} city={cell} active={this.checkNeighbours(rowIndex, index)}/>; 
           } else {
             this.setState({loading: false})
@@ -92,11 +102,14 @@ class WorldMap extends PureComponent {
     }
     return (
       <div>
+        
         <h1 id="map-title">World Map</h1>
         <div id="ticker">{this.state.ticker}</div>
           <div className="grid">
             {this.state.renderGrid}
           </div>
+         <p>{this.state.playableCities.length}</p>
+         <p>{this.state.playableCities}</p>
       </div>
     );
   }
