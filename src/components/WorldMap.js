@@ -17,7 +17,7 @@ class WorldMap extends PureComponent {
   }
 
   componentDidMount() {
-    this.interval = setInterval(() => this.tick(), 100)
+    this.interval = setInterval(() => this.tick(), 1000)
   }
 
   componentWillUnmount() {
