@@ -20,6 +20,12 @@ describe('WorldMap', () => {
     wrapper = shallow(<WorldMap />)
   });
 
+  describe('pause', () => {
+    it('pauses the game', () => {
+      wrapper.instance().pause()
+    })
+  })
+
   it('renders the map grid', () => {
     wrapper = mount(<WorldMap/>)
     expect(wrapper.instance().renderGrid().length).toBeGreaterThan(50)
@@ -48,4 +54,5 @@ describe('WorldMap', () => {
     // expect(wrapper2.instance().checkNeighbours(2,2)).toEqual(false)
     // expect(wrapper2.instance().checkNeighbours(2,2)).toEqual(t)
   });
+  
 });

@@ -11,7 +11,8 @@ class WorldMap extends PureComponent {
       grid: props.map,
       ticker: props.ticker,
       renderGrid : [],
-      loading: true
+      loading: true,
+      paused: false
     }
   }
 
@@ -29,6 +30,15 @@ class WorldMap extends PureComponent {
     this.populateGrid();
   }
 
+  pauseGame() {
+    if (this.state.paused) {
+      this.interval = setInterval(() => this.tick(), 1000)
+    } else {
+      clearInterval(this.interval)
+    }
+    this.setState({paused: !this.state.paused})
+  }
+
   populateGrid() {
     var populatedGrid =
     this.state.grid.map((row, rowIndex) => (
@@ -43,7 +53,6 @@ class WorldMap extends PureComponent {
     this.setState({grid: populatedGrid})
     this.setState({renderGrid: this.renderGrid()})
   }
-
 
   checkNeighbours(row, col) {
     if (row === 0 || row === this.state.grid.length-1) {
@@ -96,12 +105,15 @@ class WorldMap extends PureComponent {
     }
     return (
       <div>
-        
         <h1 id="map-title">World Map</h1>
         <div id="ticker">{this.state.ticker}</div>
           <div className="grid">
             {this.state.renderGrid}
           </div>
+        <button id="pause" onClick={() => { this.pauseGame() }}>Pause</button>
+        <p>
+          {this.state.paused ? <div id="pause-indicator">paused</div> : null}
+        </p>
       </div>
     );
   }
