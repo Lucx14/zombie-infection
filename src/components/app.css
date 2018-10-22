@@ -42,11 +42,31 @@
   top: -283px;
   left: 365px;
 }
-#rome {}
-#oslo {}
-#reykjavik {}
-#new-york {}
-#madrid {}
+#rome {
+  position: relative;
+  top: -264px;
+  left: 369px;
+}
+#oslo {
+  position: relative;
+  top: -338px;
+  left: 340px;
+}
+#reykjavik {
+  position: relative;
+  top: -345px;
+  left: 100px;
+}
+#new-york {
+  position: relative;
+  top: -260px;
+  left: -75px;
+}
+#madrid {
+  position: relative;
+  top: -270px;
+  left: 310px;
+}
 #marrakech {}
 #cairo {}
 #nairobi {}
