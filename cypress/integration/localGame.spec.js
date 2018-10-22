@@ -22,7 +22,6 @@ describe ('canvas accepts movement keys', () => {
     });
   });
 
-
   describe ('down', () =>  {
     it ('responds to s press for down', () => {
       cy.get('canvas').last().type('s')
@@ -47,6 +46,13 @@ describe ('canvas accepts movement keys', () => {
     });
     it ('responds to right arrow press for down', () => {
       cy.get('canvas').last().type('→')
+    });
+  });
+
+  describe ('game timer end local game', () => {
+    it ('responds to space bar to take user back to world map', () => {
+      cy.wait(11000)
+      cy.get('#holder').find('#local-game-over').contains('TIMES UP!')
     });
   });
 });

@@ -27,15 +27,45 @@ export default function LocalGameModel(player = new Player(), npc = new Npc()) {
   this._zombie = document.getElementById("zombie")
   this._bloodsplat = document.getElementById("bloodsplat")
 
+  this._timeLimit = 10000
+  this._endDate = new Date().getTime() + this._timeLimit
+  this.gameEnd = false
 }
 
 LocalGameModel.prototype.tickDraw = function () {
   document.getElementById("canvas").focus();
-  setInterval(this._mainDraw.bind(this), this.gameSpeed);
+  this.game = setInterval(this._mainDraw.bind(this), this.gameSpeed);
   return "new frame"
 }
 
+LocalGameModel.prototype._timeDraw = function() {
+  var remainingTime = Math.round((this._endDate - new Date().getTime()) / 1000)
+  document.getElementById("timer").innerHTML = `TIME LEFT: ${remainingTime}`
+}
+
+LocalGameModel.prototype._localGameOver = function() {
+  document.getElementById("local-game-over").innerHTML = `TIMES UP!`
+  document.getElementById("end-message").innerHTML = 'HIT &ltSPACE&gt TO ENTER WORLD MAP'
+  clearInterval(this.game);
+}
+
+
+LocalGameModel.prototype._timeUp = function() {
+  if (this._timeRemaining() > 0) {
+    return false
+  } else {
+    return true
+  }
+}
+
+LocalGameModel.prototype._timeRemaining = function() {
+  return this._endDate - new Date().getTime()
+}
+
 LocalGameModel.prototype._mainDraw = function () {
+  if (this._timeUp()) { this._localGameOver(); }
+
+  this._timeDraw()
   const local = this
 
   this._underCanvasDraw.drawImage(this._bg, 0, 0)
@@ -139,6 +169,8 @@ LocalGameModel.prototype._playerMovement = function() {
 LocalGameModel.prototype.eventListen = function() {
   this._canvas.addEventListener('keydown', function(e) { this._keys[e.keyCode] = true; e.preventDefault();}.bind(this));
   this._canvas.addEventListener('keyup', function(e) { this._keys[e.keyCode] = false; }.bind(this));
+  // space to exit game listener
+  this._canvas.addEventListener('keydown', function(e) { if (e.keyCode === 32 && this._timeUp()) { this.gameEnd = true }; e.preventDefault();}.bind(this));
   return "keystroke listeners activated"
 }
 

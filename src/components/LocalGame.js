@@ -3,12 +3,21 @@ import LocalGameModel from "../model/LocalGameModel.js"
 import "./LocalGame.css"
 
 class LocalGame extends Component {
-
   componentDidMount() {
-    var localGameModel = new LocalGameModel();
+    var localGameModel = new LocalGameModel()
+    console.log('one')
     localGameModel.eventListen();
+    console.log('two')
     localGameModel.tickDraw();
+    console.log('three')
+    document.getElementById("canvas").addEventListener('keydown', 
+      function(e) { 
+        if (localGameModel.gameEnd === true) {
+          this.props.endGame()
+        }
+      }.bind(this));
   }
+
 
   render() {
     return (
@@ -25,8 +34,11 @@ class LocalGame extends Component {
         <img id="bloodsplat" src="bloodSplat.png" alt="" style={{display: "none"}}/>
         <h1><center>Local Map</center></h1>
         <div id = "holder">
-          <canvas id="underCanvas" width="800" height="600" tabIndex='1'></canvas>
+          <canvas id="underCanvas" width="800" height="600"></canvas>
           <canvas id="canvas" width="800" height="600" tabIndex='1'></canvas>
+          <p id="timer"></p>
+          <p id="local-game-over"></p>
+          <p id="end-message"></p>
         </div>
       </div>
     );
