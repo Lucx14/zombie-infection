@@ -25,7 +25,7 @@ class LocalGame extends Component {
         <img id="bloodsplat" src="bloodSplat.png" alt="" style={{display: "none"}}/>
         <h1><center>Local Map</center></h1>
         <div id = "holder">
-          <canvas id="underCanvas" width="800" height="600"></canvas>
+          <canvas id="underCanvas" width="800" height="600" tabIndex='1'></canvas>
           <canvas id="canvas" width="800" height="600" tabIndex='1'></canvas>
         </div>
       </div>

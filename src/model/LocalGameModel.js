@@ -122,22 +122,22 @@ LocalGameModel.prototype._playerMovement = function() {
   if (this._player.isAtBoundary(this._WIDTH, this._HEIGHT)) {
     this._player.moveFromBoundary(this._WIDTH, this._HEIGHT)
   }
-  if (this._keys[87]) {
+  if (this._keys[87] || this._keys[38]) {
     this._player.y -= this._player.speed
   }
-  if (this._keys[83]) {
+  if (this._keys[83] || this._keys[40]) {
     this._player.y += this._player.speed
   }
-  if (this._keys[65]) {
+  if (this._keys[65] || this._keys[37]) {
     this._player.x -= this._player.speed
   }
-  if (this._keys[68]) {
+  if (this._keys[68] || this._keys[39]) {
     this._player.x += this._player.speed
   }
 }
 
 LocalGameModel.prototype.eventListen = function() {
-  this._canvas.addEventListener('keydown', function(e) { this._keys[e.keyCode] = true; }.bind(this));
+  this._canvas.addEventListener('keydown', function(e) { this._keys[e.keyCode] = true; e.preventDefault();}.bind(this));
   this._canvas.addEventListener('keyup', function(e) { this._keys[e.keyCode] = false; }.bind(this));
   return "keystroke listeners activated"
 }
