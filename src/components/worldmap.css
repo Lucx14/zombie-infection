@@ -136,9 +136,9 @@ p {
 }
 
 .city-button {
-  -webkit-transition-duration: 0.4s; /* Safari */
-  transition-duration: 0.4s;
-  background-color: rgba(255, 255, 255, 0);
+  -webkit-transition-duration: 0.3s; /* Safari */
+  transition-duration: 0.3s;
+  background-color: rgb(240, 236, 30);
   border:none;  
   border-radius: 50%;
   width: 15px;
@@ -146,9 +146,7 @@ p {
 }
 
 .city-button:hover {
-  background-color: rgba(32, 151, 36, 0.877); /* Green */
-  width: 20px;
-  height: 20px;
+  background-color: rgba(153, 3, 3, 0.877); /* Green */
 }
 
 .city-button:focus {
