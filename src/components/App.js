@@ -71,6 +71,7 @@ class App extends Component {
     "tehran","new-dehli","bangkok","shanghai","tokyo",
     "hong-kong","melbourne","wellington", "vancouver"]
     return(cities.map((city, index) => {
+      if (this.state.playableCities.includes(city)) {
         return(
           <button className="city-button" 
                   id={city}
@@ -78,6 +79,16 @@ class App extends Component {
                   title={city} 
                   onClick={() => { this.setSelected(city) }}></button>
         )
+      } else {
+        return(
+          <button className="city-button" 
+                  id={city}
+                  key={index}
+                  title={city} 
+                  ></button>
+        )
+      }
+        
     }))
   }
 
@@ -103,21 +114,27 @@ class App extends Component {
       );
     } else {
       return (
-        <div id="world-map">
-          {this.state.city}
+        <div>
+          <div id="world-map">
+          
           <WorldMap map={this.state.map}
                     updateAppMap={this.updateState.bind(this)}
                     ticker={this.state.ticker}
                     activateCity={this.activateCity.bind(this)}
                     flyingZombies={this.state.flyingZombies}
                     />
-          <div id="button-container">
-            {this.renderButtons()}
-          </div>
+         
           <p id="headline">
             {/* {this.getHeadline(this.state.headlines, this.state.playableCities)} */}
           </p>
         </div>
+         <div id="button-container">
+         {this.renderButtons()}
+       </div>
+
+
+        </div>
+        
       )
     }
   }

@@ -21,16 +21,15 @@ p {
 }
 
 .world-map {
-  background-color: aquamarine;
+  background-color: rgb(41, 173, 36);
   width: 800px;
   height: 560px;
-  z-index: -2;
+ 
 }
 
 .grid {
   width: 800px;
   margin: 0 auto 0 auto;
-  z-index: -1;
 }
 
 .clickable {
@@ -143,6 +142,7 @@ p {
   border-radius: 50%;
   width: 15px;
   height: 15px;
+  z-index: 0;
 }
 
 .city-button:hover {
@@ -151,4 +151,10 @@ p {
 
 .city-button:focus {
   background-color: red; /* Green */
+}
+
+#loading-screen {
+  z-index: 10;
+  position: absolute;
+  width: 100%;
 }

@@ -106,8 +106,11 @@ class WorldMap extends PureComponent {
     if (this.state.loading) {
       return (
         <div>
-        <Loading city={this.state.city} />
-      </div>
+          <div id="loading-screen">
+            <Loading city={this.state.city} />
+          </div>
+        </div>
+        
       );
     }
     return (
