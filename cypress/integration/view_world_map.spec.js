@@ -11,7 +11,7 @@ describe('World map', () => {
 
   it('shows the available cities', () => {
     cy.get('button.city-button')
-      .should('have.length', 25)
+      .should('have.length', 26)
   });
 
   // it('reroutes to city', () => {
