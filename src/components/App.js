@@ -4,15 +4,39 @@ import LocalGame from './LocalGame';
 import "./app.css"
 
 const headlines = {
-  "london": ["East London Pub attacked by Horde of Ravenous flesh-munchers", "Queen seen roaming Westminster in a tank wearing full-body armour"],
-  "paris": ["Zombies spotted sampling wine in local vineyard", "Holiday makers leave 2-star tripadvisor review due to zombie in soup"]
+  "london": ["East London Pub attacked by Horde of Ravenous flesh-munchers", "Queen seen roaming Westminster in a tank wearing full-body armour", "Zombies infiltrate Buckingham Palace"],
+  "paris": ["Zombies spotted sampling wine in local vineyard", "Holiday makers leave 2-star tripadvisor review due to zombie in soup"],
+  "rome" : ["Romans swap spaghetti for human intestines", "Trevi fountain fills with corpses", "Walkers spotted in Tuscany", "Mamma Mia! The undead storm Milan fashion show"],
+  "oslo": [], 
+  "reykjavik": ["Singer Bjork devoured by Zombie"],
+  "new-york"[], 
+  "madrid": [], 
+  "marrakech": [], 
+  "cairo": [], 
+  "nairobi": [], 
+  "istanbul" : [], 
+  "dubai": [], 
+  "cape-town": [], 
+  "los-angeles": [], 
+  "mexico-city": [], 
+  "bogota": [], 
+  "rio-de-janeiro": [], 
+  "tehran": [], 
+  "new-dehli": [], 
+  "bangkok": [], 
+  "shanghai": [], 
+  "tokyo": [], 
+  "hong-kong": [], 
+  "melbourne": [], 
+  "wellington": [], 
+  "vancouver": []
 }
 
 class App extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      headlines: props.headlines || headlines,
+      headlines: props.headlines || headlines: [], 
       playableCities: props.playableCities || [],
       
 
