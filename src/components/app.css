@@ -99,21 +99,66 @@
 }
 #los-angeles {
   position: relative;
-  top: -280px;
-  left: -95px;
+  top: -235px;
+  left: -80px;
 }
 #mexico-city {
   position: relative;
   top: -205px;
   left: -55px;
 }
-#bogota {}
-#rio-de-janeiro {}
-#tehran {}
-#new-dehli {}
-#bangkok {}
-#shanghai {}
-#tokyo {}
-#hong-kong {}
-#melbourne {}
-#wellington {}
+#bogota {
+  position: relative;
+  top: -170px;
+  left: -15px;
+}
+#rio-de-janeiro {
+  position: relative;
+  top: -115px;
+  left: 40px;
+}
+#tehran {
+  position: relative;
+  top: -252px;
+  left:225px;
+}
+#new-dehli {
+  position: relative;
+  top: -224px;
+  left:270px;
+}
+#bangkok {
+  position: relative;
+  top: -188px;
+  left:310px;
+}
+#shanghai {
+  position: relative;
+  top: -239px;
+  left:330px;
+}
+#tokyo {
+  position: relative;
+  top: -243px;
+  left:361px;
+}
+#hong-kong {
+  position: relative;
+  top: -214px;
+  left: 295px;
+}
+#melbourne {
+  position: relative;
+  top: -73px;
+  left:340px;
+}
+#wellington {
+  position: relative;
+  top: -59px;
+  left:384px;
+}
+#vancouver {
+  position: relative;
+  top: -280px;
+  left: -275px;
+}
