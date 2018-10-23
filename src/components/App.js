@@ -17,7 +17,7 @@ class App extends Component {
       
 
     }
-    setInterval(() => this.getHeadline(headlines, this.state.playableCities), 1000);
+    // setInterval(() => this.getHeadline(headlines, this.state.playableCities), 5000);
   }
   componentWillMount() {
     this.setState({
@@ -26,7 +26,7 @@ class App extends Component {
       map: InitialGrid(),
       ticker: -1,
       playableCities: [],
-      flyingZombies: false,
+      flyingZombies: true,
       zombieTotal: 0
     });
   }
@@ -126,25 +126,21 @@ class App extends Component {
                     activateCity={this.activateCity.bind(this)}
                     flyingZombies={this.state.flyingZombies}
                     />
-         
           
         </div>
-         <div id="button-container">
-         {this.renderButtons()}
-       </div>
-       <div>
-         <p id="zombie-total">
+          <div id="button-container">
+          {this.renderButtons()}
+        </div>
+        <div>
+          <p id="zombie-total">
           Zombie total: {this.state.zombieTotal}
-         </p>
-       </div>
-       <div>
+          </p>
+        </div>
+        <div>
         <p id="headline">
               {this.state.currentHeadline}
         </p>
-       </div>
-       
-
-
+        </div>
         </div>
         
       )

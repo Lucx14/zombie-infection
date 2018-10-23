@@ -5,25 +5,39 @@ import Cell from "./Cell.js";
 import Loading from './Loading';
 import TheWorld from '../TheWorld';
 
-function InitialGrid() {
-  return TheWorld;
-}
+function populations() {
+  return { 
+    "northAmerica": 579000000,
+    "southAmerica": 422500000, 
+    "europe": 742648010, 
+    "africa": 1287920518, 
+    "asia": 4134133094, 
+    "oceana": 41261212, 
+    "middleEast": 411000000}
+};
 
 class WorldMap extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      grid: props.map || InitialGrid(),
+      grid: props.map || TheWorld,
       ticker: props.ticker,
       renderGrid : [],
       loading: true,
       paused: false,
-      hour:0
+      hour: 0,
     }
   }
 
+  infectedPopulations(continent) {
+    const map = this.state.grid;
+    let infection = (map.flat().filter(function(x){ return x === -continent }).length)
+    let total = (map.flat().filter(function(x){ return Math.abs(x) === continent }).length)
+    return Math.floor(infection*100/total);
+  }
+
   componentDidMount() {
-    this.interval = setInterval(() => this.tick(), 600)
+    this.interval = setInterval(() => this.tick(), 1000)
   }
 
   componentWillUnmount() {
@@ -56,7 +70,7 @@ class WorldMap extends PureComponent {
     var populatedGrid =
     this.state.grid.map((row, rowIndex) => (
       row.map((cell, index) => {
-          if (cell > 0 && Math.random() < 0.05 && this.checkNeighbours(rowIndex, index)) {
+          if (cell > 0 && Math.random() < 0.5 && this.checkNeighbours(rowIndex, index)) {
             return cell*(-1);
           } else if (cell > 0 && this.props.flyingZombies && Math.random() < 0.001 && this.state.ticker % 10 === 0) {
             return cell*(-1);
@@ -112,7 +126,6 @@ class WorldMap extends PureComponent {
 
   render() {
     
-
     if (this.state.loading) {
       return (
         <div>
@@ -126,13 +139,19 @@ class WorldMap extends PureComponent {
     return (
       <div>
         <h1 id="map-title">World Map</h1>
-
-        
+        <div id="world-population-stats">
+          <p>North America: Infected: {this.infectedPopulations(1)}%, Survivors: {populations()["northAmerica"] - populations()["northAmerica"]*this.infectedPopulations(1)*0.01}</p>
+          <p>South America: {this.infectedPopulations(2)}%</p>
+          <p>Europe: {this.infectedPopulations(3)}%</p>
+          <p>Africa: {this.infectedPopulations(4)}%</p>
+          <p>Asia: {this.infectedPopulations(5)}%</p>
+          <p>Oceana: {this.infectedPopulations(6)}%</p>
+          <p>Middle East: {this.infectedPopulations(7)}%</p>
+        </div>
         <div id="time">Time:{this.state.hour + 12}:{this.state.ticker - (this.state.hour * 60) <10 ? "0":null}{this.state.ticker - (this.state.hour * 60)}</div>
-
-          <div className="grid">
-            {this.state.renderGrid}
-          </div>
+        <div className="grid">
+          {this.state.renderGrid}
+        </div>
         <button id="pause" onClick={() => { this.pauseGame() }}>Pause</button>
         <p>
           {this.state.paused ? <div id="pause-indicator">paused</div> : null}
