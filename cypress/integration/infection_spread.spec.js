@@ -1,6 +1,7 @@
 describe('Infection spread', () => {
   beforeEach(function () {
     cy.visit('http://localhost:3000')
+    cy.get('#start-button').click()
   })
 
   describe('Infected map', () => {
@@ -8,7 +9,7 @@ describe('Infection spread', () => {
       
       cy.get('.grid .infected')
         .should(($cell) => {
-          expect($cell.length).to.be.greaterThan(1)
+          expect($cell.length).to.be.greaterThan(0)
         })
     });
   });

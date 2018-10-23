@@ -1,12 +1,36 @@
+@import 'https://fonts.googleapis.com/css?family=Press+Start+2P';
+
+body {
+  background-color: black;
+  font-family: 'Press Start 2P';
+}
+
+h1 {
+  color: white;
+  text-align: center;
+}
+
+p {
+  color: white;
+  text-align: center;
+}
+
+#ticker {
+  color: gainsboro;
+  text-align: center;
+}
+
 .world-map {
   background-color: aquamarine;
   width: 800px;
   height: 560px;
+  z-index: -2;
 }
 
 .grid {
   width: 800px;
   margin: 0 auto 0 auto;
+  z-index: -1;
 }
 
 .clickable {
@@ -42,10 +66,10 @@
   float: left;
   width: 5px;
   height: 5px;
-  background-color: #333;
-  outline-style: solid;
+  background-color: rgba(255, 255, 255, 0);
+  /* outline-style: solid;
   outline-width: 1px;
-  outline-color: rgb(70, 70, 70);
+  outline-color: rgb(70, 70, 70); */
 }
 
 .north-america {
@@ -111,3 +135,22 @@
   outline-width: 1px;
 }
 
+.city-button {
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  background-color: rgba(255, 255, 255, 0.308);
+  border:none;  
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+}
+
+.city-button:hover {
+  background-color: #4CAF50; /* Green */
+  width: 20px;
+  height: 20px;
+}
+
+.city-button:focus {
+  background-color: red; /* Green */
+}

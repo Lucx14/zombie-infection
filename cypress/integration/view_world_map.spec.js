@@ -1,6 +1,7 @@
 describe('World map', () => {
   beforeEach(function () {
     cy.visit('http://localhost:3000')
+    cy.get('#start-button').click()
   })
 
   it('shows the game title', () => {
@@ -10,7 +11,7 @@ describe('World map', () => {
 
   it('shows the available cities', () => {
     cy.get('button.city-button')
-      .should('have.length', 0)
+      .should('have.length', 25)
   });
 
   // it('reroutes to city', () => {
