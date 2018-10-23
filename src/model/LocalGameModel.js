@@ -27,6 +27,7 @@ export default function LocalGameModel(player = new Player(), npc = new Npc()) {
 
   this._bg = document.getElementById("background")
   this._zombie = document.getElementById("zombie")
+  this._playerZombie = document.getElementById("player-zombie")
   this._zombieDead = document.getElementById("zombie-dead")
   this._bloodsplat = document.getElementById("bloodsplat")
 
@@ -102,14 +103,14 @@ LocalGameModel.prototype._mainDraw = function () {
   this._setViewZoom(this._canvasDraw, this._player, [2,2])
   this._setViewZoom(this._underCanvasDraw, this._player, [2,2])
 
-  this._canvasDraw.drawImage(this._zombie, this._player.x - 2.5, this._player.y - 12.5, 15, 25)
-
   this._groupNpc.forEach(function(npc) {
     local._drawXYModify(local._canvasDraw,
                         npc.isInfected() ? local._zombie : npc.type[0],
                         npc,
                         -2.5, -12.5, 15, 25)
   })
+
+  this._canvasDraw.drawImage(this._playerZombie, this._player.x - 2.5, this._player.y - 12.5, 15, 25)
 
   this._npcMovement();
   this._playerMovement();

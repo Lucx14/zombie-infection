@@ -24,6 +24,7 @@ class LocalGame extends Component {
 
         <img id="background" src="level1.gif" alt="" style={{display: "none"}}/>
         <img id="zombie" src="zombie.png" alt="" style={{display: "none"}}/>
+        <img id="player-zombie" src="playerZombie.png" alt="" style={{display: "none"}}/>
         <img id="zombie-dead" src="zombieDead.png" alt="" style={{display: "none"}}/>
         <img id="army" src="army.png" alt="" style={{display: "none"}}/>
         <img id="police" src="police.png" alt="" style={{display: "none"}}/>
