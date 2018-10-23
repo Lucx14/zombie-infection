@@ -70,13 +70,13 @@ class App extends Component {
     "tehran","new-dehli","bangkok","shanghai","tokyo",
     "hong-kong","melbourne","wellington", "vancouver"]
     return(cities.map((city, index) => {
-      return(
-        <button className="city-button" 
-                id={city}
-                key={index}
-                title={city} 
-                onClick={() => { this.setSelected(city) }}></button>
-      )
+        return(
+          <button className="city-button" 
+                  id={city}
+                  key={index}
+                  title={city} 
+                  onClick={() => { this.setSelected(city) }}></button>
+        )
     }))
   }
 
