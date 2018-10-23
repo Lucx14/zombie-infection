@@ -60,14 +60,14 @@ class WorldMap extends PureComponent {
     if (row === 0 || row === this.state.grid.length-1) {
       return false;
     } else if (
-      this.state.grid[row-1][col-1] < 0 || 
+      this.state.grid[row-1][col-1] < 0 ||
       this.state.grid[row-1][col] < 0 ||
-      this.state.grid[row-1][col+1] < 0 || 
+      this.state.grid[row-1][col+1] < 0 ||
       this.state.grid[row][col-1] < 0 ||
-      this.state.grid[row][col+1] < 0 || 
+      this.state.grid[row][col+1] < 0 ||
       this.state.grid[row+1][col-1] < 0 ||
-      this.state.grid[row+1][col] < 0 || 
-      this.state.grid[row+1][col+1] < 0 
+      this.state.grid[row+1][col] < 0 ||
+      this.state.grid[row+1][col+1] < 0
     ){
       return true;
     }

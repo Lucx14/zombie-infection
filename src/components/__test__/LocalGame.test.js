@@ -7,8 +7,9 @@ describe('LocalGame', () => {
   beforeAll(() => {
 
     const createElement = document.createElement.bind(document);
+
     document.getElementById = (tagName) => {
-        if (tagName === 'canvas') {
+        if (tagName === 'canvas' || tagName === 'underCanvas') {
             return {
                 getContext: () => ({}),
                 measureText: () => ({}),
@@ -16,7 +17,6 @@ describe('LocalGame', () => {
                 focus: () => ({})
             };
         }
-        return getElementById(tagName);
     };
 
   });

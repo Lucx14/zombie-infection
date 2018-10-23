@@ -80,6 +80,11 @@ class App extends Component {
     }))
   }
 
+  endGame = () => {
+    this.setState({city: false})
+    console.log('in here')
+  }
+
   render() {
     this.flyingZombies()
     if (!this.state.playing) {
@@ -92,7 +97,7 @@ class App extends Component {
     } else if (this.state.city) {
       return (
         <div>
-          <LocalGame city={this.state.city} clearCity={this.clearCity.bind(this)}/>
+          <LocalGame city={this.state.city} endGame={this.endGame.bind(this)}/>
         </div>
       );
     } else {
