@@ -18,7 +18,7 @@ export function Npc(speed = 1) {
 }
 
 Npc.prototype.shoot = function(x, y) {
-  if (Math.random() > 0.99) {
+  if (Math.random() > 0.995) {
     return true
   } else {
     return false

@@ -23,12 +23,14 @@ export default function LocalGameModel(player = new Player(), npc = new Npc()) {
   this.gameSpeed = 15
 
   this._bloodsplats = []
+  this._deadZombies = []
 
   this._bg = document.getElementById("background")
   this._zombie = document.getElementById("zombie")
+  this._zombieDead = document.getElementById("zombie-dead")
   this._bloodsplat = document.getElementById("bloodsplat")
 
-  this._timeLimit = 10000
+  this._timeLimit = 60000
   this._endDate = new Date().getTime() + this._timeLimit
   this.gameEnd = false
 }
@@ -88,6 +90,13 @@ LocalGameModel.prototype._mainDraw = function () {
                         -5, 15, 30, 20)
   })
 
+  this._deadZombies.forEach(function(deadZombie) {
+    local._drawXYModify(local._underCanvasDraw,
+                        local._zombieDead,
+                        deadZombie,
+                        -5, 15, 30, 20)
+  })
+
   this._groupNpc = this._groupNpc.sort(this._sortNpcs);
 
   this._setViewZoom(this._canvasDraw, this._player, [2,2])
@@ -143,10 +152,12 @@ LocalGameModel.prototype._npcMovement = function() {
              otherNpcs.isInfected() &&
              npc !== otherNpcs) {
           npc.move(otherNpcs, 'away')
-          if (!npc.type[1]) { 
+          if (!npc.type[1]) {
             if (npc.shoot()) {
               local._groupNpc.splice(index, 1)
               local.bulletRender(npc.x, npc.y, otherNpcs.x, otherNpcs.y)
+              local._deadZombies.push({x: otherNpcs.x - 2.5, y: otherNpcs.y - 12.5})
+              local._zombieCount -= 1
             }
           }
 
