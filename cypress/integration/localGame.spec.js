@@ -8,7 +8,7 @@ describe('Local Game', () => {
 
   it('shows the game title', () => {
     cy.get('h1')
-      .should('contain', 'london');
+      .should('contain', 'Local Map');
   });
 });
 
