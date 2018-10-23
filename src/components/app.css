@@ -28,7 +28,7 @@
   width: 800px;
   height: 400px;
   margin: 0 auto 0 auto;
-  background-color:rgba(255, 255, 255, 0.15);
+  background-color:rgba(255, 255, 255, 0);
   z-index: 1;
 }
 
@@ -50,38 +50,115 @@
 #oslo {
   position: relative;
   top: -338px;
-  left: 340px;
+  left: 353px;
 }
 #reykjavik {
   position: relative;
   top: -345px;
-  left: 100px;
+  left: 265px;
 }
 #new-york {
   position: relative;
   top: -260px;
-  left: -75px;
+  left: 135px;
 }
 #madrid {
   position: relative;
-  top: -270px;
-  left: 310px;
+  top: -258px;
+  left: 265px;
 }
-#marrakech {}
-#cairo {}
-#nairobi {}
-#istanbul {}
-#dubai {}
-#cape-town {}
-#los-angeles {}
-#mexico-city {}
-#bogota {}
-#rio-de-janeiro {}
-#tehran {}
-#new-dehli {}
-#bangkok {}
-#shanghai {}
-#tokyo {}
-#hong-kong {}
-#melbourne {}
-#wellington {}
+#marrakech {
+  position: relative;
+  top: -225px;
+  left: 245px;
+}
+#cairo {
+  position: relative;
+  top: -225px;
+  left: 315px;
+}
+#nairobi {
+  position: relative;
+  top: -155px;
+  left: 315px;
+}
+#istanbul {
+  position: relative;
+  top: -260px;
+  left: 280px;
+}
+#dubai {
+  position: relative;
+  top: -214px;
+  left: 325px;
+}
+#cape-town {
+  position: relative;
+  top: -85px;
+  left: 235px;
+}
+#los-angeles {
+  position: relative;
+  top: -235px;
+  left: -80px;
+}
+#mexico-city {
+  position: relative;
+  top: -205px;
+  left: -55px;
+}
+#bogota {
+  position: relative;
+  top: -170px;
+  left: -15px;
+}
+#rio-de-janeiro {
+  position: relative;
+  top: -115px;
+  left: 40px;
+}
+#tehran {
+  position: relative;
+  top: -252px;
+  left:225px;
+}
+#new-dehli {
+  position: relative;
+  top: -224px;
+  left:270px;
+}
+#bangkok {
+  position: relative;
+  top: -188px;
+  left:310px;
+}
+#shanghai {
+  position: relative;
+  top: -239px;
+  left:330px;
+}
+#tokyo {
+  position: relative;
+  top: -243px;
+  left:361px;
+}
+#hong-kong {
+  position: relative;
+  top: -214px;
+  left: 295px;
+}
+#melbourne {
+  position: relative;
+  top: -73px;
+  left:340px;
+}
+#wellington {
+  position: relative;
+  top: -59px;
+  left:384px;
+}
+#vancouver {
+  position: relative;
+  top: -280px;
+  left: -275px;
+}
