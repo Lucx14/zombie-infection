@@ -14,7 +14,9 @@ class App extends Component {
     this.state = {
       headlines: props.headlines || headlines,
       playableCities: props.playableCities || [],
+
     }
+    setInterval(() => this.getHeadline(headlines, this.state.playableCities), 1000);
   }
   componentWillMount() {
     this.setState({
@@ -59,7 +61,7 @@ class App extends Component {
   getHeadline(headlines, playableCities) {
     if (playableCities.length > 0) {
       let cityHeadlines = headlines[playableCities[Math.floor(Math.random() * playableCities.length)]]
-      return cityHeadlines[Math.floor(Math.random() * cityHeadlines.length)];
+      this.setState({ currentHeadline: "BREAKING NEWS: " + cityHeadlines[Math.floor(Math.random() * cityHeadlines.length)] })
     }
   }
 
@@ -124,13 +126,17 @@ class App extends Component {
                     flyingZombies={this.state.flyingZombies}
                     />
          
-          <p id="headline">
-            {/* {this.getHeadline(this.state.headlines, this.state.playableCities)} */}
-          </p>
+          
         </div>
          <div id="button-container">
          {this.renderButtons()}
        </div>
+       <div>
+        <p id="headline">
+              {this.state.currentHeadline}
+        </p>
+       </div>
+       
 
 
         </div>
