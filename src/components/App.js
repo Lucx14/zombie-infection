@@ -9,39 +9,37 @@ const headlines = {
   "rome" : ["Romans swap spaghetti for human intestines", "Trevi fountain fills with corpses", "Walkers spotted in Tuscany", "Mamma Mia! The undead storm Milan fashion show"],
   "oslo": ["Oslo resident begin city evacuation as zombie plague spreads"], 
   "reykjavik": ["Singer Bjork devoured by Zombie"],
-  "new-york"[], josh
+  "new-york": ["Trick or treaters on the rampage in new york!"],
   "madrid": ["Spanish authorities wake from siesta to discover the world is ending", "Populist politician in Madrid gains support as government fails to control outbreak"], 
   "marrakech": ["Marrakech food market attracts large hoards"], 
-  "cairo": [], 
+  "cairo": ["Riots start breaking out in central Cairo"], 
   "nairobi": ["Game park keeper reports strange animal behaviours in Nairobi"], 
   "istanbul" : ["Public services begin to break down in Istanbul as outbreak continues to spread"], 
-  "dubai": [], josh
+  "dubai": ["Airports in Dubai shut down in attempt to contain outbreak"],
   "cape-town": ["resident report seeing what looked like a zombie shark swimming off the coast, scientists investigating how infection could spread from man to fish"], 
   "los-angeles": ["L.A. nightlife disrupted by outbreak"], 
   "mexico-city": ["Mexican drug cartel leader shits pants and has a heart attack after being cornered by crazed children in liquor store"], 
   "bogota": ["World Health Organisation declare Bogota a no go zone"], 
-  "rio-de-janeiro": [], josh
+  "rio-de-janeiro": ["Small band or Rio residents have started to fight back"],
   "tehran": ["Iranian supreme leader declares he is super pissed off at inconvenient outbreak of zombie plague and is blaming America for everything", "After allowing trick or treating for the very first time, Iranian leaders vow 'Never Again!!"], 
   "new-dehli": ["Despite overwhelming odds, residents of New Delhi have deployed the military to protect citizens"], 
   "bangkok": ["Tourists to to stay inside their hotels by panicked government officials"], 
   "shanghai": ["CDC approves new diagnostic test for outbreak of zombie infection"], 
   "tokyo": ["Filming of new Resident Evil movie suspended after real zombies invade set and kill the fake zombies"], 
-  "hong-kong": [], 
+  "hong-kong": ["A Hong Kong doctor has started working on a possible cure but it might be too late!"], 
   "melbourne": ["Melbourne house prices take a turn for the worse after town over-run with flesh eating children"], 
   "wellington": ["Sleepy wellington village residents lock themselves in a barn and radio for help"], 
-  "vancouver": ["Reports of crazed kids on the rampage on halloween evening "]
+  "vancouver": ["Reports of crazed kids on the rampage on halloween evening"]
 }
 
 class App extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      headlines: props.headlines || headlines: [], 
+      // headlines: props.headlines || headlines: [], 
       playableCities: props.playableCities || [],
-      
-
     }
-    // setInterval(() => this.getHeadline(headlines, this.state.playableCities), 5000);
+    setInterval(() => this.getHeadline(headlines, this.state.playableCities), 5000);
   }
   componentWillMount() {
     this.setState({
