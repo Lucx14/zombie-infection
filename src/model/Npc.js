@@ -1,19 +1,23 @@
-export function Npc(speed = 1) {
+export function Npc(speed = 1, civilian = true) {
   this.x = Math.random() * 800;
   this.y = Math.random() * 600;
   this.w = 10;
   this.h = 10;
   this.speed = speed;
   this.zombie = false;
+  this.civilian = civilian
 
-  this._people = [[document.getElementById("army"), false],
-                  [document.getElementById("police"), false],
-                  [document.getElementById("person1"), true],
-                  [document.getElementById("person2"), true],
-                  [document.getElementById("person3"), true],
-                  [document.getElementById("person4"), true],
-                  [document.getElementById("person5"), true]]
-
+  if (this.civilian) {
+    this._people = [[document.getElementById("person1"), true],
+                    [document.getElementById("person2"), true],
+                    [document.getElementById("person3"), true],
+                    [document.getElementById("person4"), true],
+                    [document.getElementById("person5"), true]]
+  } else {
+    this._people = [[document.getElementById("army"), false],
+                    [document.getElementById("police"), false]]
+  }
+  
   this.type = this._people[Math.floor(Math.random()*this._people.length)];
 }
 

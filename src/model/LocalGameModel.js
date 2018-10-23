@@ -19,7 +19,10 @@ export default function LocalGameModel(player = new Player(), npc = new Npc()) {
   this._underCanvasDraw = this._underCanvas.getContext("2d");
 
   this._keys = []
-  this._groupNpc = Array.from({length:300}, () => new Npc(Math.random() * 2))
+  this._civilians = Array.from({length:200}, () => new Npc(Math.random() * 2))
+  this._nonCivilians = Array.from({length:25}, () => new Npc(Math.random() * 2, false))
+  this._groupNpc = this._civilians.concat(this._nonCivilians)
+
   this.gameSpeed = 15
 
   this._bloodsplats = []
@@ -103,14 +106,14 @@ LocalGameModel.prototype._mainDraw = function () {
   this._setViewZoom(this._canvasDraw, this._player, [2,2])
   this._setViewZoom(this._underCanvasDraw, this._player, [2,2])
 
+  this._canvasDraw.drawImage(this._playerZombie, this._player.x - 2.5, this._player.y - 12.5, 15, 25)
+
   this._groupNpc.forEach(function(npc) {
     local._drawXYModify(local._canvasDraw,
                         npc.isInfected() ? local._zombie : npc.type[0],
                         npc,
                         -2.5, -12.5, 15, 25)
   })
-
-  this._canvasDraw.drawImage(this._playerZombie, this._player.x - 2.5, this._player.y - 12.5, 15, 25)
 
   this._npcMovement();
   this._playerMovement();
