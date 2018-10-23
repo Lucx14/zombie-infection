@@ -17,12 +17,13 @@ class WorldMap extends PureComponent {
       ticker: props.ticker,
       renderGrid : [],
       loading: true,
-      paused: false
+      paused: false,
+      hour:0
     }
   }
 
   componentDidMount() {
-    this.interval = setInterval(() => this.tick(), 1000)
+    this.interval = setInterval(() => this.tick(), 600)
   }
 
   componentWillUnmount() {
@@ -32,6 +33,7 @@ class WorldMap extends PureComponent {
 
   tick() {
     this.setState({ticker: this.state.ticker +1})
+    this.incrementHour();
     this.populateGrid();
   }
 
@@ -42,6 +44,12 @@ class WorldMap extends PureComponent {
       clearInterval(this.interval)
     }
     this.setState({paused: !this.state.paused})
+  }
+
+  incrementHour() {
+    if(this.state.ticker % 60 === 0 && this.state.ticker > 0) {
+      this.setState({hour: this.state.hour +1})
+    } 
   }
 
   populateGrid() {
@@ -103,6 +111,8 @@ class WorldMap extends PureComponent {
   }
 
   render() {
+    
+
     if (this.state.loading) {
       return (
         <div>
@@ -116,7 +126,10 @@ class WorldMap extends PureComponent {
     return (
       <div>
         <h1 id="map-title">World Map</h1>
-        <div id="ticker">{this.state.ticker}</div>
+
+        
+        <div id="time">Time:{this.state.hour + 12}:{this.state.ticker - (this.state.hour * 60) <10 ? "0":null}{this.state.ticker - (this.state.hour * 60)}</div>
+
           <div className="grid">
             {this.state.renderGrid}
           </div>

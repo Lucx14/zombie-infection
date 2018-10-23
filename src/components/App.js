@@ -14,6 +14,7 @@ class App extends Component {
     this.state = {
       headlines: props.headlines || headlines,
       playableCities: props.playableCities || [],
+      
 
     }
     setInterval(() => this.getHeadline(headlines, this.state.playableCities), 1000);
@@ -130,6 +131,11 @@ class App extends Component {
         </div>
          <div id="button-container">
          {this.renderButtons()}
+       </div>
+       <div>
+         <p id="zombie-total">
+          Zombie total: {this.state.zombieTotal}
+         </p>
        </div>
        <div>
         <p id="headline">
