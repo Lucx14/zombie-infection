@@ -5,24 +5,25 @@ import LocalGame from '../LocalGame.js'
 describe('LocalGame', () => {
 
   beforeAll(() => {
-    
+
     const createElement = document.createElement.bind(document);
+
     document.getElementById = (tagName) => {
-        if (tagName === 'canvas') {
+        if (tagName === 'canvas' || tagName === 'underCanvas') {
             return {
                 getContext: () => ({}),
                 measureText: () => ({}),
-                addEventListener: () => ({})
+                addEventListener: () => ({}),
+                focus: () => ({})
             };
         }
-        return getElementById(tagName);
     };
 
   });
 
   it('renders a header', () => {
-    var wrapper = shallow(<LocalGame />)
-    expect(wrapper.find('h1').text()).toMatch('Local Map')
+    var wrapper = shallow(<LocalGame city="london"/>)
+    expect(wrapper.find('h1').text()).toMatch("Local Map")
   });
 
 });

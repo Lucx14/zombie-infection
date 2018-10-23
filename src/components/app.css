@@ -1,0 +1,87 @@
+@import 'https://fonts.googleapis.com/css?family=Press+Start+2P';
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  margin-top: 250px;
+}
+
+#main-title {
+  font-size: 250%;
+}
+
+#start-button {
+  width: 120px;
+  height: 30px;
+  border-radius: 5px;
+  font-family: 'Press Start 2P';
+  margin-top: 80px;
+  font-size: 110%;
+}
+
+#world-map{
+  z-index: 0;
+}
+#button-container{
+  width: 800px;
+  height: 400px;
+  margin: 0 auto 0 auto;
+  background-color:rgba(255, 255, 255, 0.15);
+  z-index: 1;
+}
+
+#london {
+  position: relative;
+  top: -293px;
+  left: 369px;
+}
+#paris {
+  position: relative;
+  top: -283px;
+  left: 365px;
+}
+#rome {
+  position: relative;
+  top: -264px;
+  left: 369px;
+}
+#oslo {
+  position: relative;
+  top: -338px;
+  left: 340px;
+}
+#reykjavik {
+  position: relative;
+  top: -345px;
+  left: 100px;
+}
+#new-york {
+  position: relative;
+  top: -260px;
+  left: -75px;
+}
+#madrid {
+  position: relative;
+  top: -270px;
+  left: 310px;
+}
+#marrakech {}
+#cairo {}
+#nairobi {}
+#istanbul {}
+#dubai {}
+#cape-town {}
+#los-angeles {}
+#mexico-city {}
+#bogota {}
+#rio-de-janeiro {}
+#tehran {}
+#new-dehli {}
+#bangkok {}
+#shanghai {}
+#tokyo {}
+#hong-kong {}
+#melbourne {}
+#wellington {}

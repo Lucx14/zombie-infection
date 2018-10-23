@@ -1,92 +1,73 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import "./worldmap.css"
 import CityLink from "./CityLink.js";
 import Cell from "./Cell.js";
+import Loading from './Loading';
 
-function InitialGrid() {
-  return [
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,"Oxford",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"London",0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]]
-}
-
-class WorldMap extends Component {
+class WorldMap extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      grid: InitialGrid(),
-      ticker: 0
+      grid: props.map,
+      ticker: props.ticker,
+      renderGrid : [],
+      loading: true,
+      paused: false
     }
   }
 
-  componentWillMount() {
-    this.interval = setInterval(() => this.tick(), 0)
-    this.populateGrid();
+  componentDidMount() {
+    this.interval = setInterval(() => this.tick(), 1000)
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval)
+    this.props.updateAppMap(this.state.grid, this.state.ticker)
   }
 
   tick() {
     this.setState({ticker: this.state.ticker +1})
     this.populateGrid();
+  }
 
+  pauseGame() {
+    if (this.state.paused) {
+      this.interval = setInterval(() => this.tick(), 1000)
+    } else {
+      clearInterval(this.interval)
+    }
+    this.setState({paused: !this.state.paused})
   }
 
   populateGrid() {
     var populatedGrid =
     this.state.grid.map((row, rowIndex) => (
       row.map((cell, index) => {
-          if (typeof cell == 'number' && this.checkNeighbours(rowIndex, index) && Math.random() < 0.1) {
-            return 1;
-          } else{
+          if (cell > 0 && Math.random() < 0.05 && this.checkNeighbours(rowIndex, index)) {
+            return cell*(-1);
+          } else if (cell > 0 && this.props.flyingZombies && Math.random() < 0.001 && this.state.ticker % 10 === 0) {
+            return cell*(-1);
+          } else {
             return cell;
           }
       })
     ))
     this.setState({grid: populatedGrid})
+    this.setState({renderGrid: this.renderGrid()})
   }
 
   checkNeighbours(row, col) {
-    if (row === 0 || row === 34) {
+    if (row === 0 || row === this.state.grid.length-1) {
+      return false;
     } else if (
-      this.state.grid[row-1][col-1]===1 || 
-      this.state.grid[row-1][col]===1 ||
-      this.state.grid[row-1][col+1]===1 || 
-      this.state.grid[row][col-1]===1 ||
-      this.state.grid[row][col+1]===1 || 
-      this.state.grid[row+1][col-1]===1 ||
-      this.state.grid[row+1][col]===1 || 
-      this.state.grid[row+1][col+1]===1 
+      this.state.grid[row-1][col-1] < 0 ||
+      this.state.grid[row-1][col] < 0 ||
+      this.state.grid[row-1][col+1] < 0 ||
+      this.state.grid[row][col-1] < 0 ||
+      this.state.grid[row][col+1] < 0 ||
+      this.state.grid[row+1][col-1] < 0 ||
+      this.state.grid[row+1][col] < 0 ||
+      this.state.grid[row+1][col+1] < 0
     ){
       return true;
     }
@@ -94,14 +75,22 @@ class WorldMap extends Component {
 
   renderGrid() {
     return (
-      this.state.grid.map((row) => (
+      this.state.grid.map((row, rowIndex) => (
         row.map((cell, index) => {
-          if (cell===0) {
-            return <Cell key={index} infected={false}/>;
-          } else if (cell===1){
-            return <Cell key={index} infected={true}/>;
+          if (typeof cell == 'number'){
+            if (cell===0){
+              return <div className="sea" key={index} />;
+            } else {
+              return <Cell key={index} land={cell}/>;
+            } 
+          } else if (cell !== "END") {
+            if (this.checkNeighbours(rowIndex, index) === true) {
+              this.props.activateCity(cell);
+            }
+            return <CityLink key={index} city={cell} active={this.checkNeighbours(rowIndex, index)}/>; 
           } else {
-            return <CityLink key={index} city={cell}/>;
+            this.setState({loading: false})
+            return null
           }
         })
       ))
@@ -109,17 +98,24 @@ class WorldMap extends Component {
   }
 
   render() {
+    if (this.state.loading) {
+      return (
+        <div>
+        <Loading city={this.state.city} />
+      </div>
+      );
+    }
     return (
       <div>
-        <h1>
-          World Map
-        </h1>
-        <h2>{this.state.ticker}</h2>
-        <div className="world-map">
+        <h1 id="map-title">World Map</h1>
+        <div id="ticker">{this.state.ticker}</div>
           <div className="grid">
-            {this.renderGrid()}
+            {this.state.renderGrid}
           </div>
-        </div>
+        <button id="pause" onClick={() => { this.pauseGame() }}>Pause</button>
+        <p>
+          {this.state.paused ? <div id="pause-indicator">paused</div> : null}
+        </p>
       </div>
     );
   }

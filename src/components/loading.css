@@ -1,0 +1,13 @@
+h2 {
+  color: white;
+  text-align: center;
+}
+
+#loading-container{
+  height: 800px;
+  line-height: 600px; /* <-- this is what you must define */
+}
+
+::-webkit-scrollbar { 
+  display: none; 
+}
