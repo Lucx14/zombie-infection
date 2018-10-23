@@ -1,9 +1,11 @@
 import Player from "./Player.js"
 import { Npc } from "./Npc.js"
+import SoundEffects from "./SoundEffects"
 
-export default function LocalGameModel(player = new Player(), npc = new Npc()) {
+export default function LocalGameModel(player = new Player(), npc = new Npc(), soundEffects = new SoundEffects()) {
   this._player = player
   this._npc = npc
+  this._soundEffects = soundEffects
   this._zombieCount = 0
 
   this._canvas = document.getElementById("canvas");
@@ -135,6 +137,7 @@ LocalGameModel.prototype._npcMovement = function() {
       npc.infect()
       local._zombieCount += 1
       local._bloodsplats.push({x: npc.x - 2.5, y: npc.y - 12.5})
+      local._soundEffects.zombieBite()
     }
 
     if (!npc.isInfected()) {
@@ -143,6 +146,7 @@ LocalGameModel.prototype._npcMovement = function() {
           npc.infect()
           local._zombieCount += 1
           local._bloodsplats.push({x: npc.x - 2.5, y: npc.y - 12.5})
+          local._soundEffects.zombieBite()
         }
       })
     }
@@ -162,6 +166,7 @@ LocalGameModel.prototype._npcMovement = function() {
               local.bulletRender(npc.x, npc.y, otherNpcs.x, otherNpcs.y)
               local._deadZombies.push({x: otherNpcs.x - 2.5, y: otherNpcs.y - 12.5})
               local._zombieCount -= 1
+              local._soundEffects.gunShot();
             }
           }
 
