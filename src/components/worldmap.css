@@ -138,7 +138,7 @@ p {
 .city-button {
   -webkit-transition-duration: 0.4s; /* Safari */
   transition-duration: 0.4s;
-  background-color: rgba(255, 255, 255, 0.308);
+  background-color: rgba(255, 255, 255, 0);
   border:none;  
   border-radius: 50%;
   width: 15px;
