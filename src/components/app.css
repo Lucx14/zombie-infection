@@ -167,5 +167,9 @@
 }
 
 #headline {
-  
+  font-size: x-small;
+}
+
+#zombie-total {
+  font-size: x-small;
 }

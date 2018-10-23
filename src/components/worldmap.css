@@ -10,6 +10,10 @@ h1 {
   text-align: center;
 }
 
+#map-title {
+  font-size: medium;
+}
+
 p {
   color: white;
   text-align: center;
@@ -158,4 +162,8 @@ p {
   position: absolute;
   width: 100%;
   background-color: black;
+}
+
+#world-population-stats {
+  font-size: x-small;
 }
