@@ -37,7 +37,7 @@ class App extends Component {
     super(props);
     this.state = {
       // headlines: props.headlines || headlines: [], 
-      playableCities: props.playableCities || [],
+      // playableCities: props.playableCities || [],
     }
     setInterval(() => this.getHeadline(headlines, this.state.playableCities), 5000);
   }
@@ -55,7 +55,7 @@ class App extends Component {
 
   setSelected(city) {
     this.setState({ city: city });
-  };
+  }
 
   startGame() {
     this.setState({ playing: true });
@@ -119,7 +119,6 @@ class App extends Component {
 
   endGame = (zombieCount) => {
     this.setState({city: false, zombieTotal: this.state.zombieTotal + zombieCount})
-    console.log(this.state.zombieTotal)
   }
 
   render() {
@@ -169,6 +168,10 @@ class App extends Component {
     }
   }
 }
+
+// App.propTypes = {
+//   playableCities: PropTypes.array,
+// };
 
 export default App;
 

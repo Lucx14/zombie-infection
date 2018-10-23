@@ -22,7 +22,8 @@ class CityLink extends PureComponent {
 
 CityLink.propTypes = {
   city: PropTypes.string,
-  index: PropTypes.number
+  index: PropTypes.number,
+  active: PropTypes.bool
 };
 
 export default CityLink;
