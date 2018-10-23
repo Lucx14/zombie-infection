@@ -50,31 +50,63 @@
 #oslo {
   position: relative;
   top: -338px;
-  left: 340px;
+  left: 353px;
 }
 #reykjavik {
   position: relative;
   top: -345px;
-  left: 100px;
+  left: 265px;
 }
 #new-york {
   position: relative;
   top: -260px;
-  left: -75px;
+  left: 135px;
 }
 #madrid {
   position: relative;
-  top: -270px;
-  left: 310px;
+  top: -258px;
+  left: 265px;
 }
-#marrakech {}
-#cairo {}
-#nairobi {}
-#istanbul {}
-#dubai {}
-#cape-town {}
-#los-angeles {}
-#mexico-city {}
+#marrakech {
+  position: relative;
+  top: -225px;
+  left: 245px;
+}
+#cairo {
+  position: relative;
+  top: -225px;
+  left: 315px;
+}
+#nairobi {
+  position: relative;
+  top: -155px;
+  left: 315px;
+}
+#istanbul {
+  position: relative;
+  top: -260px;
+  left: 280px;
+}
+#dubai {
+  position: relative;
+  top: -214px;
+  left: 325px;
+}
+#cape-town {
+  position: relative;
+  top: -85px;
+  left: 235px;
+}
+#los-angeles {
+  position: relative;
+  top: -280px;
+  left: -95px;
+}
+#mexico-city {
+  position: relative;
+  top: -205px;
+  left: -55px;
+}
 #bogota {}
 #rio-de-janeiro {}
 #tehran {}
