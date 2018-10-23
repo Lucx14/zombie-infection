@@ -138,6 +138,7 @@ LocalGameModel.prototype._npcMovement = function() {
       local._zombieCount += 1
       local._bloodsplats.push({x: npc.x - 2.5, y: npc.y - 12.5})
       local._soundEffects.zombieBite()
+      local._soundEffects.scream()
     }
 
     if (!npc.isInfected()) {
@@ -147,6 +148,7 @@ LocalGameModel.prototype._npcMovement = function() {
           local._zombieCount += 1
           local._bloodsplats.push({x: npc.x - 2.5, y: npc.y - 12.5})
           local._soundEffects.zombieBite()
+          local._soundEffects.scream()
         }
       })
     }
