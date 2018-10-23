@@ -17,13 +17,14 @@ class App extends Component {
     }
   }
   componentWillMount() {
-    this.setState({ 
-      city: false, 
+    this.setState({
+      city: false,
       playing: false,
       map: InitialGrid(),
       ticker: -1,
       playableCities: [],
       flyingZombies: false,
+      zombieTotal: 0
     });
   }
 
@@ -54,7 +55,7 @@ class App extends Component {
       this.setState({ flyingZombies: true });
     }
   }
-  
+
   getHeadline(headlines, playableCities) {
     if (playableCities.length > 0) {
       let cityHeadlines = headlines[playableCities[Math.floor(Math.random() * playableCities.length)]]
@@ -71,18 +72,18 @@ class App extends Component {
     "hong kong","melbourne","wellington"]
     return(cities.map((city, index) => {
       return(
-        <button className="city-button" 
+        <button className="city-button"
                 id={city}
                 key={index}
-                title={city} 
+                title={city}
                 onClick={() => { this.setSelected(city) }}></button>
       )
     }))
   }
 
-  endGame = () => {
-    this.setState({city: false})
-    console.log('in here')
+  endGame = (zombieCount) => {
+    this.setState({city: false, zombieTotal: this.state.zombieTotal + zombieCount})
+    console.log(this.state.zombieTotal)
   }
 
   render() {
@@ -91,7 +92,7 @@ class App extends Component {
       return (
         <div>
           <h1 id="main-title" className="center">TRICK OR EAT BRAINS</h1>
-          <button onClick={() => { this.startGame() }} id="start-button" className="center">START</button>  
+          <button onClick={() => { this.startGame() }} id="start-button" className="center">START</button>
         </div>
       );
     } else if (this.state.city) {
@@ -125,7 +126,7 @@ class App extends Component {
 export default App;
 
 function InitialGrid() {
-  const array = [ 
+  const array = [
   //                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
   //                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
   //                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],

@@ -13,7 +13,7 @@ class LocalGame extends Component {
     document.getElementById("canvas").addEventListener('keydown',
       function(e) {
         if (localGameModel.gameEnd === true) {
-          this.props.endGame()
+          this.props.endGame(localGameModel._zombieCount)
         }
       }.bind(this));
   }
