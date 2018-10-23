@@ -33,7 +33,7 @@ export default function LocalGameModel(player = new Player(), npc = new Npc()) {
   this._zombieDead = document.getElementById("zombie-dead")
   this._bloodsplat = document.getElementById("bloodsplat")
 
-  this._timeLimit = 60000
+  this._timeLimit = 10000
   this._endDate = new Date().getTime() + this._timeLimit
   this.gameEnd = false
 }
