@@ -4,6 +4,7 @@ import { Npc } from "./Npc.js"
 export default function LocalGameModel(player = new Player(), npc = new Npc()) {
   this._player = player
   this._npc = npc
+  this._zombieCount = 0
 
   this._canvas = document.getElementById("canvas");
   this._canvas.width = 800;
@@ -27,7 +28,7 @@ export default function LocalGameModel(player = new Player(), npc = new Npc()) {
   this._zombie = document.getElementById("zombie")
   this._bloodsplat = document.getElementById("bloodsplat")
 
-  this._timeLimit = 10000
+  this._timeLimit = 60000
   this._endDate = new Date().getTime() + this._timeLimit
   this.gameEnd = false
 }
@@ -40,7 +41,11 @@ LocalGameModel.prototype.tickDraw = function () {
 
 LocalGameModel.prototype._timeDraw = function() {
   var remainingTime = Math.round((this._endDate - new Date().getTime()) / 1000)
-  document.getElementById("timer").innerHTML = `TIME LEFT: ${remainingTime}`
+  document.getElementById("timer").innerHTML = `TIME: ${remainingTime}`
+}
+
+LocalGameModel.prototype._zombieCountDraw = function() {
+  document.getElementById("zombie-count").innerHTML = `HORDE: ${this._zombieCount}`
 }
 
 LocalGameModel.prototype._localGameOver = function() {
@@ -70,6 +75,7 @@ LocalGameModel.prototype._mainDraw = function () {
   if (this._timeUp()) { this._localGameOver(); }
 
   this._timeDraw()
+  this._zombieCountDraw()
   const local = this
 
   this._underCanvasDraw.drawImage(this._bg, 0, 0)
@@ -114,13 +120,15 @@ LocalGameModel.prototype._npcMovement = function() {
   this._groupNpc.forEach(function(npc) {
     if (npc.isNear(local._player, 10) && !npc.isInfected()) {
       npc.infect()
+      local._zombieCount += 1
       local._bloodsplats.push({x: npc.x - 2.5, y: npc.y - 12.5})
     }
 
     if (!npc.isInfected()) {
       local._groupNpc.forEach(function(otherNpcs) {
-        if (otherNpcs.isInfected() && npc.isNear(otherNpcs, 10)) {
+        if (otherNpcs.isInfected() && npc.isNear(otherNpcs, 10) && !npc.isInfected()) {
           npc.infect()
+          local._zombieCount += 1
           local._bloodsplats.push({x: npc.x - 2.5, y: npc.y - 12.5})
         }
       })
