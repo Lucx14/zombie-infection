@@ -10,10 +10,10 @@ class LocalGame extends Component {
     console.log('two')
     localGameModel.tickDraw();
     console.log('three')
-    document.getElementById("canvas").addEventListener('keydown', 
-      function(e) { 
+    document.getElementById("canvas").addEventListener('keydown',
+      function(e) {
         if (localGameModel.gameEnd === true) {
-          this.props.endGame()
+          this.props.endGame(localGameModel._zombieCount)
         }
       }.bind(this));
   }
@@ -38,6 +38,7 @@ class LocalGame extends Component {
           <canvas id="underCanvas" width="800" height="600"></canvas>
           <canvas id="canvas" width="800" height="600" tabIndex='1'></canvas>
           <p id="timer"></p>
+          <p id="zombie-count"></p>
           <p id="local-game-over"></p>
           <p id="end-message"></p>
         </div>

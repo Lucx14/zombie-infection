@@ -6,6 +6,19 @@ export default function Player(speed = 2) {
   this.speed = speed;
 }
 
+Player.prototype.moveUp = function() {
+  this.y -= this.speed
+}
+Player.prototype.moveDown = function() {
+  this.y += this.speed
+}
+Player.prototype.moveLeft = function() {
+  this.x -= this.speed
+}
+Player.prototype.moveRight = function() {
+  this.x += this.speed
+}
+
 Player.prototype.isAtBoundary = function(width, height) {
   if (this.x < 0 ||
       this.y < 0 ||
@@ -23,4 +36,8 @@ Player.prototype.moveFromBoundary = function(width, height) {
   if (this.y < 0) { this.y += this.speed }
   if (this.x + this.w > width) { this.x -= this.speed }
   if (this.y + this.h > height) { this.y -= this.speed }
+}
+
+Player.prototype.coordinates = function() {
+  return [this.x, this.y]
 }

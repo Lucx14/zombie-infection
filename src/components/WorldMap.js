@@ -3,12 +3,17 @@ import "./worldmap.css"
 import CityLink from "./CityLink.js";
 import Cell from "./Cell.js";
 import Loading from './Loading';
+import TheWorld from '../TheWorld';
+
+function InitialGrid() {
+  return TheWorld;
+}
 
 class WorldMap extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      grid: props.map,
+      grid: props.map || InitialGrid(),
       ticker: props.ticker,
       renderGrid : [],
       loading: true,

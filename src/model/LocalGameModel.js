@@ -4,6 +4,7 @@ import { Npc } from "./Npc.js"
 export default function LocalGameModel(player = new Player(), npc = new Npc()) {
   this._player = player
   this._npc = npc
+  this._zombieCount = 0
 
   this._canvas = document.getElementById("canvas");
   this._canvas.width = 800;
@@ -40,7 +41,11 @@ LocalGameModel.prototype.tickDraw = function () {
 
 LocalGameModel.prototype._timeDraw = function() {
   var remainingTime = Math.round((this._endDate - new Date().getTime()) / 1000)
-  document.getElementById("timer").innerHTML = `TIME LEFT: ${remainingTime}`
+  document.getElementById("timer").innerHTML = `TIME: ${remainingTime}`
+}
+
+LocalGameModel.prototype._zombieCountDraw = function() {
+  document.getElementById("zombie-count").innerHTML = `HORDE: ${this._zombieCount}`
 }
 
 LocalGameModel.prototype._localGameOver = function() {
@@ -62,37 +67,39 @@ LocalGameModel.prototype._timeRemaining = function() {
   return this._endDate - new Date().getTime()
 }
 
+LocalGameModel.prototype._drawXYModify = function(canvas, imgFile, position, xModifier, yModifier, xWidth, yWidth) {
+  canvas.drawImage(imgFile, position.x + xModifier, position.y + yModifier, xWidth, yWidth)
+}
+
 LocalGameModel.prototype._mainDraw = function () {
   if (this._timeUp()) { this._localGameOver(); }
 
   this._timeDraw()
+  this._zombieCountDraw()
   const local = this
 
   this._underCanvasDraw.drawImage(this._bg, 0, 0)
-  this._bloodsplats.forEach(function(bloodsplat) {
-    local._underCanvasDraw.drawImage(local._bloodsplat, bloodsplat.x - 5, bloodsplat.y + 15, 30, 20)
-  })
-
   this._canvasDraw.clearRect(0, 0, this._WIDTH, this._HEIGHT)
+
+  this._bloodsplats.forEach(function(bloodsplat) {
+    local._drawXYModify(local._underCanvasDraw,
+                        local._bloodsplat,
+                        bloodsplat,
+                        -5, 15, 30, 20)
+  })
 
   this._groupNpc = this._groupNpc.sort(this._sortNpcs);
 
-  this._canvasDraw.setTransform();
-  this._canvasDraw.translate(-this._player.x, -this._player.y);
-  this._canvasDraw.scale(2,2);
-
-  this._underCanvasDraw.setTransform();
-  this._underCanvasDraw.translate(-this._player.x, -this._player.y);
-  this._underCanvasDraw.scale(2,2);
+  this._setViewZoom(this._canvasDraw, this._player, [2,2])
+  this._setViewZoom(this._underCanvasDraw, this._player, [2,2])
 
   this._canvasDraw.drawImage(this._zombie, this._player.x - 2.5, this._player.y - 12.5, 15, 25)
 
   this._groupNpc.forEach(function(npc) {
-    if (npc.isInfected()) {
-      local._canvasDraw.drawImage(local._zombie, npc.x - 2.5, npc.y - 12.5, 15, 25)
-    } else {
-      local._canvasDraw.drawImage(npc.type, npc.x - 2.5, npc.y - 12.5, 15, 25)
-    }
+    local._drawXYModify(local._canvasDraw,
+                        npc.isInfected() ? local._zombie : npc.type,
+                        npc,
+                        -2.5, -12.5, 15, 25)
   })
 
   this._npcMovement();
@@ -101,19 +108,27 @@ LocalGameModel.prototype._mainDraw = function () {
   return "main draw run"
 }
 
+LocalGameModel.prototype._setViewZoom = function(canvas, target, scale) {
+  canvas.setTransform();
+  canvas.translate(-target.x, -target.y);
+  canvas.scale(scale[0],scale[1]);
+}
+
 LocalGameModel.prototype._npcMovement = function() {
   const local = this
 
   this._groupNpc.forEach(function(npc) {
     if (npc.isNear(local._player, 10) && !npc.isInfected()) {
       npc.infect()
+      local._zombieCount += 1
       local._bloodsplats.push({x: npc.x - 2.5, y: npc.y - 12.5})
     }
 
     if (!npc.isInfected()) {
       local._groupNpc.forEach(function(otherNpcs) {
-        if (otherNpcs.isInfected() && npc.isNear(otherNpcs, 10)) {
+        if (otherNpcs.isInfected() && npc.isNear(otherNpcs, 10) && !npc.isInfected()) {
           npc.infect()
+          local._zombieCount += 1
           local._bloodsplats.push({x: npc.x - 2.5, y: npc.y - 12.5})
         }
       })
@@ -134,10 +149,10 @@ LocalGameModel.prototype._npcMovement = function() {
           npc.isNear(otherNpcs, 12)) {
           npc.move(otherNpcs, 'away')
         }
-        // else if (!otherNpcs.isInfected() &&
-        //             npc.isNear(otherNpcs, 30)) {
-        //   npc.move(otherNpcs, 'towards')
-        // }
+        else if (!otherNpcs.isInfected() &&
+                    npc.isNear(otherNpcs, 10)) {
+          npc.move(otherNpcs, 'towards')
+        }
       }
     })
 
@@ -153,16 +168,16 @@ LocalGameModel.prototype._playerMovement = function() {
     this._player.moveFromBoundary(this._WIDTH, this._HEIGHT)
   }
   if (this._keys[87] || this._keys[38]) {
-    this._player.y -= this._player.speed
+    this._player.moveUp()
   }
   if (this._keys[83] || this._keys[40]) {
-    this._player.y += this._player.speed
+    this._player.moveDown()
   }
   if (this._keys[65] || this._keys[37]) {
-    this._player.x -= this._player.speed
+    this._player.moveLeft()
   }
   if (this._keys[68] || this._keys[39]) {
-    this._player.x += this._player.speed
+    this._player.moveRight()
   }
 }
 

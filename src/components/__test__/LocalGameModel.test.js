@@ -30,9 +30,9 @@ describe('LocalGameModel', () => {
                 width: 800,
                 height: 600,
             };
-        } else if (tagName == 'timer') {
+        } else if (tagName == 'timer' || tagName == 'zombie-count') {
             return {
-              innerHTML: () => ({})
+              innerHTML: ""
             }
         }
     };
@@ -45,6 +45,10 @@ describe('LocalGameModel', () => {
       this.speed = 2
 
       this.isAtBoundary = function() { return false }
+      this.moveUp = function() { this.y -= this.speed }
+      this.moveDown = function() { this.y += this.speed }
+      this.moveLeft = function() { this.x -= this.speed }
+      this.moveRight = function() { this.x += this.speed }
     }
 
     function mockNpc() {
