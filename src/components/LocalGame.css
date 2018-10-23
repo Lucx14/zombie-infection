@@ -25,6 +25,18 @@ height:600px;
 
 #timer {
   position: absolute;
+  left: 5%;
+  transform: translateY(-75%);
+  z-index:2;
+  font-family: 'Press Start 2P';
+  color: white;
+  font-size: 27px;
+  text-shadow: -3px 0 black, 0 3px black, 3px 0 black, 0 -3px black;
+}
+
+#zombie-count {
+  position: absolute;
+  left: 60%;
   transform: translateY(-75%);
   z-index:2;
   font-family: 'Press Start 2P';

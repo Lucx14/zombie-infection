@@ -30,9 +30,9 @@ describe('LocalGameModel', () => {
                 width: 800,
                 height: 600,
             };
-        } else if (tagName == 'timer') {
+        } else if (tagName == 'timer' || tagName == 'zombie-count') {
             return {
-              innerHTML: () => ({})
+              innerHTML: ""
             }
         }
     };
