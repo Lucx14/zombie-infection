@@ -170,14 +170,14 @@ class WorldMap extends PureComponent {
     if (row === 0 || row === 119) {
       return false;
     } else if (
-      this.state.grid[row-1][col-1] < 0 || 
+      this.state.grid[row-1][col-1] < 0 ||
       this.state.grid[row-1][col] < 0 ||
-      this.state.grid[row-1][col+1] < 0 || 
+      this.state.grid[row-1][col+1] < 0 ||
       this.state.grid[row][col-1] < 0 ||
-      this.state.grid[row][col+1] < 0 || 
+      this.state.grid[row][col+1] < 0 ||
       this.state.grid[row+1][col-1] < 0 ||
-      this.state.grid[row+1][col] < 0 || 
-      this.state.grid[row+1][col+1] < 0 
+      this.state.grid[row+1][col] < 0 ||
+      this.state.grid[row+1][col+1] < 0
     ){
       return true;
     }
@@ -192,9 +192,9 @@ class WorldMap extends PureComponent {
               return <div className="sea" key={index} />;
             } else {
               return <Cell key={index} land={cell}/>;
-            } 
+            }
           } else {
-            return <CityLink key={index} city={cell} active={this.checkNeighbours(rowIndex, index)}/>; 
+            return <CityLink key={index} city={cell} active={this.checkNeighbours(rowIndex, index)}/>;
           }
         })
       ))
