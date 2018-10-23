@@ -165,7 +165,10 @@ class WorldMap extends PureComponent {
 
 WorldMap.propTypes = {
   ticker: PropTypes.number,
-  flyingZombies: PropTypes.bool
+  flyingZombies: PropTypes.bool,
+  updateAppMap: PropTypes.func,
+  activateCity: PropTypes.func,
+  map: PropTypes.array
 };
 
 export default WorldMap;
