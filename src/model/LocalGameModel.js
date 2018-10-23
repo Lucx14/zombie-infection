@@ -36,7 +36,7 @@ export default function LocalGameModel(player = new Player(), npc = new Npc(), s
   this._zombieDead = document.getElementById("zombie-dead")
   this._bloodsplat = document.getElementById("bloodsplat")
 
-  this._timeLimit = 60000
+  this._timeLimit = 20000
   this._endDate = new Date().getTime() + this._timeLimit
   this.gameEnd = false
 }
@@ -81,6 +81,10 @@ LocalGameModel.prototype._drawXYModify = function(canvas, imgFile, position, xMo
 
 LocalGameModel.prototype._mainDraw = function () {
   if (this._timeUp()) { this._localGameOver(); }
+  if (this._timeRemaining() < 15000 && this._timeRemaining() > 14500) {
+    console.log("beep!")
+    this._soundEffects.endLevel()
+  }
 
   this._timeDraw()
   this._zombieCountDraw()

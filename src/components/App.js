@@ -72,10 +72,10 @@ class App extends Component {
     "hong-kong","melbourne","wellington", "vancouver"]
     return(cities.map((city, index) => {
         return(
-          <button className="city-button" 
+          <button className="city-button"
                   id={city}
                   key={index}
-                  title={city} 
+                  title={city}
                   onClick={() => { this.setSelected(city) }}></button>
         )
     }))
@@ -83,7 +83,6 @@ class App extends Component {
 
   endGame = (zombieCount) => {
     this.setState({city: false, zombieTotal: this.state.zombieTotal + zombieCount})
-    console.log(this.state.zombieTotal)
   }
 
   render() {

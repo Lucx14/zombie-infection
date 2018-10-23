@@ -5,11 +5,8 @@ import "./LocalGame.css"
 class LocalGame extends Component {
   componentDidMount() {
     var localGameModel = new LocalGameModel()
-    console.log('one')
     localGameModel.eventListen();
-    console.log('two')
     localGameModel.tickDraw();
-    console.log('three')
     document.getElementById("canvas").addEventListener('keydown',
       function(e) {
         if (localGameModel.gameEnd === true) {

@@ -9,6 +9,8 @@ export default function SoundEffects() {
   this._scream1 = new Audio("./soundEffects/scream1.mp3")
   this._scream2 = new Audio("./soundEffects/scream2.mp3")
 
+  this._endLevelBeep = new Audio("./soundEffects/endBeep.mp3")
+
   this._gunShots = [this._shotgun, this._pistol]
 
   this._zombieSounds = [this._zombieBite1, this._zombieBite2, this._zombieBite3]
@@ -34,4 +36,8 @@ SoundEffects.prototype.scream = function() {
     sound.currentTime = 0;
     sound.play();
   }
+}
+
+SoundEffects.prototype.endLevel = function() {
+  this._endLevelBeep.play();
 }
