@@ -1,5 +1,9 @@
 @import 'https://fonts.googleapis.com/css?family=Press+Start+2P';
 
+h3 {
+  color: white;
+}
+
 .center {
   display: block;
   margin-left: auto;

@@ -18,7 +18,8 @@ class App extends Component {
       showStats: false,
       speed: 0,
       resilience: 0,
-      aggression: 0
+      aggression: 0,
+      tokens: 1
     }
   }
   componentWillMount() {
@@ -87,12 +88,34 @@ class App extends Component {
   }
 
   endGame = (zombieCount) => {
-    this.setState({city: false, zombieTotal: this.state.zombieTotal + zombieCount, stats: true})
+    this.setState({
+      city: false, 
+      zombieTotal: this.state.zombieTotal + zombieCount, 
+      showStats: true, 
+      tokens: Math.floor(zombieCount/10)
+    })
     console.log(this.state.zombieTotal)
   }
 
   enterStats() {
     this.setState({ showStats: !this.state.showStats })
+  }
+
+  increaseStat(stat) {
+    if (this.state.tokens > 0) {
+      this.setState({ tokens: this.state.tokens -1})
+      switch (stat) {
+        case "speed":
+        this.setState({ speed: this.state.speed +1})
+          break;
+        case "resilience":
+          this.setState({ resilience: this.state.resilience +1})
+          break;
+        default: 
+          this.setState({ aggression: this.state.aggression +1})
+          break;
+      }
+    };
   }
 
   render() {
@@ -114,7 +137,7 @@ class App extends Component {
       case (this.state.showStats):
         return (
           <div>
-            <Stats done={this.enterStats.bind(this)} speed={this.state.speed} resilience={this.state.resilience} aggression={this.state.aggression}/>
+            <Stats tokens={this.state.tokens} increaseStat={this.increaseStat.bind(this)} done={this.enterStats.bind(this)} speed={this.state.speed} resilience={this.state.resilience} aggression={this.state.aggression}/>
           </div>
         ); 
       default: 

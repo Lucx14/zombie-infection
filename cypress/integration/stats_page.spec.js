@@ -9,10 +9,15 @@ describe('Stats', () => {
       cy.contains('Stats')
     });
 
-    it('Displays the various abilities', () => {
-      cy.contains('Speed')
-      cy.contains('Resilience')
-      cy.contains('Aggression')
+    it('Allows player to increase abilities with tokens', () => {
+      cy.contains('Speed: 0')
+      cy.contains('Tokens: 1')
+      cy.get('#speedUp').click()
+      cy.contains('Speed: 1')
+      cy.contains('Tokens: 0')
     });
-    
+
+    it('Shows special abilities', () => {
+      cy.contains('')
+    });
 });
