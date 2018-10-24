@@ -7,6 +7,7 @@ export default function LocalGameModel(player = new Player(), npc = new Npc(), s
   this._npc = npc
   this._soundEffects = soundEffects
   this._zombieCount = 0
+  this.gameSpeed = 15
 
   this._canvas = document.getElementById("canvas");
   this._canvas.width = 800;
@@ -20,13 +21,11 @@ export default function LocalGameModel(player = new Player(), npc = new Npc(), s
   this._underCanvas.height = 600;
   this._underCanvasDraw = this._underCanvas.getContext("2d");
 
-  this._keys = []
   this._civilians = Array.from({length:200}, () => new Npc(Math.random() * 2))
   this._nonCivilians = Array.from({length:25}, () => new Npc(Math.random() * 2, false))
   this._groupNpc = this._civilians.concat(this._nonCivilians)
 
-  this.gameSpeed = 15
-
+  this._keys = []
   this._bloodsplats = []
   this._deadZombies = []
 
@@ -36,7 +35,7 @@ export default function LocalGameModel(player = new Player(), npc = new Npc(), s
   this._zombieDead = document.getElementById("zombie-dead")
   this._bloodsplat = document.getElementById("bloodsplat")
 
-  this._timeLimit = 20000
+  this._timeLimit = 10000
   this._endDate = new Date().getTime() + this._timeLimit
   this.gameEnd = false
 }
