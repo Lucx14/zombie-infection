@@ -62,6 +62,16 @@ class App extends Component {
     }
   }
 
+  specialAbility(ability) {
+    if (this.state.tokens > 19 && ability === "fishFrenzy") {
+      this.setState({ flyingZombies: true, tokens: this.state.tokens -20 });
+    } else if (this.state.tokens > 29 && ability === "flyingZombies") {
+      this.setState({ fishFrenzy: true, tokens: this.state.tokens -30 });
+    } else if (this.state.tokens > 39 && ability === "worldWarZ") {
+      this.setState({ worldWarZ: true, tokens: this.state.tokens -40 });
+    }
+  }
+
   getHeadline(headlines, playableCities) {
     if (playableCities.length > 0) {
       let cityHeadlines = headlines[playableCities[Math.floor(Math.random() * playableCities.length)]]
@@ -137,7 +147,9 @@ class App extends Component {
       case (this.state.showStats):
         return (
           <div>
-            <Stats tokens={this.state.tokens} increaseStat={this.increaseStat.bind(this)} done={this.enterStats.bind(this)} speed={this.state.speed} resilience={this.state.resilience} aggression={this.state.aggression}/>
+            <Stats tokens={this.state.tokens} increaseStat={this.increaseStat.bind(this)} done={this.enterStats.bind(this)} 
+                  speed={this.state.speed} resilience={this.state.resilience} aggression={this.state.aggression}
+                  specialAbility={this.specialAbility.bind(this)} playableCities={this.state.playableCities}/>
           </div>
         ); 
       default: 
