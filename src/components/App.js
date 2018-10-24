@@ -4,6 +4,7 @@ import LocalGame from './LocalGame';
 import Stats from './Stats';
 import "./app.css"
 import headlines from '../Headlines';
+import cities from '../model/Cities';
 
 class App extends Component {
   constructor (props) {
@@ -11,27 +12,24 @@ class App extends Component {
     this.state = {
       headlines: props.headlines || headlines,
       playableCities: props.playableCities || [],
+      map: InitialGrid(),
+      ticker: -1,
+      zombieTotal: 0,
+      // ___V I E W  C H A N G E R S___
+      city: false,
       showStats: false,
-      // S T A T S
+      playing: false,
+      // ___S T A T S___
       speed: 0,
       resilience: 0,
       aggression: 0,
       tokens: 1,
+      // ___A B I L I T I E S___
       flyingZombies: false,
       fishFrenzy: false,
       worldWarZ: true,
     }
     setInterval(() => this.getHeadline(headlines, this.state.playableCities), 5000);
-  }
-  componentWillMount() {
-    this.setState({
-      city: false,
-      playing: false,
-      map: InitialGrid(),
-      ticker: -1,
-      playableCities: [],
-      zombieTotal: 0
-    });
   }
 
   setSelected(city) {
@@ -80,12 +78,6 @@ class App extends Component {
   }
 
   renderButtons() {
-    const cities = ["london","paris","rome","oslo",
-    "reykjavik","new-york","madrid","marrakech",
-    "cairo","nairobi","istanbul" ,"dubai","cape-town",
-    "los-angeles","mexico-city","bogota","rio-de-janeiro",
-    "tehran","new-dehli","bangkok","shanghai","tokyo",
-    "hong-kong","melbourne","wellington", "vancouver"]
     return(cities.map((city, index) => {
       if (this.state.playableCities.includes(city)) {
         return(

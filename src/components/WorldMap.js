@@ -23,26 +23,23 @@ class WorldMap extends PureComponent {
 
   infectedPopulations(continent) {
     const map = this.state.grid;
-    let infection = (map.flat().filter(function(x){ return x === -continent }).length)
-    let total = (map.flat().filter(function(x){ return Math.abs(x) === continent }).length)
+    let infection = (map.flat().filter(function(x){ return x === -continent }).length);
+    let total = (map.flat().filter(function(x){ return Math.abs(x) === continent }).length);
     return Math.floor(infection*100/total);
   }
 
   componentDidMount() {
-    this.interval = setInterval(() => this.tick(), 1000)
+    this.interval = setInterval(() => this.tick(), 1000);
   }
 
   componentWillUnmount() {
-    clearInterval(this.interval)
-    this.props.updateAppMap(this.state.grid, this.state.ticker)
+    clearInterval(this.interval);
+    this.props.updateAppMap(this.state.grid, this.state.ticker);
   }
 
   tick() {
-    this.setState({ticker: this.state.ticker +1})
-    if (this.props.worldWarZ) {
-      this.setState({infectionChance: 0.5})
-
-    }
+    this.setState({ticker: this.state.ticker +1});
+    if (this.props.worldWarZ) { this.setState({infectionChance: 0.5}) };
     this.incrementHour();
     this.populateGrid();
   }
@@ -83,26 +80,18 @@ class WorldMap extends PureComponent {
     if (row === 0 || row === this.state.grid.length-1) {
       return false;
     } else if (
-      this.state.grid[row-1][col-1] < 0 ||
-      this.state.grid[row-1][col] < 0 ||
-      this.state.grid[row-1][col+1] < 0 ||
-      this.state.grid[row][col-1] < 0 ||
-      this.state.grid[row][col+1] < 0 ||
-      this.state.grid[row+1][col-1] < 0 ||
-      this.state.grid[row+1][col] < 0 ||
-      this.state.grid[row+1][col+1] < 0
+      this.state.grid[row-1][col-1] < 0 || this.state.grid[row-1][col] < 0 ||this.state.grid[row-1][col+1] < 0 ||
+      this.state.grid[row][col-1] < 0 || this.state.grid[row][col+1] < 0 || this.state.grid[row+1][col-1] < 0 ||
+      this.state.grid[row+1][col] < 0 || this.state.grid[row+1][col+1] < 0
     ) {
       return true;
     } else if (
       this.props.fishFrenzy && Math.random() < 0.005 &&
-      [this.state.grid[row-1][col-1], 
-      this.state.grid[row-1][col],
-      this.state.grid[row-1][col+1],
-      this.state.grid[row][col-1],
-      this.state.grid[row][col+1],
-      this.state.grid[row+1][col-1],
-      this.state.grid[row+1][col],
-      this.state.grid[row+1][col+1]].filter(x => x===0).length > 4) {
+      [this.state.grid[row-1][col-1], this.state.grid[row-1][col], this.state.grid[row-1][col+1],
+      this.state.grid[row][col-1], this.state.grid[row][col+1], this.state.grid[row+1][col-1],
+      this.state.grid[row+1][col], this.state.grid[row+1][col+1]]
+        .filter(x => x===0).length > 4
+    ) {
       return true;
     }
   }
@@ -121,7 +110,10 @@ class WorldMap extends PureComponent {
             if (this.checkNeighbours(rowIndex, index) === true) {
               this.props.activateCity(cell);
             }
-            return <CityLink key={index} city={cell} active={this.checkNeighbours(rowIndex, index)}/>; 
+            return <CityLink 
+              key={index} 
+              city={cell} 
+              active={this.checkNeighbours(rowIndex, index)}/>; 
           } else {
             this.setState({loading: false})
             return null
@@ -178,7 +170,6 @@ class WorldMap extends PureComponent {
     );
   }
 }
-
 
 WorldMap.propTypes = {
   ticker: PropTypes.number,
