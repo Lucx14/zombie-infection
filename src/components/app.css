@@ -29,14 +29,17 @@
   height: 400px;
   margin: 0 auto 0 auto;
   background-color:rgba(255, 255, 255, 0);
-  z-index: 1;
+  z-index: 5;
 }
 
 #london {
   position: relative;
   top: -293px;
   left: 369px;
+
 }
+
+
 #paris {
   position: relative;
   top: -283px;
@@ -161,4 +164,12 @@
   position: relative;
   top: -280px;
   left: -275px;
+}
+
+#headline {
+  font-size: x-small;
+}
+
+#zombie-total {
+  font-size: x-small;
 }

@@ -1,20 +1,32 @@
-export function Npc(speed = 1) {
+export function Npc(speed = 1, civilian = true) {
   this.x = Math.random() * 800;
   this.y = Math.random() * 600;
   this.w = 10;
   this.h = 10;
   this.speed = speed;
   this.zombie = false;
+  this.civilian = civilian
 
-  this._people = [this._army = document.getElementById("army"),
-                  this._police = document.getElementById("police"),
-                  this._person1 = document.getElementById("person1"),
-                  this._person2 = document.getElementById("person2"),
-                  this._person3 = document.getElementById("person3"),
-                  this._person4 = document.getElementById("person4"),
-                  this._person5 = document.getElementById("person5")]
-
+  if (this.civilian) {
+    this._people = [[document.getElementById("person1"), true],
+                    [document.getElementById("person2"), true],
+                    [document.getElementById("person3"), true],
+                    [document.getElementById("person4"), true],
+                    [document.getElementById("person5"), true]]
+  } else {
+    this._people = [[document.getElementById("army"), false],
+                    [document.getElementById("police"), false]]
+  }
+  
   this.type = this._people[Math.floor(Math.random()*this._people.length)];
+}
+
+Npc.prototype.shoot = function(x, y) {
+  if (Math.random() > 0.995) {
+    return true
+  } else {
+    return false
+  }
 }
 
 Npc.prototype.isInfected = function() {

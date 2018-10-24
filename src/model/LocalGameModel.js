@@ -5,6 +5,7 @@ export default function LocalGameModel(player = new Player(), npc = new Npc()) {
   this._player = player
   this._npc = npc
   this._zombieCount = 0
+  this.gameSpeed = 15
 
   this._canvas = document.getElementById("canvas");
   this._canvas.width = 800;
@@ -18,14 +19,21 @@ export default function LocalGameModel(player = new Player(), npc = new Npc()) {
   this._underCanvas.height = 600;
   this._underCanvasDraw = this._underCanvas.getContext("2d");
 
+  this._civilians = Array.from({length:200}, () => new Npc(Math.random() * 2))
+  this._nonCivilians = Array.from({length:25}, () => new Npc(Math.random() * 2, false))
+  this._groupNpc = this._civilians.concat(this._nonCivilians)
+  
   this._keys = []
-  this._groupNpc = Array.from({length:600}, () => new Npc(Math.random() * 2))
+  this._groupNpc = this._civilians.concat(this._nonCivilians)
   this.gameSpeed = 15
 
   this._bloodsplats = []
+  this._deadZombies = []
 
   this._bg = document.getElementById("background")
   this._zombie = document.getElementById("zombie")
+  this._playerZombie = document.getElementById("player-zombie")
+  this._zombieDead = document.getElementById("zombie-dead")
   this._bloodsplat = document.getElementById("bloodsplat")
 
   this._timeLimit = 30000
@@ -88,16 +96,23 @@ LocalGameModel.prototype._mainDraw = function () {
                         -5, 15, 30, 20)
   })
 
+  this._deadZombies.forEach(function(deadZombie) {
+    local._drawXYModify(local._underCanvasDraw,
+                        local._zombieDead,
+                        deadZombie,
+                        -5, 15, 30, 20)
+  })
+
   this._groupNpc = this._groupNpc.sort(this._sortNpcs);
 
   this._setViewZoom(this._canvasDraw, this._player, [2,2])
   this._setViewZoom(this._underCanvasDraw, this._player, [2,2])
 
-  this._canvasDraw.drawImage(this._zombie, this._player.x - 2.5, this._player.y - 12.5, 15, 25)
+  this._canvasDraw.drawImage(this._playerZombie, this._player.x - 2.5, this._player.y - 12.5, 15, 25)
 
   this._groupNpc.forEach(function(npc) {
     local._drawXYModify(local._canvasDraw,
-                        npc.isInfected() ? local._zombie : npc.type,
+                        npc.isInfected() ? local._zombie : npc.type[0],
                         npc,
                         -2.5, -12.5, 15, 25)
   })
@@ -138,11 +153,23 @@ LocalGameModel.prototype._npcMovement = function() {
     // }
 
     local._groupNpc.forEach((otherNpcs) => {
+      var index = local._groupNpc.indexOf(otherNpcs)
+
       if (!npc.isInfected()) {
-        if ( npc.isNear(otherNpcs, 50) &&
+
+        if (npc.isNear(otherNpcs, 50) &&
              otherNpcs.isInfected() &&
              npc !== otherNpcs) {
           npc.move(otherNpcs, 'away')
+          if (!npc.type[1]) {
+            if (npc.shoot()) {
+              local._groupNpc.splice(index, 1)
+              local.bulletRender(npc.x, npc.y, otherNpcs.x, otherNpcs.y)
+              local._deadZombies.push({x: otherNpcs.x - 2.5, y: otherNpcs.y - 12.5})
+              local._zombieCount -= 1
+            }
+          }
+
         } else if (!otherNpcs.isInfected() &&
                     npc.isNear(otherNpcs, 15)) {
           npc.move(otherNpcs, 'away')
@@ -153,11 +180,14 @@ LocalGameModel.prototype._npcMovement = function() {
           local._zombieCount += 1
           local._bloodsplats.push({x: npc.x - 2.5, y: npc.y - 12.5})
         }
+
       } else if (npc.isInfected()) {
+
         if (otherNpcs.isInfected() &&
           npc.isNear(otherNpcs, 12)) {
           npc.move(otherNpcs, 'away')
         }
+
         else if (!otherNpcs.isInfected() &&
                     npc.isNear(otherNpcs, 10)) {
           npc.move(otherNpcs, 'towards')
@@ -170,6 +200,13 @@ LocalGameModel.prototype._npcMovement = function() {
       npc.move(local._player, 'towards')
     }
   })
+}
+
+LocalGameModel.prototype.bulletRender = function(shooterX, shooterY, targetX, targetY) {
+  this._canvasDraw.beginPath();
+  this._canvasDraw.moveTo(shooterX, shooterY);
+  this._canvasDraw.lineTo(targetX, targetY);
+  this._canvasDraw.stroke()
 }
 
 LocalGameModel.prototype._playerMovement = function() {
