@@ -3,11 +3,7 @@ import WorldMap from './WorldMap';
 import LocalGame from './LocalGame';
 import Stats from './Stats';
 import "./app.css"
-
-const headlines = {
-  "london": ["East London Pub attacked by Horde of Ravenous flesh-munchers", "Queen seen roaming Westminster in a tank wearing full-body armour"],
-  "paris": ["Zombies spotted sampling wine in local vineyard", "Holiday makers leave 2-star tripadvisor review due to zombie in soup"]
-}
+import headlines from '../Headlines';
 
 class App extends Component {
   constructor (props) {
@@ -23,8 +19,9 @@ class App extends Component {
       tokens: 1,
       flyingZombies: false,
       fishFrenzy: false,
-      worldWarZ: true,
+      worldWarZ: false,
     }
+    setInterval(() => this.getHeadline(headlines, this.state.playableCities), 5000);
   }
   componentWillMount() {
     this.setState({
@@ -39,7 +36,7 @@ class App extends Component {
 
   setSelected(city) {
     this.setState({ city: city });
-  };
+  }
 
   startGame() {
     this.setState({ playing: true });
@@ -78,7 +75,7 @@ class App extends Component {
   getHeadline(headlines, playableCities) {
     if (playableCities.length > 0) {
       let cityHeadlines = headlines[playableCities[Math.floor(Math.random() * playableCities.length)]]
-      return cityHeadlines[Math.floor(Math.random() * cityHeadlines.length)];
+      this.setState({ currentHeadline: "BREAKING NEWS: " + cityHeadlines[Math.floor(Math.random() * cityHeadlines.length)] })
     }
   }
 
@@ -90,13 +87,24 @@ class App extends Component {
     "tehran","new-dehli","bangkok","shanghai","tokyo",
     "hong-kong","melbourne","wellington", "vancouver"]
     return(cities.map((city, index) => {
+      if (this.state.playableCities.includes(city)) {
+        return(
+          <button className="city-button"
+                  id={city}
+                  key={index}
+                  title={city}
+                  onClick={() => { this.setSelected(city) }}></button>
+        )
+      } else {
         return(
           <button className="city-button" 
                   id={city}
                   key={index}
                   title={city} 
-                  onClick={() => { this.setSelected(city) }}></button>
+                  ></button>
         )
+      }
+        
     }))
   }
 
@@ -171,7 +179,7 @@ class App extends Component {
               {this.renderButtons()}
             </div>
             <p id="headline">
-              {this.getHeadline(this.state.headlines, this.state.playableCities)}
+              {this.state.currentHeadline}
             </p>
             <button id="stats" onClick={() => {this.enterStats()}}>Stats</button>
           </div>
@@ -179,6 +187,10 @@ class App extends Component {
     }
   }
 }
+
+// App.propTypes = {
+//   playableCities: PropTypes.array,
+// };
 
 export default App;
 

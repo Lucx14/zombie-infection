@@ -1,11 +1,21 @@
 import React, { PureComponent } from 'react';
 import "./worldmap.css"
-import CityLink from "../components/CityLink.js";
-import Cell from "../components/Cell.js";
-import Loading from '../components/Loading';
+import CityLink from "./CityLink.js";
+import Cell from "./Cell.js";
+import Loading from './Loading';
 import TheWorld from '../model/TheWorld';
 import PropTypes from 'prop-types';
-import populations from '../model/Populations'
+
+function populations() {
+  return { 
+    "northAmerica": 579000000,
+    "southAmerica": 422500000, 
+    "europe": 742648010, 
+    "africa": 1287920518, 
+    "asia": 4134133094, 
+    "oceana": 41261212, 
+    "middleEast": 411000000}
+}
 
 class WorldMap extends PureComponent {
   constructor(props) {
@@ -151,13 +161,13 @@ class WorldMap extends PureComponent {
       <div>
         <h1 id="map-title">World Map</h1>
         <div id="world-population-stats">
-          <p>North America: Infected: {this.infectedPopulations(1)}%, Survivors: {populations["northAmerica"] - Math.floor(populations["northAmerica"]*this.infectedPopulations(1)*0.01)}</p>
-          <p>South America: Infected: {this.infectedPopulations(2)}%, Survivors: {populations["southAmerica"] - Math.floor(populations["southAmerica"]*this.infectedPopulations(2)*0.01)}</p>
-          <p>Europe: Infected: {this.infectedPopulations(3)}%, Survivors: {populations["europe"] - Math.floor(populations["europe"]*this.infectedPopulations(3)*0.01)}</p>
-          <p>Africa: {this.infectedPopulations(4)}%, Survivors: {populations["africa"] - Math.floor(populations["africa"]*this.infectedPopulations(3)*0.01)}</p>
-          <p>Asia: {this.infectedPopulations(5)}%, Survivors: {populations["asia"] - Math.floor(populations["asia"]*this.infectedPopulations(4)*0.01)}</p>
-          <p>Oceana: {this.infectedPopulations(6)}%, Survivors: {populations["oceana"] - Math.floor(populations["oceana"]*this.infectedPopulations(6)*0.01)}</p>
-          <p>Middle East: {this.infectedPopulations(7)}%, Survivors: {populations["middleEast"] - Math.floor(populations["middleEast"]*this.infectedPopulations(7)*0.01)}</p>
+          <p>North America: Infected: {this.infectedPopulations(1)}%, Survivors: {populations()["northAmerica"] - Math.floor(populations()["northAmerica"]*this.infectedPopulations(1)*0.01)}</p>
+          <p>South America: Infected: {this.infectedPopulations(2)}%, Survivors: {populations()["southAmerica"] - Math.floor(populations()["southAmerica"]*this.infectedPopulations(2)*0.01)}</p>
+          <p>Europe: Infected: {this.infectedPopulations(3)}%, Survivors: {populations()["europe"] - Math.floor(populations()["europe"]*this.infectedPopulations(3)*0.01)}</p>
+          <p>Africa: {this.infectedPopulations(4)}%, Survivors: {populations()["africa"] - Math.floor(populations()["africa"]*this.infectedPopulations(3)*0.01)}</p>
+          <p>Asia: {this.infectedPopulations(5)}%, Survivors: {populations()["asia"] - Math.floor(populations()["asia"]*this.infectedPopulations(4)*0.01)}</p>
+          <p>Oceana: {this.infectedPopulations(6)}%, Survivors: {populations()["oceana"] - Math.floor(populations()["oceana"]*this.infectedPopulations(6)*0.01)}</p>
+          <p>Middle East: {this.infectedPopulations(7)}%, Survivors: {populations()["middleEast"] - Math.floor(populations()["middleEast"]*this.infectedPopulations(7)*0.01)}</p>
         </div>
         <div id="time">Time:{this.state.hour + 12}:{this.state.ticker - (this.state.hour * 60) <10 ? "0":null}{this.state.ticker - (this.state.hour * 60)}</div>
         <div className="grid">
