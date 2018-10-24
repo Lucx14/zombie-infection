@@ -21,7 +21,7 @@ export function Npc(speed = 1, civilian = true) {
   this.type = this._people[Math.floor(Math.random()*this._people.length)];
 }
 
-Npc.prototype.shoot = function(x, y) {
+Npc.prototype.shoot = function() {
   if (Math.random() > 0.995) {
     return true
   } else {
