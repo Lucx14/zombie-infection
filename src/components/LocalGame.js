@@ -19,7 +19,7 @@ class LocalGame extends Component {
   render() {
     return (
       <div>
-        <img id="background" src="level1.gif" alt="" style={{display: "none"}}/>
+        <img id="background" src="level1.jpg" alt="" style={{display: "none"}}/>
         <img id="zombie" src="zombie.png" alt="" style={{display: "none"}}/>
         <img id="player-zombie" src="playerZombie.png" alt="" style={{display: "none"}}/>
         <img id="zombie-dead" src="zombieDead.png" alt="" style={{display: "none"}}/>
