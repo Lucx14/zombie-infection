@@ -1,6 +1,8 @@
 import React from 'react';
 import { shallow, mount, render } from 'enzyme';
-import WorldMap from '../WorldMap.js'
+import WorldMap from '../WorldMap.js';
+// import sinon from 'sinon'
+// import { props } from '../../../node_modules/@types/bluebird';
 
 jest.mock('../CityLink', () => () => 
   <div className="city-link">  
@@ -34,6 +36,7 @@ describe('WorldMap', () => {
 
   beforeAll(() => {
     wrapper = shallow(<WorldMap map={testGrid1} ticker={60} map2={testGrid3}/>)
+    
   });
 
   describe('pause', () => {
@@ -53,21 +56,45 @@ describe('WorldMap', () => {
     expect(wrapper.state('hour')).toBe(1);
   })
 
+  // it('has a function that contains populations', () => {
+  //   expect(populations()).toEqual(true);
+  // })
 
-
-  it('calculates infected populations', () => {
+  it('increments tick', () => {
     const instance = wrapper.instance();
-    const continent = 1;
-    console.log(instance.state.grid);
-    // jest.spyOn(instance, 'flat').mockImplementation(() => {
-    //   return false;
-    // });
-    expect(instance.infectedPopulations()).toBe(false);
+    expect(wrapper.state('ticker')).toBe(60);
+    instance.tick();
+    expect(wrapper.state('ticker')).toBe(61);
   })
 
+  // it('contains populations', () => {
+  //   // console.log(wrapper.instance());
+  //   expect(('populations').toEqual(true))
+  // })
+
+
+
+  // it('calculates infected populations', () => {
+  //   const instance = wrapper.instance();
+  //   const continent = 1;
+  //   // console.log(instance.state.grid);
+  //   // jest.spyOn(instance, 'flat').mockImplementation(() => {
+  //   //   return false;
+  //   // });
+  //   expect(instance.infectedPopulations()).toBe(false);
+  // })
+
+// it('ComponentDidMount', () => {
+//   wrapper.instance().componentDidMount()
+//   console.log(wrapper.instance());
+//   expect(ticker.calledOnce).toBe(true);
+// })
+
+
   it('renders the map grid', () => {
-        expect(wrapper.instance().renderGrid().length).toEqual(5)
-      });
+      expect(wrapper.instance().renderGrid().length).toEqual(5)
+    });
+
 
 
   it('checks cells for infected neighbors', () => {
@@ -88,5 +115,4 @@ describe('WorldMap', () => {
     // expect(wrapper2.instance().checkNeighbours(2,2)).toEqual(false)
     // expect(wrapper2.instance().checkNeighbours(2,2)).toEqual(t)
   });
-  
 });
