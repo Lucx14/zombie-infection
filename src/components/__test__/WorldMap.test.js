@@ -15,7 +15,6 @@ jest.mock('../Cell', () => () =>
 
 describe('WorldMap', () => {
   let wrapper;
-
   let testGrid1 = [
     [0,0,0,0,0],
     [0,0,0,0,0],
@@ -24,23 +23,39 @@ describe('WorldMap', () => {
     [0,0,0,0,0]
   ]
 
+
   beforeAll(() => {
-    wrapper = shallow(<WorldMap map={testGrid1}/>)
+    wrapper = shallow(<WorldMap map={testGrid1} ticker={60}/>)
   });
 
   describe('pause', () => {
     it('pauses the game', () => {
-      wrapper.instance().pauseGame()
+      const instance = wrapper.instance();
+      instance.pauseGame();
+      expect(wrapper.state('paused')).toBe(true);
+      instance.pauseGame();
+      expect(wrapper.state('paused')).toBe(false);
     })
   })
 
+  it('increments hour', () => {
+    const instance = wrapper.instance();
+    expect(wrapper.state('hour')).toBe(0);
+    instance.incrementHour();
+    expect(wrapper.state('hour')).toBe(1);
+  })
+
+  // it('calculates infected populations', () => {
+  //   wrapper.instance().infectedPopulations(continent);
+  // })
+
   it('renders the map grid', () => {
-    
-    expect(wrapper.instance().renderGrid().length).toEqual(5)
-  });
+        expect(wrapper.instance().renderGrid().length).toEqual(5)
+      });
+
 
   it('checks cells for infected neighbors', () => {
-    
+    expect(wrapper.instance())
     let testGrid2 = [
       [0,0,0,0,0],
       [0,0,0,0,0],
@@ -48,6 +63,7 @@ describe('WorldMap', () => {
       [0,0,0,1,0],
       [0,0,0,0,0]
     ]
+
     // const wrapper1 = shallow(<WorldMap grid={testGrid1}/>)
     // const wrapper2 = shallow(<WorldMap grid={testGrid2}/>)
     // wrapper = mount(<WorldMap/>)
