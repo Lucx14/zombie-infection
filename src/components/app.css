@@ -1,5 +1,10 @@
 @import 'https://fonts.googleapis.com/css?family=Press+Start+2P';
 
+h3 {
+  color: white;
+  font-size: 17px;
+}
+
 .center {
   display: block;
   margin-left: auto;
@@ -8,16 +13,28 @@
   margin-top: 250px;
 }
 
+.ability-desc {
+  text-align: left;
+  font-size: 11px;
+  color: gainsboro;
+}
+
 #main-title {
-  font-size: 250%;
+  display:block;
+  border: solid 2px black;
+  position:relative;
+  margin: 0 auto 0 auto;
+  width:800px;
+  height:600px;
 }
 
 #start-button {
   width: 120px;
   height: 30px;
+  position:relative;
   border-radius: 5px;
   font-family: 'Press Start 2P';
-  margin-top: 80px;
+  margin-top: -60px;
   font-size: 110%;
 }
 
@@ -164,6 +181,16 @@
   position: relative;
   top: -280px;
   left: -275px;
+}
+
+.locked {
+  background-color: grey;
+}
+.unlocked {
+  background-color: green;
+}
+.unlocked:hover {
+  background-color: greenyellow;
 }
 
 #headline {

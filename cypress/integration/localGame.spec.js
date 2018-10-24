@@ -3,7 +3,7 @@ describe('Local Game', () => {
   beforeEach(function () {
     cy.visit('http://localhost:3000')
     cy.get('#start-button').click()
-    cy.wait(1000)
+    cy.wait(2000)
     cy.get('.city-button:first').click()
   })
 
