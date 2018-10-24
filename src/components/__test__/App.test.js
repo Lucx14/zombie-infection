@@ -42,12 +42,9 @@ describe('App', () => {
     const instance = wrapper.instance();
     instance.clearCity();
     expect(instance.state.city).toEqual(false);
-    console.log(instance.state.city);
     instance.setSelected("test");
-    console.log(instance.state.city);
     expect(instance.state.city).toEqual("test");
     instance.clearCity();
-    console.log(instance.state.city);
     expect(instance.state.city).toEqual(false);
   });
 });
