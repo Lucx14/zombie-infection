@@ -61,6 +61,7 @@ p {
   width: 5px;
   height: 5px;
   background-color: orangered;
+  transition: background-color 1.5s ease;
   outline-style: solid;
   outline-width: 1px;
 }
