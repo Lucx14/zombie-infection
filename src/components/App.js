@@ -24,7 +24,8 @@ class App extends Component {
       ticker: -1,
       playableCities: [],
       flyingZombies: true,
-      zombieTotal: 0
+      zombieTotal: 0,
+      musicPlaying: false
     });
   }
 
@@ -96,12 +97,25 @@ class App extends Component {
     this.setState({city: false, zombieTotal: this.state.zombieTotal + zombieCount})
   }
 
+  playMusic = (audioFilePath) => {
+    var audio = new Audio(audioFilePath);
+    audio.currentTime = 0;
+    audio.loop = true
+    audio.play();
+    this.setState({musicPlaying: true})
+  }
+
+  playCheck = () => {
+    if (!this.state.musicPlaying) {
+      this.playMusic('./soundEffects/HorrorMusic.mp3')
+    }
+  }
+
   render() {
     this.flyingZombies()
     if (!this.state.playing) {
       return (
         <div>
-          <Music/>
           <h1 id="main-title" className="center">TRICK OR EAT BRAINS</h1>
           <button onClick={() => { this.startGame() }} id="start-button" className="center">START</button>
         </div>
@@ -113,9 +127,9 @@ class App extends Component {
         </div>
       );
     } else {
+      {this.playCheck()}
       return (
         <div>
-
           <div id="world-map">
           
           <WorldMap map={this.state.map}

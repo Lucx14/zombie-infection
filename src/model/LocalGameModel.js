@@ -126,7 +126,7 @@ LocalGameModel.prototype._mainDraw = function () {
 }
 
 LocalGameModel.prototype._setViewZoom = function(canvas, target, scale) {
-  canvas.setTransform();
+  canvas.resetTransform();
   canvas.translate(-target.x, -target.y);
   canvas.scale(scale[0],scale[1]);
 }
