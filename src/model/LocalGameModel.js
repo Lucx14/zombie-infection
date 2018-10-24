@@ -26,6 +26,9 @@ export default function LocalGameModel(player = new Player(), npc = new Npc(), s
   this._groupNpc = this._civilians.concat(this._nonCivilians)
 
   this._keys = []
+  this._groupNpc = this._civilians.concat(this._nonCivilians)
+  this.gameSpeed = 15
+
   this._bloodsplats = []
   this._deadZombies = []
 
@@ -35,7 +38,7 @@ export default function LocalGameModel(player = new Player(), npc = new Npc(), s
   this._zombieDead = document.getElementById("zombie-dead")
   this._bloodsplat = document.getElementById("bloodsplat")
 
-  this._timeLimit = 10000
+  this._timeLimit = 30000
   this._endDate = new Date().getTime() + this._timeLimit
   this.gameEnd = false
 }
@@ -135,24 +138,13 @@ LocalGameModel.prototype._npcMovement = function() {
   const local = this
 
   this._groupNpc.forEach(function(npc) {
-    if (npc.isNear(local._player, 10) && !npc.isInfected()) {
+    if ( npc.isNear(local._player, 10) && 
+         !npc.isInfected() ) {
       npc.infect()
       local._zombieCount += 1
       local._bloodsplats.push({x: npc.x - 2.5, y: npc.y - 12.5})
       local._soundEffects.zombieBite()
       local._soundEffects.scream()
-    }
-
-    if (!npc.isInfected()) {
-      local._groupNpc.forEach(function(otherNpcs) {
-        if (otherNpcs.isInfected() && npc.isNear(otherNpcs, 10) && !npc.isInfected()) {
-          npc.infect()
-          local._zombieCount += 1
-          local._bloodsplats.push({x: npc.x - 2.5, y: npc.y - 12.5})
-          local._soundEffects.zombieBite()
-          local._soundEffects.scream()
-        }
-      })
     }
 
     local._groupNpc.forEach((otherNpcs) => {
@@ -177,6 +169,12 @@ LocalGameModel.prototype._npcMovement = function() {
         } else if (!otherNpcs.isInfected() &&
                     npc.isNear(otherNpcs, 15)) {
           npc.move(otherNpcs, 'away')
+        } else if ( otherNpcs.isInfected() && 
+                    npc.isNear(otherNpcs, 10) && 
+                    !npc.isInfected() ) {
+          npc.infect()
+          local._zombieCount += 1
+          local._bloodsplats.push({x: npc.x - 2.5, y: npc.y - 12.5})
         }
 
       } else if (npc.isInfected()) {
@@ -223,6 +221,7 @@ LocalGameModel.prototype._playerMovement = function() {
   if (this._keys[68] || this._keys[39]) {
     this._player.moveRight()
   }
+
 }
 
 LocalGameModel.prototype.eventListen = function() {
@@ -239,5 +238,4 @@ LocalGameModel.prototype._sortNpcs = function(a, b) {
     return -1;
   if (a.y > b.y)
     return 1;
-  return 0;
 }
