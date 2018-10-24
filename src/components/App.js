@@ -2,19 +2,18 @@ import React, { Component } from 'react';
 import WorldMap from './WorldMap';
 import LocalGame from './LocalGame';
 import "./app.css"
+import headlines from '../Headlines';
 
-const headlines = {
-  "london": ["East London Pub attacked by Horde of Ravenous flesh-munchers", "Queen seen roaming Westminster in a tank wearing full-body armour"],
-  "paris": ["Zombies spotted sampling wine in local vineyard", "Holiday makers leave 2-star tripadvisor review due to zombie in soup"]
-}
+
 
 class App extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      headlines: props.headlines || headlines,
-      playableCities: props.playableCities || [],
+      // headlines: props.headlines || headlines: [], 
+      // playableCities: props.playableCities || [],
     }
+    setInterval(() => this.getHeadline(headlines, this.state.playableCities), 5000);
   }
   componentWillMount() {
     this.setState({
@@ -23,14 +22,14 @@ class App extends Component {
       map: InitialGrid(),
       ticker: -1,
       playableCities: [],
-      flyingZombies: false,
+      flyingZombies: true,
       zombieTotal: 0
     });
   }
 
   setSelected(city) {
     this.setState({ city: city });
-  };
+  }
 
   startGame() {
     this.setState({ playing: true });
@@ -59,7 +58,7 @@ class App extends Component {
   getHeadline(headlines, playableCities) {
     if (playableCities.length > 0) {
       let cityHeadlines = headlines[playableCities[Math.floor(Math.random() * playableCities.length)]]
-      return cityHeadlines[Math.floor(Math.random() * cityHeadlines.length)];
+      this.setState({ currentHeadline: "BREAKING NEWS: " + cityHeadlines[Math.floor(Math.random() * cityHeadlines.length)] })
     }
   }
 
@@ -71,6 +70,7 @@ class App extends Component {
     "tehran","new-dehli","bangkok","shanghai","tokyo",
     "hong-kong","melbourne","wellington", "vancouver"]
     return(cities.map((city, index) => {
+      if (this.state.playableCities.includes(city)) {
         return(
           <button className="city-button" 
                   id={city}
@@ -78,12 +78,21 @@ class App extends Component {
                   title={city} 
                   onClick={() => { this.setSelected(city) }}></button>
         )
+      } else {
+        return(
+          <button className="city-button" 
+                  id={city}
+                  key={index}
+                  title={city} 
+                  ></button>
+        )
+      }
+        
     }))
   }
 
   endGame = (zombieCount) => {
     this.setState({city: false, zombieTotal: this.state.zombieTotal + zombieCount})
-    console.log(this.state.zombieTotal)
   }
 
   render() {
@@ -103,25 +112,40 @@ class App extends Component {
       );
     } else {
       return (
-        <div id="world-map">
-          {this.state.city}
+        <div>
+          <div id="world-map">
+          
           <WorldMap map={this.state.map}
                     updateAppMap={this.updateState.bind(this)}
                     ticker={this.state.ticker}
                     activateCity={this.activateCity.bind(this)}
                     flyingZombies={this.state.flyingZombies}
                     />
+          
+        </div>
           <div id="button-container">
-            {this.renderButtons()}
-          </div>
-          <p id="headline">
-            {/* {this.getHeadline(this.state.headlines, this.state.playableCities)} */}
+          {this.renderButtons()}
+        </div>
+        <div>
+          <p id="zombie-total">
+          Zombie total: {this.state.zombieTotal}
           </p>
         </div>
+        <div>
+        <p id="headline">
+              {this.state.currentHeadline}
+        </p>
+        </div>
+        </div>
+        
       )
     }
   }
 }
+
+// App.propTypes = {
+//   playableCities: PropTypes.array,
+// };
 
 export default App;
 
