@@ -179,6 +179,7 @@ LocalGameModel.prototype._playerMovement = function() {
   if (this._keys[68] || this._keys[39]) {
     this._player.moveRight()
   }
+  
 }
 
 LocalGameModel.prototype.eventListen = function() {
@@ -195,5 +196,4 @@ LocalGameModel.prototype._sortNpcs = function(a, b) {
     return -1;
   if (a.y > b.y)
     return 1;
-  return 0;
 }
