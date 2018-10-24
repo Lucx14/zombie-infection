@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import WorldMap from './WorldMap';
 import LocalGame from './LocalGame';
+import Music from './Music'
 import "./app.css"
 import headlines from '../Headlines';
 
@@ -100,6 +101,7 @@ class App extends Component {
     if (!this.state.playing) {
       return (
         <div>
+          <Music/>
           <h1 id="main-title" className="center">TRICK OR EAT BRAINS</h1>
           <button onClick={() => { this.startGame() }} id="start-button" className="center">START</button>
         </div>
@@ -113,6 +115,7 @@ class App extends Component {
     } else {
       return (
         <div>
+
           <div id="world-map">
           
           <WorldMap map={this.state.map}
