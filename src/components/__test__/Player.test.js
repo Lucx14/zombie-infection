@@ -49,4 +49,37 @@ describe('Player', () => {
       expect(player.y).toEqual(599)
     })
   })
+
+  describe('player movement', () => {
+    describe('.moveUp', () => {
+      it('reduces player y coordinate by player speed', () => {
+        let player_y = player.y
+        expect(player.moveUp()).toEqual(player_y - player.speed)
+      })
+    })
+    describe('.moveDown', () => {
+      it('increases player y coordinate by player speed', () => {
+        let player_y = player.y
+        expect(player.moveDown()).toEqual(player_y + player.speed)
+      })
+    })
+    describe('.moveLeft', () => {
+      it('reduces player x coordinate by player speed', () => {
+        let player_x = player.x
+        expect(player.moveLeft()).toEqual(player_x - player.speed)
+      })
+    })
+    describe('.moveRight', () => {
+      it('increases player y coordinate by player speed', () => {
+        let player_x = player.x
+        expect(player.moveRight()).toEqual(player_x + player.speed)
+      })
+    })
+  })
+
+  describe('.coordinates', () => {
+    it('returns the players current coordinates', () => {
+      expect(player.coordinates()).toEqual([player.x, player.y])
+    })
+  })
 });
