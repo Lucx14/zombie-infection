@@ -12,8 +12,8 @@ class App extends Component {
       headlines: props.headlines || headlines,
       playableCities: props.playableCities || [],
       showStats: false,
-      speed: 0,
       // S T A T S
+      speed: 0,
       resilience: 0,
       aggression: 0,
       tokens: 1,
