@@ -7,3 +7,5 @@ const populations = {
   "oceana": 41261212, 
   "middleEast": 411000000
 }
+
+export default populations
