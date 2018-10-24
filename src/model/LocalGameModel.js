@@ -1,9 +1,11 @@
 import Player from "./Player.js"
 import { Npc } from "./Npc.js"
+import SoundEffects from "./SoundEffects"
 
-export default function LocalGameModel(player = new Player(), npc = new Npc()) {
+export default function LocalGameModel(player = new Player(), npc = new Npc(), soundEffects = new SoundEffects()) {
   this._player = player
   this._npc = npc
+  this._soundEffects = soundEffects
   this._zombieCount = 0
   this.gameSpeed = 15
 
@@ -22,7 +24,7 @@ export default function LocalGameModel(player = new Player(), npc = new Npc()) {
   this._civilians = Array.from({length:200}, () => new Npc(Math.random() * 2))
   this._nonCivilians = Array.from({length:25}, () => new Npc(Math.random() * 2, false))
   this._groupNpc = this._civilians.concat(this._nonCivilians)
-  
+
   this._keys = []
   this._bloodsplats = []
   this._deadZombies = []
@@ -78,6 +80,9 @@ LocalGameModel.prototype._drawXYModify = function(canvas, imgFile, position, xMo
 
 LocalGameModel.prototype._mainDraw = function () {
   if (this._timeUp()) { this._localGameOver(); }
+  if (this._timeRemaining() < 15000 && this._timeRemaining() > 14500) {
+    this._soundEffects.endLevel()
+  }
 
   this._timeDraw()
   this._zombieCountDraw()
@@ -134,6 +139,8 @@ LocalGameModel.prototype._npcMovement = function() {
       npc.infect()
       local._zombieCount += 1
       local._bloodsplats.push({x: npc.x - 2.5, y: npc.y - 12.5})
+      local._soundEffects.zombieBite()
+      local._soundEffects.scream()
     }
 
     if (!npc.isInfected()) {
@@ -142,6 +149,8 @@ LocalGameModel.prototype._npcMovement = function() {
           npc.infect()
           local._zombieCount += 1
           local._bloodsplats.push({x: npc.x - 2.5, y: npc.y - 12.5})
+          local._soundEffects.zombieBite()
+          local._soundEffects.scream()
         }
       })
     }
@@ -161,6 +170,7 @@ LocalGameModel.prototype._npcMovement = function() {
               local.bulletRender(npc.x, npc.y, otherNpcs.x, otherNpcs.y)
               local._deadZombies.push({x: otherNpcs.x - 2.5, y: otherNpcs.y - 12.5})
               local._zombieCount -= 1
+              local._soundEffects.gunShot();
             }
           }
 

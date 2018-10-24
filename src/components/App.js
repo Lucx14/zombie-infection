@@ -72,10 +72,10 @@ class App extends Component {
     return(cities.map((city, index) => {
       if (this.state.playableCities.includes(city)) {
         return(
-          <button className="city-button" 
+          <button className="city-button"
                   id={city}
                   key={index}
-                  title={city} 
+                  title={city}
                   onClick={() => { this.setSelected(city) }}></button>
         )
       } else {
