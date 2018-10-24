@@ -18,6 +18,6 @@ describe('Stats', () => {
     });
 
     it('Shows special abilities', () => {
-      cy.contains('')
+      cy.contains('SPECIAL ABILITIES:')
     });
 });
