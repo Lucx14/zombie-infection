@@ -25,12 +25,17 @@ describe('App', () => {
 
 
   it('can set the city', () => {
-    console.log(wrapper.instance().state.city);
     const instance = wrapper.instance();
     expect(instance.state.city).toEqual(false);
     instance.setSelected("test");
     expect(instance.state.city).toEqual("test");
   });
-  
+
+  it('can set the game to be playing', () => {
+    const instance = wrapper.instance();
+    expect(instance.state.playing).toBe(false);
+    instance.startGame();
+    expect(instance.state.playing).toBe(true);
+  });
 });
 
