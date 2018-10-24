@@ -27,7 +27,7 @@ class App extends Component {
       // ___A B I L I T I E S___
       flyingZombies: false,
       fishFrenzy: false,
-      worldWarZ: true,
+      worldWarZ: false,
     }
     setInterval(() => this.getHeadline(headlines, this.state.playableCities), 5000);
   }
