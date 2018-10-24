@@ -22,7 +22,7 @@ class App extends Component {
       map: InitialGrid(),
       ticker: -1,
       playableCities: [],
-      flyingZombies: true,
+      flyingZombies: false,
       zombieTotal: 0
     });
   }
