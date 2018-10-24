@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import WorldMap from './WorldMap';
 import LocalGame from './LocalGame';
+import Stats from './Stats';
 import "./app.css"
 
 const headlines = {
@@ -14,6 +15,10 @@ class App extends Component {
     this.state = {
       headlines: props.headlines || headlines,
       playableCities: props.playableCities || [],
+      showStats: false,
+      speed: 0,
+      resilience: 0,
+      aggression: 0
     }
   }
   componentWillMount() {
@@ -82,8 +87,12 @@ class App extends Component {
   }
 
   endGame = (zombieCount) => {
-    this.setState({city: false, zombieTotal: this.state.zombieTotal + zombieCount})
+    this.setState({city: false, zombieTotal: this.state.zombieTotal + zombieCount, stats: true})
     console.log(this.state.zombieTotal)
+  }
+
+  enterStats() {
+    this.setState({ showStats: !this.state.showStats })
   }
 
   render() {
@@ -96,29 +105,36 @@ class App extends Component {
             <button onClick={() => { this.startGame() }} id="start-button" className="center">START</button>
           </div>
         );
-      case (this.state.city):
+      case (typeof this.state.city == 'string'):
         return (
           <div>
             <LocalGame city={this.state.city} endGame={this.endGame.bind(this)}/>
           </div>
         ); 
-      default: 
-      return (
-        <div id="world-map">
-          {this.state.city}
-          <WorldMap map={this.state.map}
-                    updateAppMap={this.updateState.bind(this)}
-                    ticker={this.state.ticker}
-                    activateCity={this.activateCity.bind(this)}
-                    flyingZombies={this.state.flyingZombies}
-                    />
-          <div id="button-container">
-            {this.renderButtons()}
+      case (this.state.showStats):
+        return (
+          <div>
+            <Stats done={this.enterStats.bind(this)} speed={this.state.speed} resilience={this.state.resilience} aggression={this.state.aggression}/>
           </div>
-          <p id="headline">
-            {this.getHeadline(this.state.headlines, this.state.playableCities)}
-          </p>
-        </div>
+        ); 
+      default: 
+        return (
+          <div id="world-map">
+            {this.state.city}
+            <WorldMap map={this.state.map}
+                      updateAppMap={this.updateState.bind(this)}
+                      ticker={this.state.ticker}
+                      activateCity={this.activateCity.bind(this)}
+                      flyingZombies={this.state.flyingZombies}
+                      />
+            <div id="button-container">
+              {this.renderButtons()}
+            </div>
+            <p id="headline">
+              {this.getHeadline(this.state.headlines, this.state.playableCities)}
+            </p>
+            <button id="stats" onClick={() => {this.enterStats()}}>Stats</button>
+          </div>
       )
     }
   }

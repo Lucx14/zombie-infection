@@ -8,4 +8,11 @@ describe('Stats', () => {
     it('Shows stats page', () => {
       cy.contains('Stats')
     });
+
+    it('Displays the various abilities', () => {
+      cy.contains('Speed')
+      cy.contains('Resilience')
+      cy.contains('Aggression')
+    });
+    
 });
