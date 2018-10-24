@@ -17,9 +17,13 @@ class App extends Component {
       playableCities: props.playableCities || [],
       showStats: false,
       speed: 0,
+      // S T A T S
       resilience: 0,
       aggression: 0,
-      tokens: 1
+      tokens: 1,
+      flyingZombies: false,
+      fishFrenzy: false,
+      worldWarZ: true,
     }
   }
   componentWillMount() {
@@ -29,7 +33,6 @@ class App extends Component {
       map: InitialGrid(),
       ticker: -1,
       playableCities: [],
-      flyingZombies: false,
       zombieTotal: 0
     });
   }
@@ -160,7 +163,9 @@ class App extends Component {
                       updateAppMap={this.updateState.bind(this)}
                       ticker={this.state.ticker}
                       activateCity={this.activateCity.bind(this)}
+                      fishFrenzy={this.state.fishFrenzy}
                       flyingZombies={this.state.flyingZombies}
+                      worldWarZ={this.state.worldWarZ}
                       />
             <div id="button-container">
               {this.renderButtons()}

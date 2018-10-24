@@ -17,12 +17,13 @@ class WorldMap extends PureComponent {
       ticker: props.ticker,
       renderGrid : [],
       loading: true,
-      paused: false
+      paused: false,
+      infectionChance: 0.01,
     }
   }
 
   componentDidMount() {
-    this.interval = setInterval(() => this.tick(), 1000)
+    this.interval = setInterval(() => this.tick(), 0)
   }
 
   componentWillUnmount() {
@@ -32,6 +33,10 @@ class WorldMap extends PureComponent {
 
   tick() {
     this.setState({ticker: this.state.ticker +1})
+    if (this.props.worldWarZ) {
+      this.setState({infectionChance: 0.5})
+
+    }
     this.populateGrid();
   }
 
@@ -48,9 +53,9 @@ class WorldMap extends PureComponent {
     var populatedGrid =
     this.state.grid.map((row, rowIndex) => (
       row.map((cell, index) => {
-          if (cell > 0 && Math.random() < 0.05 && this.checkNeighbours(rowIndex, index)) {
+          if (cell > 0 && Math.random() < this.state.infectionChance && this.checkNeighbours(rowIndex, index)) {
             return cell*(-1);
-          } else if (cell > 0 && this.props.flyingZombies && Math.random() < 0.001 && this.state.ticker % 10 === 0) {
+          } else if (cell > 0 && this.props.flyingZombies && Math.random() < (this.state.infectionChance * 0.1) && this.state.ticker % 10 === 0) {
             return cell*(-1);
           } else {
             return cell;
@@ -73,7 +78,18 @@ class WorldMap extends PureComponent {
       this.state.grid[row+1][col-1] < 0 ||
       this.state.grid[row+1][col] < 0 ||
       this.state.grid[row+1][col+1] < 0
-    ){
+    ) {
+      return true;
+    } else if (
+      this.props.fishFrenzy && Math.random() < 0.005 &&
+      [this.state.grid[row-1][col-1], 
+      this.state.grid[row-1][col],
+      this.state.grid[row-1][col+1],
+      this.state.grid[row][col-1],
+      this.state.grid[row][col+1],
+      this.state.grid[row+1][col-1],
+      this.state.grid[row+1][col],
+      this.state.grid[row+1][col+1]].filter(x => x===0).length > 4) {
       return true;
     }
   }
