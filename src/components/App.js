@@ -55,7 +55,7 @@ class App extends Component {
   }
 
   flyingZombies() {
-    if (this.state.playableCities.length > 10 && this.state.flyingZombies ===false) {
+    if (this.state.playableCities.length > 10 && this.state.flyingZombies === false) {
       this.setState({ flyingZombies: true });
     }
   }
@@ -132,7 +132,6 @@ class App extends Component {
   }
 
   render() {
-    this.flyingZombies()
     switch (true) {
       case (!this.state.playing): 
         return (
