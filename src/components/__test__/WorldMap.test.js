@@ -1,19 +1,17 @@
 import React from 'react';
 import { shallow, mount, render } from 'enzyme';
 import WorldMap from '../WorldMap.js';
-// import sinon from 'sinon'
-// import { props } from '../../../node_modules/@types/bluebird';
 
-jest.mock('../CityLink', () => () => 
-  <div className="city-link">  
-    <button className="city-button"/>
-  </div>
-)
+// jest.mock('../CityLink', () => () => 
+//   <div className="city-link">  
+//     <button className="city-button"/>
+//   </div>
+// )
 
-jest.mock('../Cell', () => () => 
-  <div>  
-  </div>
-)
+// jest.mock('../Cell', () => () => 
+//   <div>  
+//   </div>
+// )
 
 describe('WorldMap', () => {
   let wrapper;
@@ -36,7 +34,6 @@ describe('WorldMap', () => {
 
   beforeAll(() => {
     wrapper = shallow(<WorldMap map={testGrid1} ticker={60} map2={testGrid3}/>)
-    
   });
 
   describe('pause', () => {
@@ -56,10 +53,6 @@ describe('WorldMap', () => {
     expect(wrapper.state('hour')).toBe(1);
   })
 
-  // it('has a function that contains populations', () => {
-  //   expect(populations()).toEqual(true);
-  // })
-
   it('increments tick', () => {
     const instance = wrapper.instance();
     expect(wrapper.state('ticker')).toBe(60);
@@ -67,52 +60,8 @@ describe('WorldMap', () => {
     expect(wrapper.state('ticker')).toBe(61);
   })
 
-  // it('contains populations', () => {
-  //   // console.log(wrapper.instance());
-  //   expect(('populations').toEqual(true))
-  // })
-
-
-
-  // it('calculates infected populations', () => {
-  //   const instance = wrapper.instance();
-  //   const continent = 1;
-  //   // console.log(instance.state.grid);
-  //   // jest.spyOn(instance, 'flat').mockImplementation(() => {
-  //   //   return false;
-  //   // });
-  //   expect(instance.infectedPopulations()).toBe(false);
-  // })
-
-// it('ComponentDidMount', () => {
-//   wrapper.instance().componentDidMount()
-//   console.log(wrapper.instance());
-//   expect(ticker.calledOnce).toBe(true);
-// })
-
 
   it('renders the map grid', () => {
       expect(wrapper.instance().renderGrid().length).toEqual(5)
     });
-
-
-
-  it('checks cells for infected neighbors', () => {
-    expect(wrapper.instance())
-    let testGrid2 = [
-      [0,0,0,0,0],
-      [0,0,0,0,0],
-      [0,0,0,0,0],
-      [0,0,0,1,0],
-      [0,0,0,0,0]
-    ]
-
-    // const wrapper1 = shallow(<WorldMap grid={testGrid1}/>)
-    // const wrapper2 = shallow(<WorldMap grid={testGrid2}/>)
-    // wrapper = mount(<WorldMap/>)
-
-// TEST NOT WORKING. SEE 'grid: props.grid..' in WorldMap constructor
-    // expect(wrapper2.instance().checkNeighbours(2,2)).toEqual(false)
-    // expect(wrapper2.instance().checkNeighbours(2,2)).toEqual(t)
-  });
 });
