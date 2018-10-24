@@ -82,7 +82,6 @@ LocalGameModel.prototype._drawXYModify = function(canvas, imgFile, position, xMo
 LocalGameModel.prototype._mainDraw = function () {
   if (this._timeUp()) { this._localGameOver(); }
   if (this._timeRemaining() < 15000 && this._timeRemaining() > 14500) {
-    console.log("beep!")
     this._soundEffects.endLevel()
   }
 
