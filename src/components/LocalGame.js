@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import LocalGameModel from "../model/LocalGameModel.js"
-import "./LocalGame.css"
+import LocalGameModel from "../model/LocalGameModel.js";
+import "./LocalGame.css";
+import PropTypes from 'prop-types';
 
 class LocalGame extends Component {
   componentDidMount() {
@@ -18,7 +19,6 @@ class LocalGame extends Component {
   render() {
     return (
       <div>
-
         <img id="background" src="level1.gif" alt="" style={{display: "none"}}/>
         <img id="zombie" src="zombie.png" alt="" style={{display: "none"}}/>
         <img id="player-zombie" src="playerZombie.png" alt="" style={{display: "none"}}/>
@@ -44,5 +44,10 @@ class LocalGame extends Component {
     );
   }
 }
+
+
+LocalGame.propTypes = {
+  endGame: PropTypes.func,
+};
 
 export default LocalGame;

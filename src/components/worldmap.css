@@ -10,27 +10,30 @@ h1 {
   text-align: center;
 }
 
+#map-title {
+  font-size: medium;
+}
+
 p {
   color: white;
   text-align: center;
 }
 
-#ticker {
+#time {
   color: gainsboro;
   text-align: center;
 }
 
 .world-map {
-  background-color: aquamarine;
+  background-color: rgb(41, 173, 36);
   width: 800px;
   height: 560px;
-  z-index: -2;
+ 
 }
 
 .grid {
   width: 800px;
   margin: 0 auto 0 auto;
-  z-index: -1;
 }
 
 .clickable {
@@ -136,21 +139,31 @@ p {
 }
 
 .city-button {
-  -webkit-transition-duration: 0.4s; /* Safari */
-  transition-duration: 0.4s;
-  background-color: rgba(255, 255, 255, 0);
+  -webkit-transition-duration: 0.3s; /* Safari */
+  transition-duration: 0.3s;
+  background-color: rgb(240, 236, 30);
   border:none;  
   border-radius: 50%;
   width: 15px;
   height: 15px;
+  z-index: 0;
 }
 
 .city-button:hover {
-  background-color: rgba(32, 151, 36, 0.877); /* Green */
-  width: 20px;
-  height: 20px;
+  background-color: rgba(153, 3, 3, 0.877); /* Green */
 }
 
 .city-button:focus {
   background-color: red; /* Green */
+}
+
+#loading-screen {
+  z-index: 10;
+  position: absolute;
+  width: 100%;
+  background-color: black;
+}
+
+#world-population-stats {
+  font-size: x-small;
 }
