@@ -23,9 +23,17 @@ describe('WorldMap', () => {
     [0,0,0,0,0]
   ]
 
+  let testGrid3 = [
+    [-1,-1,-1,-1,-1],
+    [1,1,1,1,1],
+    [1,1,1,1,1],
+    [1,1,1,1,1],
+    [1,1,1,1,1]
+  ]
+
 
   beforeAll(() => {
-    wrapper = shallow(<WorldMap map={testGrid1} ticker={60}/>)
+    wrapper = shallow(<WorldMap map={testGrid1} ticker={60} map2={testGrid3}/>)
   });
 
   describe('pause', () => {
@@ -45,9 +53,17 @@ describe('WorldMap', () => {
     expect(wrapper.state('hour')).toBe(1);
   })
 
-  // it('calculates infected populations', () => {
-  //   wrapper.instance().infectedPopulations(continent);
-  // })
+
+
+  it('calculates infected populations', () => {
+    const instance = wrapper.instance();
+    const continent = 1;
+    console.log(instance.state.grid);
+    // jest.spyOn(instance, 'flat').mockImplementation(() => {
+    //   return false;
+    // });
+    expect(instance.infectedPopulations()).toBe(false);
+  })
 
   it('renders the map grid', () => {
         expect(wrapper.instance().renderGrid().length).toEqual(5)
