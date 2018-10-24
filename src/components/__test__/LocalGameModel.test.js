@@ -51,6 +51,11 @@ describe('LocalGameModel', () => {
       this.moveRight = function() { this.x += this.speed }
     }
 
+    function mockSounds() {
+      this.zombieBite = function() {"zombieBite"}
+      this.scream = function() {"scream"}
+    }
+
     function mockNpc() {
       this.x = 390
       this.y = 290
@@ -58,7 +63,7 @@ describe('LocalGameModel', () => {
       this.h = 10
     }
 
-    localGameModel = new LocalGameModel(new mockPlayer(), new mockNpc())
+    localGameModel = new LocalGameModel(new mockPlayer(), new mockNpc(), new mockSounds())
 
   });
 
