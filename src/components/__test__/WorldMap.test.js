@@ -46,6 +46,8 @@ describe('WorldMap', () => {
     })
   })
 
+ 
+
   it('increments hour', () => {
     const instance = wrapper.instance();
     expect(wrapper.state('hour')).toBe(0);
