@@ -88,20 +88,21 @@ class App extends Component {
 
   render() {
     this.flyingZombies()
-    if (!this.state.playing) {
-      return (
-        <div>
-          <h1 id="main-title" className="center">TRICK OR EAT BRAINS</h1>
-          <button onClick={() => { this.startGame() }} id="start-button" className="center">START</button>
-        </div>
-      );
-    } else if (this.state.city) {
-      return (
-        <div>
-          <LocalGame city={this.state.city} endGame={this.endGame.bind(this)}/>
-        </div>
-      );
-    } else {
+    switch (true) {
+      case (!this.state.playing): 
+        return (
+          <div>
+            <h1 id="main-title" className="center">TRICK OR EAT BRAINS</h1>
+            <button onClick={() => { this.startGame() }} id="start-button" className="center">START</button>
+          </div>
+        );
+      case (this.state.city):
+        return (
+          <div>
+            <LocalGame city={this.state.city} endGame={this.endGame.bind(this)}/>
+          </div>
+        ); 
+      default: 
       return (
         <div id="world-map">
           {this.state.city}
@@ -115,7 +116,7 @@ class App extends Component {
             {this.renderButtons()}
           </div>
           <p id="headline">
-            {/* {this.getHeadline(this.state.headlines, this.state.playableCities)} */}
+            {this.getHeadline(this.state.headlines, this.state.playableCities)}
           </p>
         </div>
       )
