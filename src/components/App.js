@@ -136,7 +136,6 @@ class App extends Component {
       case (!this.state.playing):
         return (
           <div>
-
             <div id="main-title">
               <img src={"./titleScreen.jpg"}/>
               <button onClick={() => { this.startGame() }} id="start-button" className="center">START</button>
