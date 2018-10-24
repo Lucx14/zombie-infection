@@ -22,6 +22,15 @@ describe('App', () => {
   it('renders a headline', () => {
     expect(wrapper.findWhere(n => n.type() === 'p' && n.contains('testing')))
   });
+
+
+  it('can set the city', () => {
+    console.log(wrapper.instance().state.city);
+    const instance = wrapper.instance();
+    expect(instance.state.city).toEqual(false);
+    instance.setSelected("test");
+    expect(instance.state.city).toEqual("test");
+  });
   
 });
 
