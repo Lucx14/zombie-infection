@@ -63,7 +63,7 @@ describe('LocalGameModel', () => {
       this.h = 10
     }
 
-    localGameModel = new LocalGameModel(new mockPlayer(), new mockNpc(), new mockSounds())
+    localGameModel = new LocalGameModel(0, 0, 0,new mockPlayer(), new mockNpc(), new mockSounds())
 
   });
 
