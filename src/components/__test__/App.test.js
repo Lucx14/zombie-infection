@@ -59,7 +59,6 @@ describe('App', () => {
     const instance = wrapper.instance();
     instance.activateCity('london');
     expect(instance.state.playableCities).toEqual(['london']);
-    // instance.activateCity('paris');
   });
 
   it('can set flying zombies state', () => {
@@ -69,13 +68,30 @@ describe('App', () => {
     expect(instance.state.flyingZombies).toEqual(true);
   });
 
-  it('can spend tokens to activate a special ability', () => {
+  it('can spend tokens to activate a special ability- fish frenzy', () => {
     const instance = wrapper.instance();
     instance.setState({ tokens: 20 });
     instance.specialAbility("fishFrenzy");
     expect(instance.state.fishFrenzy).toEqual(true);
     expect(instance.state.tokens).toEqual(0);
   });
+
+  it('can spend tokens to activate a special ability - flying zombies', () => {
+    const instance = wrapper.instance();
+    instance.setState({ tokens: 40 });
+    instance.specialAbility("flyingZombies");
+    expect(instance.state.flyingZombies).toEqual(true);
+    expect(instance.state.tokens).toEqual(10);
+  });
+
+  it('can spend tokens to activate a special ability - wwZ', () => {
+    const instance = wrapper.instance();
+    instance.setState({ tokens: 40 });
+    instance.specialAbility("worldWarZ");
+    expect(instance.state.worldWarZ).toEqual(true);
+    expect(instance.state.tokens).toEqual(0);
+  });
+
 
 
   it('randomizes headlines on the main page', () => {
@@ -89,6 +105,12 @@ describe('App', () => {
     instance.setState({ tokens: 10 });
     instance.increaseStat("speed");
     expect(instance.state.speed).toEqual(1);
+  });
+
+  it('enterStats', () => {
+    const instance = wrapper.instance();
+    instance.enterStats();
+    expect(instance.state.showStats).toBe(true);
   });
 });
 
