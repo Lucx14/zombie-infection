@@ -5,7 +5,9 @@ import PropTypes from 'prop-types';
 
 class LocalGame extends Component {
   componentDidMount() {
-    var localGameModel = new LocalGameModel()
+    var localGameModel = new LocalGameModel(this.props.speed,
+                                            this.props.resilience,
+                                            this.props.aggression)
     localGameModel.eventListen();
     localGameModel.tickDraw();
     document.getElementById("canvas").addEventListener('keydown',
@@ -14,6 +16,14 @@ class LocalGame extends Component {
           this.props.endGame(localGameModel._zombieCount)
         }
       }.bind(this));
+  }
+
+  formatCityName(city) {
+    var cityName = city.split('-');
+    for (var i=0; i<cityName.length; i++) {
+      cityName[i] = cityName[i].charAt(0).toUpperCase() + cityName[i].slice(1);
+    }
+    return cityName.join(' ');
   }
 
   render() {
@@ -34,8 +44,8 @@ class LocalGame extends Component {
         <img id="person4" src="person-4.png" alt="" style={{display: "none"}}/>
         <img id="person5" src="person-5.png" alt="" style={{display: "none"}}/>
         <img id="bloodsplat" src="bloodSplat.png" alt="" style={{display: "none"}}/>
-        <h1><center>Local Map</center></h1>
         <div id = "holder">
+          <p id="city">{this.formatCityName(this.props.city)}</p>
           <canvas id="underCanvas" width="800" height="600"></canvas>
           <canvas id="canvas" width="800" height="600" tabIndex='1'></canvas>
           <p id="timer"></p>
