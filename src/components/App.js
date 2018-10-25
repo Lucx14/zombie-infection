@@ -136,7 +136,7 @@ class App extends Component {
         return (
           <div>
             <audio autoPlay loop>
-              <source src='./soundEffects/HorrorMusic.mp3'/>
+              <source src='./soundEffects/horrorMusic.mp3'/>
             </audio>
             <div id="main-title">
               <img src={"./titleScreen.jpg"} alt={""}/>
@@ -148,7 +148,7 @@ class App extends Component {
         return (
           <div>
             <audio autoPlay loop>
-              <source src='./soundEffects/HorrorMusic.mp3'/>
+              <source src='./soundEffects/horrorMusic.mp3'/>
             </audio>
             <LocalGame city={this.state.city}
                        speed={this.state.speed}
@@ -161,7 +161,7 @@ class App extends Component {
         return (
           <div>
             <audio autoPlay loop>
-              <source src='./soundEffects/HorrorMusic.mp3'/>
+              <source src='./soundEffects/horrorMusic.mp3'/>
             </audio>
             <Stats tokens={this.state.tokens} increaseStat={this.increaseStat.bind(this)} done={this.enterStats.bind(this)}
                   speed={this.state.speed} resilience={this.state.resilience} aggression={this.state.aggression}
@@ -172,7 +172,7 @@ class App extends Component {
         return (
           <div id="world-map">
             <audio autoPlay loop>
-              <source src='./soundEffects/HorrorMusic.mp3'/>
+              <source src='./soundEffects/horrorMusic.mp3'/>
             </audio>
             {this.state.city}
             <WorldMap map={this.state.map}
