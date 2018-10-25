@@ -24,11 +24,10 @@ html {
 
 #main-title {
   display:block;
-  border: solid 2px black;
   position:relative;
   margin: 0 auto 0 auto;
-  width:800px;
-  height:600px;
+  width:600px;
+  height:375px;
 }
 
 #start-button {
@@ -37,7 +36,7 @@ html {
   position:relative;
   border-radius: 5px;
   font-family: 'Press Start 2P';
-  margin-top: -60px;
+  margin-top: 5px;
   font-size: 110%;
 }
 
@@ -50,6 +49,10 @@ html {
   margin: 0 auto 0 auto;
   background-color:rgba(255, 255, 255, 0);
   z-index: 5;
+}
+
+#zombie-total {
+  font-size: x-small;
 }
 
 #title-screen {

@@ -25,8 +25,8 @@ class App extends Component {
       aggression: 0,
       tokens: 1,
       // ___A B I L I T I E S___
-      flyingZombies: false,
-      fishFrenzy: false,
+      flyingZombies: true,
+      fishFrenzy: true,
       worldWarZ: false,
     }
     setInterval(() => this.getHeadline(headlines, this.state.playableCities), 5000);
@@ -137,7 +137,7 @@ class App extends Component {
         return (
           <div>
             <div id="main-title">
-              <img src={"./titleScreen.jpg"} alt="title-screen" id="title-screen"/>
+              <img src={"./mainTitle.png"} alt="title-screen" id="title-screen"/>
               <button onClick={() => { this.startGame() }} id="start-button" className="center">START</button>
             </div>
           </div>
@@ -174,7 +174,7 @@ class App extends Component {
                 {this.renderButtons()}
               </div>
             </div>
-              <button id="stats" onClick={() => {this.enterStats()}}></button>
+              <button id="stats" onClick={() => {this.enterStats()}}>STATS</button>
           </div>
       )
     }
