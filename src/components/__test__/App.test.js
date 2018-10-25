@@ -68,5 +68,13 @@ describe('App', () => {
     instance.flyingZombies();
     expect(instance.state.flyingZombies).toEqual(true);
   });
+
+  it('can spend tokens to activate a special ability', () => {
+    const instance = wrapper.instance();
+    instance.setState({ tokens: 20 });
+    instance.specialAbility("fishFrenzy");
+    expect(instance.state.fishFrenzy).toEqual(true);
+    expect(instance.state.tokens).toEqual(0);
+  });
 });
 

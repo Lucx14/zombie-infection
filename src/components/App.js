@@ -62,9 +62,9 @@ class App extends Component {
 
   specialAbility(ability) {
     if (this.state.tokens > 19 && ability === "fishFrenzy") {
-      this.setState({ flyingZombies: true, tokens: this.state.tokens -20 });
+      this.setState({ fishFrenzy: true, tokens: this.state.tokens -20 });
     } else if (this.state.tokens > 29 && ability === "flyingZombies") {
-      this.setState({ fishFrenzy: true, tokens: this.state.tokens -30 });
+      this.setState({ flyingZombies: true, tokens: this.state.tokens -30 });
     } else if (this.state.tokens > 39 && ability === "worldWarZ") {
       this.setState({ worldWarZ: true, tokens: this.state.tokens -40 });
     }
