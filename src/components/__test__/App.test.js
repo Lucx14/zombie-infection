@@ -10,7 +10,7 @@ describe('App', () => {
   beforeAll(() => {
     let testCities = ["london"]
     let testHeadlines = {"london": ["testing"]}
-    wrapper = shallow(<App headlines={testHeadlines} playableCities={testCities}/>);
+    wrapper = shallow(<App headlines={testHeadlines} playableCities={testCities} map={"test map"}/>);
   });
   
   it('renders without crashing', () => {
@@ -46,6 +46,13 @@ describe('App', () => {
     expect(instance.state.city).toEqual("test");
     instance.clearCity();
     expect(instance.state.city).toEqual(false);
+  });
+
+  it('can update state for map and ticker', () => {
+    const instance = wrapper.instance();
+    instance.updateState([0,0], 2);
+    expect(instance.state.map).toEqual([0,0]);
+    expect(instance.state.ticker).toEqual(2);
   });
 });
 
