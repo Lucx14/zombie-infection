@@ -29,7 +29,10 @@ export default function LocalGameModel(player = new Player(), npc = new Npc(), s
   this._bloodsplats = []
   this._deadZombies = []
 
-  this._bg = document.getElementById("background")
+  var levels = [document.getElementById("level1"), document.getElementById("level2"),
+                document.getElementById("level3"), document.getElementById("level4")]
+
+  this._bg = levels[Math.floor(Math.random()*levels.length)];
   this._zombie = document.getElementById("zombie")
   this._playerZombie = document.getElementById("player-zombie")
   this._zombieDead = document.getElementById("zombie-dead")

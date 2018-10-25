@@ -89,22 +89,22 @@ class App extends Component {
         )
       } else {
         return(
-          <button className="city-button" 
+          <button className="city-button"
                   id={city}
                   key={index}
-                  title={city} 
+                  title={city}
                   ></button>
         )
       }
-        
+
     }))
   }
 
   endGame = (zombieCount) => {
     this.setState({
-      city: false, 
-      zombieTotal: this.state.zombieTotal + zombieCount, 
-      showStats: true, 
+      city: false,
+      zombieTotal: this.state.zombieTotal + zombieCount,
+      showStats: true,
       tokens: Math.floor(zombieCount/10)
     })
     console.log(this.state.zombieTotal)
@@ -124,7 +124,7 @@ class App extends Component {
         case "resilience":
           this.setState({ resilience: this.state.resilience +1})
           break;
-        default: 
+        default:
           this.setState({ aggression: this.state.aggression +1})
           break;
       }
@@ -133,11 +133,13 @@ class App extends Component {
 
   render() {
     switch (true) {
-      case (!this.state.playing): 
+      case (!this.state.playing):
         return (
           <div>
-            <h1 id="main-title" className="center">TRICK OR EAT BRAINS</h1>
-            <button onClick={() => { this.startGame() }} id="start-button" className="center">START</button>
+            <div id="main-title">
+              <img src={"./titleScreen.jpg"}/>
+              <button onClick={() => { this.startGame() }} id="start-button" className="center">START</button>
+            </div>
           </div>
         );
       case (typeof this.state.city == 'string'):
@@ -145,16 +147,16 @@ class App extends Component {
           <div>
             <LocalGame city={this.state.city} endGame={this.endGame.bind(this)}/>
           </div>
-        ); 
+        );
       case (this.state.showStats):
         return (
           <div>
-            <Stats tokens={this.state.tokens} increaseStat={this.increaseStat.bind(this)} done={this.enterStats.bind(this)} 
+            <Stats tokens={this.state.tokens} increaseStat={this.increaseStat.bind(this)} done={this.enterStats.bind(this)}
                   speed={this.state.speed} resilience={this.state.resilience} aggression={this.state.aggression}
                   specialAbility={this.specialAbility.bind(this)} playableCities={this.state.playableCities}/>
           </div>
-        ); 
-      default: 
+        );
+      default:
         return (
           <div id="world-map">
             {this.state.city}

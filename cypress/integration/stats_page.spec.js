@@ -2,6 +2,7 @@ describe('Stats', () => {
   beforeEach(function () {
     cy.visit('http://localhost:3000')
     cy.get('#start-button').click()
+    cy.wait(2000)
     cy.get('#stats').click()
   })
 
@@ -18,6 +19,6 @@ describe('Stats', () => {
     });
 
     it('Shows special abilities', () => {
-      cy.contains('')
+      cy.contains('SPECIAL ABILITIES:')
     });
 });

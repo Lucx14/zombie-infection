@@ -20,15 +20,21 @@ h3 {
 }
 
 #main-title {
-  font-size: 250%;
+  display:block;
+  border: solid 2px black;
+  position:relative;
+  margin: 0 auto 0 auto;
+  width:800px;
+  height:600px;
 }
 
 #start-button {
   width: 120px;
   height: 30px;
+  position:relative;
   border-radius: 5px;
   font-family: 'Press Start 2P';
-  margin-top: 80px;
+  margin-top: -60px;
   font-size: 110%;
 }
 
