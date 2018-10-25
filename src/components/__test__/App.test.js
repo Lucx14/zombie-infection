@@ -8,6 +8,8 @@ describe('App', () => {
   let wrapper;
 
   beforeAll(() => {
+    window.HTMLMediaElement.prototype.load = () => {}
+    window.HTMLMediaElement.prototype.play = () => {}
     let testCities = ["london"]
     let testHeadlines = {"london": ["testing"]}
     wrapper = shallow(<App headlines={testHeadlines} playableCities={testCities} map={"test map"}/>);
