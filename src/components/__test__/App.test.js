@@ -59,6 +59,14 @@ describe('App', () => {
     const instance = wrapper.instance();
     instance.activateCity('london');
     expect(instance.state.playableCities).toEqual(['london']);
+    // instance.activateCity('paris');
+  });
+
+  it('can set flying zombies state', () => {
+    const instance = wrapper.instance();
+    instance.setState({ playableCities: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'] })
+    instance.flyingZombies();
+    expect(instance.state.flyingZombies).toEqual(true);
   });
 });
 
