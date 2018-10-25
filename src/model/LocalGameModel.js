@@ -52,7 +52,7 @@ export default function LocalGameModel(speedBonus,
   this._zombieDead = document.getElementById("zombie-dead")
   this._bloodsplat = document.getElementById("bloodsplat")
 
-  this._timeLimit = 5000
+  this._timeLimit = 60000
   this._endDate = new Date().getTime() + this._timeLimit
   this.gameEnd = false
 }
