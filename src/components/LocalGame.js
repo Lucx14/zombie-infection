@@ -5,7 +5,9 @@ import PropTypes from 'prop-types';
 
 class LocalGame extends Component {
   componentDidMount() {
-    var localGameModel = new LocalGameModel()
+    var localGameModel = new LocalGameModel(this.props.speed,
+                                            this.props.resilience,
+                                            this.props.aggression)
     localGameModel.eventListen();
     localGameModel.tickDraw();
     document.getElementById("canvas").addEventListener('keydown',
@@ -43,7 +45,7 @@ class LocalGame extends Component {
         <img id="person5" src="person-5.png" alt="" style={{display: "none"}}/>
         <img id="bloodsplat" src="bloodSplat.png" alt="" style={{display: "none"}}/>
         <div id = "holder">
-          <p id="city"><center>{this.formatCityName(this.props.city)}</center></p>
+          <p id="city">{this.formatCityName(this.props.city)}</p>
           <canvas id="underCanvas" width="800" height="600"></canvas>
           <canvas id="canvas" width="800" height="600" tabIndex='1'></canvas>
           <p id="timer"></p>

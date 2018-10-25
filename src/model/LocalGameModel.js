@@ -2,12 +2,20 @@ import Player from "./Player.js"
 import { Npc } from "./Npc.js"
 import SoundEffects from "./SoundEffects"
 
-export default function LocalGameModel(player = new Player(), npc = new Npc(), soundEffects = new SoundEffects()) {
+export default function LocalGameModel(speedBonus,
+                                       resBonus,
+                                       aggrBonus,
+                                       player = new Player(),
+                                       npc = new Npc(),
+                                       soundEffects = new SoundEffects()) {
   this._player = player
   this._npc = npc
   this._soundEffects = soundEffects
   this._zombieCount = 0
   this.gameSpeed = 15
+  this.speedBonus = speedBonus /3
+  this.resBonus = resBonus /3
+  this.aggrBonus = aggrBonus /3
 
   this._canvas = document.getElementById("canvas");
   this._canvas.width = 800;
@@ -190,7 +198,7 @@ LocalGameModel.prototype._npcMovement = function() {
         }
 
         else if (!otherNpcs.isInfected() &&
-                    npc.isNear(otherNpcs, 10)) {
+                 npc.isNear(otherNpcs, 10 + local.aggrBonus)) {
           npc.move(otherNpcs, 'towards')
         }
       }

@@ -146,8 +146,8 @@ class App extends Component {
         return (
           <div>
             <LocalGame city={this.state.city}
-                       speed={this.state.city}
-                       aggression={this.state.city}
+                       speed={this.state.speed}
+                       aggression={this.state.aggression}
                        resilience={this.state.resilience}
                        endGame={this.endGame.bind(this)}/>
           </div>
