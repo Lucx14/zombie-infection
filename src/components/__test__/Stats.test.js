@@ -7,7 +7,7 @@ describe('Stats', () => {
   
   it('renders a cell dependent on land prop', () => {
     const wrapper = shallow(<Stats playableCities={[]}/>)
-    expect(wrapper.find('h1').text()).toMatch("Stats")
+    expect(wrapper.find('h1').text()).toMatch("STATS")
   });
 
   it('contains buttons to trigger stat increase ', () => {

@@ -1,0 +1,90 @@
+@import 'https://fonts.googleapis.com/css?family=Press+Start+2P';
+
+#stats-grid {
+  position: absolute;
+  left: 50%;
+  margin-left: -400px;
+  margin-top: 15px;
+  display: grid;
+  width: 800px;
+  height: 600px;
+  background-color: rgba(21, 58, 114, 0.527);
+  grid-gap: 10px 10px;
+  grid-template-rows: auto auto auto;
+  grid-template-columns: auto;
+  border: 1px solid black; 
+  border-radius: 10px;
+}
+
+#stats-grid h2 {
+  margin: 20px;
+}
+#stats-grid h6 {
+  margin: 0px;
+  margin-top: -15px;
+  color: gainsboro;
+}
+
+
+#in-game-stats button{
+  position: relative;
+  width: 24px;
+  margin: 0px 60px;
+  top: -21px;
+  color: white;
+  font-family: 'Press Start 2P';
+  border-radius: 10px;
+  padding-top: 4px;
+  padding-left: 5px;
+}
+
+.stat-margin {
+  margin-left: 100px;
+  margin: 0px 100px;
+}
+
+#stats-grid h3 {
+}
+
+.locked {
+  background-color: grey;
+}
+.unlocked {
+  background-color: green;
+}
+.unlocked:hover {
+  background-color: greenyellow;
+}
+
+#special-ability-section {
+  width: 770px;
+  margin-left: 15px;
+  margin-top: -20px;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  text-align: center;
+}
+
+#done {
+  width:100px;
+  margin: 0 auto 0 auto;
+}
+
+.special-ability-box {
+  padding: 10px;
+}
+
+.special-ability-box p {
+  font-size: 10px;
+  line-height: 16px;
+  height: 90px;
+}
+
+.special-ability-box button {
+  margin-bottom: 10px;
+}
+
+.special-ability-box:hover {
+  background-color: rgba(16, 42, 82, 0.226);
+  border-radius: 5px;
+}
