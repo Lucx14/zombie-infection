@@ -160,6 +160,9 @@ class App extends Component {
       case (this.state.showStats):
         return (
           <div>
+            <audio autoPlay>
+              <source src='./soundEffects/HorrorMusic.mp3'/>
+            </audio>
             <Stats tokens={this.state.tokens} increaseStat={this.increaseStat.bind(this)} done={this.enterStats.bind(this)}
                   speed={this.state.speed} resilience={this.state.resilience} aggression={this.state.aggression}
                   specialAbility={this.specialAbility.bind(this)} playableCities={this.state.playableCities}/>
