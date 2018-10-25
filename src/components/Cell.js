@@ -6,7 +6,7 @@ class Cell extends PureComponent {
 
   determineClass() {
     if (this.props.land < 0) { 
-      return "infected" 
+      return "land infected" 
     } else { 
       switch (this.props.land) {
         case 5: return "land asia";

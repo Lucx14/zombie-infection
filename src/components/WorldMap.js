@@ -38,10 +38,18 @@ class WorldMap extends PureComponent {
   }
 
   tick() {
-    this.setState({ticker: this.state.ticker +1});
+    this.setState({ticker: this.state.ticker + 1});
     if (this.props.worldWarZ) { this.setState({infectionChance: 0.5}) };
     this.incrementHour();
     this.populateGrid();
+    this.checkGameOver();
+  }
+
+  checkGameOver() {
+    if (this.state.grid.flat().filter(function(x){ return x > 0 }).length < 1 || this.state.ticker > 719) {
+      this.props.gameOver()
+      clearInterval(this.interval);
+    }
   }
 
   incrementHour() {
@@ -149,10 +157,10 @@ class WorldMap extends PureComponent {
     return (
       <div>
         <div id="grid">
-          <div id="time">31 October 1986 {this.state.hour + 12}:{this.state.ticker - (this.state.hour * 60) <10 ? "0":null}{this.state.ticker - (this.state.hour * 60)}</div>
+          <div id="time">31 October 1986 {this.state.hour + 12}:{this.state.ticker - (this.state.hour * 60) <10 ? "0":null}{this.state.ticker - this.state.hour * 60}</div>
           <div id="headline">{this.props.currentHeadline ? this.props.currentHeadline.toUpperCase() : null}</div>
           <div id="world-population-stats">
-            <h4>INFECTED</h4>
+            <h4 id="h4-infected">INFECTED</h4>
             <p>North America: {this.infectedPopulations(1)}%</p>
             <div className="survivors">{this.infectionData(1)} survivors</div>
             <p>South America: {this.infectedPopulations(2)}%</p>

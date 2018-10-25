@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import WorldMap from './WorldMap';
 import LocalGame from './LocalGame';
 import Stats from './Stats';
+import GameOver from './GameOver';
 import "./app.css"
 import headlines from '../Headlines';
 import cities from '../model/Cities';
@@ -18,7 +19,7 @@ class App extends Component {
       // ___V I E W  C H A N G E R S___
       city: false,
       showStats: false,
-      playing: false,
+      playing: true,
       // ___S T A T S___
       speed: 0,
       resilience: 0,
@@ -31,6 +32,10 @@ class App extends Component {
       gameOver: false
     }
     setInterval(() => this.getHeadline(headlines, this.state.playableCities), 5000);
+  }
+
+  gameOver() {
+    this.setState({ gameOver: true });
   }
 
   setSelected(city) {
@@ -133,6 +138,8 @@ class App extends Component {
 
   render() {
     switch (true) {
+      case (this.state.gameOver):
+        return (<GameOver score={this.state.zombieCount}/>);
       case (!this.state.playing):
         return (
           <div>
@@ -173,6 +180,7 @@ class App extends Component {
                         flyingZombies={this.state.flyingZombies}
                         worldWarZ={this.state.worldWarZ}
                         currentHeadline={this.state.currentHeadline}
+                        gameOver={this.gameOver.bind(this)}
                         />
               <div id="button-container">
                 {this.renderButtons()}
