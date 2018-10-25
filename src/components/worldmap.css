@@ -134,6 +134,7 @@ h4 {
   width: 5px;
   height: 5px;
   background-color: rgb(9, 255, 0);
+  transition: background-color 1s ease;
   outline-style: solid;
   outline-width: 1px;
 }
