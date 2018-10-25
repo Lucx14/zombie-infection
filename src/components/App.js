@@ -62,9 +62,9 @@ class App extends Component {
 
   specialAbility(ability) {
     if (this.state.tokens > 19 && ability === "fishFrenzy") {
-      this.setState({ flyingZombies: true, tokens: this.state.tokens -20 });
+      this.setState({ fishFrenzy: true, tokens: this.state.tokens -20 });
     } else if (this.state.tokens > 29 && ability === "flyingZombies") {
-      this.setState({ fishFrenzy: true, tokens: this.state.tokens -30 });
+      this.setState({ flyingZombies: true, tokens: this.state.tokens -30 });
     } else if (this.state.tokens > 39 && ability === "worldWarZ") {
       this.setState({ worldWarZ: true, tokens: this.state.tokens -40 });
     }
@@ -139,7 +139,7 @@ class App extends Component {
               <source src='./soundEffects/HorrorMusic.mp3'/>
             </audio>
             <div id="main-title">
-              <img src={"./titleScreen.jpg"} alt="title-screen"/>
+              <img src={"./titleScreen.jpg"} alt={""}/>
               <button onClick={() => { this.startGame() }} id="start-button" className="center">START</button>
             </div>
           </div>
@@ -150,7 +150,11 @@ class App extends Component {
             <audio autoPlay>
               <source src='./soundEffects/HorrorMusic.mp3'/>
             </audio>
-            <LocalGame city={this.state.city} endGame={this.endGame.bind(this)}/>
+            <LocalGame city={this.state.city}
+                       speed={this.state.speed}
+                       aggression={this.state.aggression}
+                       resilience={this.state.resilience}
+                       endGame={this.endGame.bind(this)}/>
           </div>
         );
       case (this.state.showStats):

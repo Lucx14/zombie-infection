@@ -3,9 +3,10 @@ export function Npc(speed = 1, civilian = true) {
   this.y = Math.random() * 600;
   this.w = 10;
   this.h = 10;
+  this.hitPoints = 1;
   this.speed = speed;
   this.zombie = false;
-  this.civilian = civilian
+  this.civilian = civilian;
 
   if (this.civilian) {
     this._people = [[document.getElementById("person1"), true],
@@ -17,7 +18,7 @@ export function Npc(speed = 1, civilian = true) {
     this._people = [[document.getElementById("army"), false],
                     [document.getElementById("police"), false]]
   }
-  
+
   this.type = this._people[Math.floor(Math.random()*this._people.length)];
 }
 

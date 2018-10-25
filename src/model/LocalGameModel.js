@@ -2,12 +2,23 @@ import Player from "./Player.js"
 import { Npc } from "./Npc.js"
 import SoundEffects from "./SoundEffects"
 
-export default function LocalGameModel(player = new Player(), npc = new Npc(), soundEffects = new SoundEffects()) {
+export default function LocalGameModel(speedBonus,
+                                       resBonus,
+                                       aggrBonus,
+                                       player = new Player(),
+                                       npc = new Npc(),
+                                       soundEffects = new SoundEffects()) {
   this._player = player
   this._npc = npc
   this._soundEffects = soundEffects
   this._zombieCount = 0
   this.gameSpeed = 15
+  this.speedBonus = speedBonus /40
+  this.resBonus = resBonus /6
+  this.aggrBonus = aggrBonus /5
+
+  this._player.speed = 2 + this.speedBonus
+  this._player.hitPoints = 1 + this.resBonus
 
   this._canvas = document.getElementById("canvas");
   this._canvas.width = 800;
@@ -161,11 +172,14 @@ LocalGameModel.prototype._npcMovement = function() {
           npc.move(otherNpcs, 'away')
           if (!npc.type[1]) {
             if (npc.shoot()) {
-              local._groupNpc.splice(index, 1)
               local.bulletRender(npc.x, npc.y, otherNpcs.x, otherNpcs.y)
-              local._deadZombies.push({x: otherNpcs.x - 2.5, y: otherNpcs.y - 12.5})
-              local._zombieCount -= 1
+              otherNpcs.hitPoints -= (Math.random() + 1)
               local._soundEffects.gunShot();
+              if (otherNpcs.hitPoints <= 0) {
+                local._groupNpc.splice(index, 1)
+                local._deadZombies.push({x: otherNpcs.x - 2.5, y: otherNpcs.y - 12.5})
+                local._zombieCount -= 1
+              }
             }
           }
 
@@ -188,7 +202,7 @@ LocalGameModel.prototype._npcMovement = function() {
         }
 
         else if (!otherNpcs.isInfected() &&
-                  npc.isNear(otherNpcs, 10)) {
+                 npc.isNear(otherNpcs, 10 + local.aggrBonus)) {
           npc.move(otherNpcs, 'towards')
         }
       }
