@@ -54,5 +54,11 @@ describe('App', () => {
     expect(instance.state.map).toEqual([0,0]);
     expect(instance.state.ticker).toEqual(2);
   });
+
+  it('can set the playable cities', () => {
+    const instance = wrapper.instance();
+    instance.activateCity('london');
+    expect(instance.state.playableCities).toEqual(['london']);
+  });
 });
 
