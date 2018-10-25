@@ -19,7 +19,7 @@ class App extends Component {
       // ___V I E W  C H A N G E R S___
       city: false,
       showStats: false,
-      playing: true,
+      playing: false,
       // ___S T A T S___
       speed: 0,
       resilience: 0,
@@ -181,6 +181,7 @@ class App extends Component {
                         worldWarZ={this.state.worldWarZ}
                         currentHeadline={this.state.currentHeadline}
                         gameOver={this.gameOver.bind(this)}
+                        testEnv={false}
                         />
               <div id="button-container">
                 {this.renderButtons()}

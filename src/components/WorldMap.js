@@ -38,15 +38,15 @@ class WorldMap extends PureComponent {
   }
 
   tick() {
+    this.checkGameOver();
     this.setState({ticker: this.state.ticker + 1});
     if (this.props.worldWarZ) { this.setState({infectionChance: 0.5}) };
     this.incrementHour();
     this.populateGrid();
-    this.checkGameOver();
   }
 
   checkGameOver() {
-    if (this.state.grid.flat().filter(function(x){ return x > 0 }).length < 1 || this.state.ticker > 719) {
+    if (this.props.testEnv||this.state.ticker > 719 || this.state.grid.flat().filter(function(x){ return x > 0 }).length < 1) {
       this.props.gameOver()
       clearInterval(this.interval);
     }
