@@ -14,7 +14,12 @@ html {
   margin-right: auto;
   width: 100%;
   margin-top: 250px;
-  background-color: greenyellow;
+  background-color: rgba(172, 255, 47, 0.822);
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
 .ability-desc {
@@ -24,11 +29,18 @@ html {
 }
 
 #main-title {
-  display:block;
-  position:relative;
+  width: 72%;
+  text-align: center;
   margin: 0 auto 0 auto;
-  width:600px;
-  height:375px;
+}
+
+#main-start-button {
+  margin-top: -120px;
+}
+
+#title-screen {
+  width: 100%;
+  object-fit: cover;
 }
 
 .start-button {
@@ -64,10 +76,6 @@ html {
 
 #zombie-total {
   font-size: x-small;
-}
-
-#title-screen {
-  width: 100%;
 }
 
 .city-button {
