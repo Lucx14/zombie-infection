@@ -32,11 +32,17 @@ class App extends Component {
     setInterval(() => this.getHeadline(headlines, this.state.playableCities), 5000);
   }
 
+  playMusic(audioFile, audio = new Audio(audioFile)) {
+    audio.currentTime = 0
+    audio.play()
+  }
+
   setSelected(city) {
     this.setState({ city: city });
   }
 
   startGame() {
+    this.playMusic('./soundEffects/horrorMusic.mp3')
     this.setState({ playing: true });
   }
 
@@ -135,9 +141,9 @@ class App extends Component {
       case (!this.state.playing):
         return (
           <div>
-            <audio autoPlay loop>
+            {/* <audio autoPlay loop>
               <source src='./soundEffects/horrorMusic.mp3'/>
-            </audio>
+            </audio> */}
             <div id="main-title">
               <img src={"./titleScreen.jpg"} alt={""}/>
               <button onClick={() => { this.startGame() }} id="start-button" className="center">START</button>
@@ -147,9 +153,9 @@ class App extends Component {
       case (typeof this.state.city == 'string'):
         return (
           <div>
-            <audio autoPlay loop>
+            {/* <audio autoPlay loop>
               <source src='./soundEffects/horrorMusic.mp3'/>
-            </audio>
+            </audio> */}
             <LocalGame city={this.state.city}
                        speed={this.state.speed}
                        aggression={this.state.aggression}
@@ -160,9 +166,9 @@ class App extends Component {
       case (this.state.showStats):
         return (
           <div>
-            <audio autoPlay loop>
+            {/* <audio autoPlay loop>
               <source src='./soundEffects/horrorMusic.mp3'/>
-            </audio>
+            </audio> */}
             <Stats tokens={this.state.tokens} increaseStat={this.increaseStat.bind(this)} done={this.enterStats.bind(this)}
                   speed={this.state.speed} resilience={this.state.resilience} aggression={this.state.aggression}
                   specialAbility={this.specialAbility.bind(this)} playableCities={this.state.playableCities}/>
@@ -171,9 +177,9 @@ class App extends Component {
       default: 
         return (
           <div id="world-map">
-            <audio autoPlay loop>
+            {/* <audio autoPlay loop>
               <source src='./soundEffects/horrorMusic.mp3'/>
-            </audio>
+            </audio> */}
             {this.state.city}
             <WorldMap map={this.state.map}
                       updateAppMap={this.updateState.bind(this)}
