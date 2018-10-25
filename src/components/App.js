@@ -71,12 +71,6 @@ class App extends Component {
     }
   }
 
-  flyingZombies() {
-    if (this.state.playableCities.length > 10 && this.state.flyingZombies === false) {
-      this.setState({ flyingZombies: true });
-    }
-  }
-
   specialAbility(ability) {
     if (this.state.tokens > 19 && ability === "fishFrenzy") {
       this.setState({ fishFrenzy: true, tokens: this.state.tokens -20 });
