@@ -33,7 +33,13 @@ describe('WorldMap', () => {
 
 
   beforeAll(() => {
-    wrapper = shallow(<WorldMap map={testGrid1} ticker={60} gameOver={function() { }} testEnv={true}/>)
+    wrapper = shallow(<WorldMap 
+      map={testGrid1} 
+      ticker={60} 
+      gameOver={function() { }} 
+      testEnv={true}
+      toggleHeadlineInterval={function() { }} 
+    />)
   });
 
   describe('pause', () => {
