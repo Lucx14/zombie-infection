@@ -83,5 +83,12 @@ describe('App', () => {
     instance.getHeadline({ "london": ["testing"] },["london"]);
     expect(instance.state.currentHeadline).toEqual("BREAKING NEWS: testing");
   });
+
+  it('increases stats', () => {
+    const instance = wrapper.instance();
+    instance.setState({ tokens: 10 });
+    instance.increaseStat("speed");
+    expect(instance.state.speed).toEqual(1);
+  });
 });
 
