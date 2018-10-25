@@ -155,8 +155,8 @@ class App extends Component {
         return (
           <div>
             <Stats tokens={this.state.tokens} increaseStat={this.increaseStat.bind(this)} done={this.enterStats.bind(this)}
-                  speed={this.state.speed} resilience={this.state.resilience} aggression={this.state.aggression}
-                  specialAbility={this.specialAbility.bind(this)} playableCities={this.state.playableCities}/>
+                   speed={this.state.speed} resilience={this.state.resilience} aggression={this.state.aggression}
+                   specialAbility={this.specialAbility.bind(this)} playableCities={this.state.playableCities}/>
           </div>
         );
       default:

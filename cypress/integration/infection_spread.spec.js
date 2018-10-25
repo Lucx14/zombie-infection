@@ -6,8 +6,8 @@ describe('Infection spread', () => {
 
   describe('Infected map', () => {
     it('has an infected cell', () => {
-      
-      cy.get('.grid .infected')
+
+      cy.get('.infected')
         .should(($cell) => {
           expect($cell.length).to.be.greaterThan(0)
         })
