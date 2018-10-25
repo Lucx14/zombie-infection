@@ -16,6 +16,14 @@ class LocalGame extends Component {
       }.bind(this));
   }
 
+  formatCityName(city) {
+    var cityName = city.split('-');
+    for (var i=0; i<cityName.length; i++) {
+      cityName[i] = cityName[i].charAt(0).toUpperCase() + cityName[i].slice(1);
+    }
+    return cityName.join(' ');
+  }
+
   render() {
     return (
       <div>
@@ -34,8 +42,8 @@ class LocalGame extends Component {
         <img id="person4" src="person-4.png" alt="" style={{display: "none"}}/>
         <img id="person5" src="person-5.png" alt="" style={{display: "none"}}/>
         <img id="bloodsplat" src="bloodSplat.png" alt="" style={{display: "none"}}/>
-        <h1><center>Local Map</center></h1>
         <div id = "holder">
+          <p id="city"><center>{this.formatCityName(this.props.city)}</center></p>
           <canvas id="underCanvas" width="800" height="600"></canvas>
           <canvas id="canvas" width="800" height="600" tabIndex='1'></canvas>
           <p id="timer"></p>

@@ -137,7 +137,7 @@ class App extends Component {
         return (
           <div>
             <div id="main-title">
-              <img src={"./titleScreen.jpg"}/>
+              <img src={"./titleScreen.jpg"} alt={""}/>
               <button onClick={() => { this.startGame() }} id="start-button" className="center">START</button>
             </div>
           </div>
@@ -145,7 +145,11 @@ class App extends Component {
       case (typeof this.state.city == 'string'):
         return (
           <div>
-            <LocalGame city={this.state.city} endGame={this.endGame.bind(this)}/>
+            <LocalGame city={this.state.city}
+                       speed={this.state.city}
+                       aggression={this.state.city}
+                       resilience={this.state.resilience}
+                       endGame={this.endGame.bind(this)}/>
           </div>
         );
       case (this.state.showStats):
