@@ -37,12 +37,19 @@ class App extends Component {
   gameOver() {
     this.setState({ gameOver: true });
   }
+  
+  playMusic(audioFile, audio = new Audio(audioFile)) {
+    audio.currentTime = 0
+    audio.loop = true
+    audio.play()
+  }
 
   setSelected(city) {
     this.setState({ city: city });
   }
 
   startGame() {
+    this.playMusic('./soundEffects/horrorMusic.mp3')
     this.setState({ playing: true });
   }
 
@@ -133,7 +140,7 @@ class App extends Component {
           this.setState({ aggression: this.state.aggression +1})
           break;
       }
-    };
+    }
   }
 
   render() {
@@ -163,11 +170,11 @@ class App extends Component {
         return (
           <div>
             <Stats tokens={this.state.tokens} increaseStat={this.increaseStat.bind(this)} done={this.enterStats.bind(this)}
-                  speed={this.state.speed} resilience={this.state.resilience} aggression={this.state.aggression}
-                  specialAbility={this.specialAbility.bind(this)} playableCities={this.state.playableCities}/>
+                   speed={this.state.speed} resilience={this.state.resilience} aggression={this.state.aggression}
+                   specialAbility={this.specialAbility.bind(this)} playableCities={this.state.playableCities}/>
           </div>
-        );
-      default:
+        ); 
+      default: 
         return (
           <div>
             <div id="world-map">

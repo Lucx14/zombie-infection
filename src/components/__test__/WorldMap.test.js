@@ -61,6 +61,13 @@ describe('WorldMap', () => {
   })
 
   it('renders the map grid', () => {
-      expect(wrapper.instance().renderGrid().length).toEqual(5)
-    });
+    expect(wrapper.instance().renderGrid().length).toEqual(5)
+  });
+
+  it('checks neighbouring cells', () => {
+    const instance = wrapper.instance();
+    let row = 0;
+    let col = 0;
+    expect(instance.checkNeighbours(row, col)).toEqual(false);
+  });
 });
