@@ -172,9 +172,7 @@ class WorldMap extends PureComponent {
         <div className="map">
           {this.state.renderGrid}
         </div>
-        <p>
           {this.state.paused ? <div id="pause-indicator">paused</div> : null}
-        </p>
           <button id="pause" onClick={() => { this.pauseGame() }}></button>
       </div>
     );

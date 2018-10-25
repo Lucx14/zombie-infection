@@ -24,7 +24,7 @@ h4 {
 
 #pause {
   position: absolute;
-  margin: -60px -36px;
+  margin: -44px -36px;
   border-width: 0px 5px 0px 5px;
   border-color: white;;
   height:12px;
@@ -37,13 +37,13 @@ h4 {
 }
 
 #pause:active {
-  position: relative;
-  border-width: 0px 5px 0px 5px;
-  border-color: grey;
-  width: 10px;
-  height:12px;
-  padding:2px;
-  background-color: rgba(0, 0, 0, 0);
+  border-color: #333;
+}
+
+#pause-indicator {
+  position: absolute;
+  text-align: center;
+  color: white;
 }
 
 #grid {
@@ -111,107 +111,61 @@ h4 {
   padding-top: 75px;
 }
 
-.clickable {
+.land {
   float: left;
   width: 5px;
   height: 5px;
-  background-color: rgb(247, 173, 0);
   font-size: 0%;
   outline-style: solid;
   outline-width: 1px;
+}
+
+.clickable {
+  background-color: rgb(247, 173, 0);
 }
 
 .unclickable {
-  float: left;
-  width: 5px;
-  height: 5px;
   background-color: rgb(142, 8, 8);
-  font-size: 0%;
-  outline-style: solid;
-  outline-width: 1px;
 }
 
 .infected {
-  float: left;
-  width: 5px;
-  height: 5px;
   background-color: rgb(9, 255, 0);
   transition: background-color 1s ease;
-  outline-style: solid;
-  outline-width: 1px;
 }
 
 .sea {
+  background-color: rgba(255, 255, 255, 0);
   float: left;
   width: 5px;
   height: 5px;
-  background-color: rgba(255, 255, 255, 0);
-  /* outline-style: solid;
-  outline-width: 1px;
-  outline-color: rgb(70, 70, 70); */
 }
 
 .north-america {
-  float: left;
-  width: 5px;
-  height: 5px;
   background-color: rgb(209, 68, 110);
-  outline-style: solid;
-  outline-width: 1px;
 }
 
 .south-america {
-  float: left;
-  width: 5px;
-  height: 5px;
   background-color: rgb(223, 62, 174);
-  outline-style: solid;
-  outline-width: 1px;
 }
 
 .europe {
-  float: left;
-  width: 5px;
-  height: 5px;
   background-color: rgb(190, 94, 199);
-  outline-style: solid;
-  outline-width: 1px;
 }
 
 .africa {
-  float: left;
-  width: 5px;
-  height: 5px;
   background-color: rgb(194, 56, 187);
-  outline-style: solid;
-  outline-width: 1px;
 }
 
 .asia {
-  float: left;
-  width: 5px;
-  height: 5px;
   background-color: rgb(128, 61, 190);
-  outline-style: solid;
-  outline-width: 1px;
 }
 
 .oceana {
-  float: left;
-  width: 5px;
-  height: 5px;
   background-color: rgb(106, 61, 190);
-  outline-style: solid;
-  outline-width: 1px;
 }
 
 .middle-east {
-  float: left;
-  width: 5px;
-  height: 5px;
   background-color: rgb(165, 54, 199);
-  outline-style: solid;
-  outline-width: 1px;
 }
 
 #loading-screen {
