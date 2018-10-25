@@ -1,7 +1,6 @@
 @import 'https://fonts.googleapis.com/css?family=Press+Start+2P';
 
 body {
-  background-color: black;
   font-family: 'Press Start 2P';
 }
 
@@ -16,23 +15,98 @@ h1 {
 
 p {
   color: white;
-  text-align: center;
+  text-align: left;
+}
+
+h4 {
+  color: white;
+}
+
+#pause {
+  position: absolute;
+  margin: 15px -36px;
+  border-width: 0px 5px 0px 5px;
+  border-color: white;;
+  width: 10px;
+  height:12px;
+  padding:2px;
+  background-color: rgba(0, 0, 0, 0);
+  grid-column-start: 5;
+}
+
+#pause:active {
+  position: relative;
+  border-width: 0px 5px 0px 5px;
+  border-color: grey;
+  width: 10px;
+  height:12px;
+  padding:2px;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+#grid {
+  position: absolute;
+  left: 50%;
+  margin-left: -400px;
+  margin-top: 15px;
+  display: grid;
+  width: 800px;
+  height: 600px;
+  background-color: rgba(28, 79, 155, 0.363);
+  grid-gap: 10px 10px;
+  grid-template-columns: auto auto auto auto;
+  grid-template-rows: 40px 180px 180px auto;
+  border: 1px solid black; 
+  z-index: -2;
+  border-radius: 10px;
+}
+#world-population-stats {
+  background-color: rgba(0, 0, 0, 0.548);
+  width: 121px;
+  padding: 1px 7px;
+  border-radius: 3px;
+  margin-left: 20px;
+  margin-top: -80px;
+  height: 230px;
+  grid-row-start: 4;
+}
+#world-population-stats p {
+  font-size: 7px;
+  color: white;
+}
+
+.survivors {
+  color: rgb(177, 177, 177);
+  font-size: 6px;
+}
+
+#headline {
+  position: absolute;
+  font-size: 10px;
+  color: white;
+  padding: 6px 10px;
+  line-height: 14px;
+  width: 450px;
 }
 
 #time {
-  color: gainsboro;
-  text-align: center;
+  color: white;
+  text-align: left;
+  background-color: rgba(18, 12, 53, 0.938);
+  font-size: 10px;
+  padding: 6px 0px;
+  border-radius: 8px;
+  grid-column-start: 4;
+  margin: 10px;
+  margin-left: 150px;
+  padding-left: 34px;
 }
 
-.world-map {
-  background-color: rgb(41, 173, 36);
-  width: 800px;
-  height: 560px;
-}
-
-.grid {
+.map{
   width: 800px;
   margin: 0 auto 0 auto;
+  border-radius: 10px;
+  padding-top: 75px;
 }
 
 .clickable {
@@ -78,7 +152,7 @@ p {
   float: left;
   width: 5px;
   height: 5px;
-  background-color: rgb(143, 23, 59);
+  background-color: rgb(209, 68, 110);
   outline-style: solid;
   outline-width: 1px;
 }
@@ -87,7 +161,7 @@ p {
   float: left;
   width: 5px;
   height: 5px;
-  background-color: #8E0C66;
+  background-color: rgb(223, 62, 174);
   outline-style: solid;
   outline-width: 1px;
 }
@@ -96,7 +170,7 @@ p {
   float: left;
   width: 5px;
   height: 5px;
-  background-color: rgb(158, 77, 165);
+  background-color: rgb(190, 94, 199);
   outline-style: solid;
   outline-width: 1px;
 }
@@ -105,7 +179,7 @@ p {
   float: left;
   width: 5px;
   height: 5px;
-  background-color: #72156E;
+  background-color: rgb(194, 56, 187);
   outline-style: solid;
   outline-width: 1px;
 }
@@ -114,7 +188,7 @@ p {
   float: left;
   width: 5px;
   height: 5px;
-  background-color: rgb(88, 32, 139);
+  background-color: rgb(128, 61, 190);
   outline-style: solid;
   outline-width: 1px;
 }
@@ -123,7 +197,7 @@ p {
   float: left;
   width: 5px;
   height: 5px;
-  background-color: rgb(91, 21, 182);
+  background-color: rgb(106, 61, 190);
   outline-style: solid;
   outline-width: 1px;
 }
@@ -132,30 +206,9 @@ p {
   float: left;
   width: 5px;
   height: 5px;
-  background-color: rgb(187, 94, 178);
+  background-color: rgb(165, 54, 199);
   outline-style: solid;
   outline-width: 1px;
-}
-
-.city-button {
-  -webkit-transition-duration: 0.3s; /* Safari */
-  transition-duration: 0.3s;
-  background-color: rgba(158, 158, 158, 0.822);
-  border:none;  
-  border-radius: 50%;
-  width: 15px;
-  height: 15px;
-  z-index: 0;
-  box-shadow: 2px 2px rgba(0, 0, 0, 0.7);
-  border: 1px;
-}
-
-.city-button:hover {
-  background-color: rgba(153, 3, 3, 0.877); /* Green */
-}
-
-.city-button:focus {
-  background-color: red; /* Green */
 }
 
 #loading-screen {
@@ -167,4 +220,136 @@ p {
 
 #world-population-stats {
   font-size: x-small;
+}
+
+#london {
+  position: relative;
+  top: -293px;
+  left: 369px;
+}
+
+#paris {
+  position: relative;
+  top: -283px;
+  left: 365px;
+}
+#rome {
+  position: relative;
+  top: -264px;
+  left: 369px;
+}
+#oslo {
+  position: relative;
+  top: -338px;
+  left: 353px;
+}
+#reykjavik {
+  position: relative;
+  top: -345px;
+  left: 265px;
+}
+#new-york {
+  position: relative;
+  top: -260px;
+  left: 135px;
+}
+#madrid {
+  position: relative;
+  top: -258px;
+  left: 265px;
+}
+#marrakech {
+  position: relative;
+  top: -225px;
+  left: 245px;
+}
+#cairo {
+  position: relative;
+  top: -225px;
+  left: 315px;
+}
+#nairobi {
+  position: relative;
+  top: -155px;
+  left: 315px;
+}
+#istanbul {
+  position: relative;
+  top: -260px;
+  left: 280px;
+}
+#dubai {
+  position: relative;
+  top: -214px;
+  left: 325px;
+}
+#cape-town {
+  position: relative;
+  top: -85px;
+  left: 235px;
+}
+#los-angeles {
+  position: relative;
+  top: -235px;
+  left: -80px;
+}
+#mexico-city {
+  position: relative;
+  top: -205px;
+  left: -55px;
+}
+#bogota {
+  position: relative;
+  top: -170px;
+  left: -15px;
+}
+#rio-de-janeiro {
+  position: relative;
+  top: -115px;
+  left: 40px;
+}
+#tehran {
+  position: relative;
+  top: -252px;
+  left:225px;
+}
+#new-dehli {
+  position: relative;
+  top: -224px;
+  left:270px;
+}
+#bangkok {
+  position: relative;
+  top: -188px;
+  left:310px;
+}
+#shanghai {
+  position: relative;
+  top: -239px;
+  left:330px;
+}
+#tokyo {
+  position: relative;
+  top: -243px;
+  left:361px;
+}
+#hong-kong {
+  position: relative;
+  top: -214px;
+  left: 295px;
+}
+#melbourne {
+  position: relative;
+  top: -73px;
+  left:340px;
+}
+#wellington {
+  position: relative;
+  top: -59px;
+  left:384px;
+}
+#vancouver {
+  position: relative;
+  top: -280px;
+  left: -275px;
 }
