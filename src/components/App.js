@@ -135,7 +135,7 @@ class App extends Component {
       case (!this.state.playing):
         return (
           <div>
-            <audio autoPlay>
+            <audio autoPlay loop>
               <source src='./soundEffects/HorrorMusic.mp3'/>
             </audio>
             <div id="main-title">
@@ -147,7 +147,7 @@ class App extends Component {
       case (typeof this.state.city == 'string'):
         return (
           <div>
-            <audio autoPlay>
+            <audio autoPlay loop>
               <source src='./soundEffects/HorrorMusic.mp3'/>
             </audio>
             <LocalGame city={this.state.city}
@@ -160,7 +160,7 @@ class App extends Component {
       case (this.state.showStats):
         return (
           <div>
-            <audio autoPlay>
+            <audio autoPlay loop>
               <source src='./soundEffects/HorrorMusic.mp3'/>
             </audio>
             <Stats tokens={this.state.tokens} increaseStat={this.increaseStat.bind(this)} done={this.enterStats.bind(this)}
@@ -171,7 +171,7 @@ class App extends Component {
       default: 
         return (
           <div id="world-map">
-            <audio autoPlay>
+            <audio autoPlay loop>
               <source src='./soundEffects/HorrorMusic.mp3'/>
             </audio>
             {this.state.city}
