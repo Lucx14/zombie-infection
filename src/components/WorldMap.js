@@ -148,21 +148,31 @@ class WorldMap extends PureComponent {
     }
     return (
       <div>
-        <h1 id="map-title">World Map</h1>
-        <div id="world-population-stats">
-          <p>North America: Infected: {this.infectedPopulations(1)}%, Survivors: {this.infectionData(1)}</p>
-          <p>South America: Infected: {this.infectedPopulations(2)}%, Survivors: {this.infectionData(2)}</p>
-          <p>Europe: Infected: {this.infectedPopulations(3)}%, Survivors: {this.infectionData(3)}</p>
-          <p>Africa: {this.infectedPopulations(4)}%, Survivors: {this.infectionData(4)}</p>
-          <p>Asia: {this.infectedPopulations(5)}%, Survivors: {this.infectionData(5)}</p>
-          <p>Oceana: {this.infectedPopulations(6)}%, Survivors: {this.infectionData(6)}</p>
-          <p>Middle East: {this.infectedPopulations(7)}%, Survivors: {this.infectionData(7)}</p>
+        <div id="grid">
+          <div id="time">31 October 1986 {this.state.hour + 12}:{this.state.ticker - (this.state.hour * 60) <10 ? "0":null}{this.state.ticker - (this.state.hour * 60)}</div>
+          <button id="pause" onClick={() => { this.pauseGame() }}></button>
+          <div id="headline">{this.props.currentHeadline ? this.props.currentHeadline.toUpperCase() : null}</div>
+          <div id="world-population-stats">
+            <h4>INFECTED</h4>
+            <p>North America: {this.infectedPopulations(1)}%</p>
+            <div className="survivors">{this.infectionData(1)} survivors</div>
+            <p>South America: {this.infectedPopulations(2)}%</p>
+            <div className="survivors">{this.infectionData(2)} survivors</div>
+            <p>Europe: {this.infectedPopulations(3)}%</p>
+            <div className="survivors">{this.infectionData(3)} survivors</div>
+            <p>Africa: {this.infectedPopulations(4)}%</p>
+            <div className="survivors">{this.infectionData(4)} survivors</div>
+            <p>Asia: {this.infectedPopulations(5)}%</p>
+            <div className="survivors">{this.infectionData(5)} survivors</div>
+            <p>Oceana: {this.infectedPopulations(6)}%</p>
+            <div className="survivors">{this.infectionData(6)} survivors</div>
+            <p>Middle East: {this.infectedPopulations(7)}%</p>
+            <div className="survivors">{this.infectionData(7)} survivors</div>
+          </div>
         </div>
-        <div id="time">Time:{this.state.hour + 12}:{this.state.ticker - (this.state.hour * 60) <10 ? "0":null}{this.state.ticker - (this.state.hour * 60)}</div>
-        <div className="grid">
+        <div className="map">
           {this.state.renderGrid}
         </div>
-        <button id="pause" onClick={() => { this.pauseGame() }}>Pause</button>
         <p>
           {this.state.paused ? <div id="pause-indicator">paused</div> : null}
         </p>
@@ -170,6 +180,14 @@ class WorldMap extends PureComponent {
     );
   }
 }
+
+// <p>North America: {this.infectedPopulations(1)}%, Survivors: {this.infectionData(1)}</p>
+// <p>South America: {this.infectedPopulations(2)}%, Survivors: {this.infectionData(2)}</p>
+// <p>Europe: {this.infectedPopulations(3)}%, Survivors: {this.infectionData(3)}</p>
+// <p>Africa: {this.infectedPopulations(4)}%, Survivors: {this.infectionData(4)}</p>
+// <p>Asia: {this.infectedPopulations(5)}%, Survivors: {this.infectionData(5)}</p>
+// <p>Oceana: {this.infectedPopulations(6)}%, Survivors: {this.infectionData(6)}</p>
+// <p>Middle East: {this.infectedPopulations(7)}%, Survivors: {this.infectionData(7)}</p>
 
 WorldMap.propTypes = {
   ticker: PropTypes.number,

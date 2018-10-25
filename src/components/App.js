@@ -88,7 +88,7 @@ class App extends Component {
     return(cities.map((city, index) => {
       if (this.state.playableCities.includes(city)) {
         return(
-          <button className="city-button"
+          <button className="city-button-active"
                   id={city}
                   key={index}
                   title={city}
@@ -143,7 +143,7 @@ class App extends Component {
         return (
           <div>
             <div id="main-title">
-              <img src={"./titleScreen.jpg"} alt={""}/>
+              <img src={"./mainTitle.png"} alt="title-screen" id="title-screen"/>
               <button onClick={() => { this.startGame() }} id="start-button" className="center">START</button>
             </div>
           </div>
@@ -162,29 +162,29 @@ class App extends Component {
         return (
           <div>
             <Stats tokens={this.state.tokens} increaseStat={this.increaseStat.bind(this)} done={this.enterStats.bind(this)}
-                  speed={this.state.speed} resilience={this.state.resilience} aggression={this.state.aggression}
-                  specialAbility={this.specialAbility.bind(this)} playableCities={this.state.playableCities}/>
+                   speed={this.state.speed} resilience={this.state.resilience} aggression={this.state.aggression}
+                   specialAbility={this.specialAbility.bind(this)} playableCities={this.state.playableCities}/>
           </div>
         ); 
       default: 
         return (
-          <div id="world-map">
-            {this.state.city}
-            <WorldMap map={this.state.map}
-                      updateAppMap={this.updateState.bind(this)}
-                      ticker={this.state.ticker}
-                      activateCity={this.activateCity.bind(this)}
-                      fishFrenzy={this.state.fishFrenzy}
-                      flyingZombies={this.state.flyingZombies}
-                      worldWarZ={this.state.worldWarZ}
-                      />
-            <div id="button-container">
-              {this.renderButtons()}
+          <div>
+            <div id="world-map">
+              {this.state.city}
+              <WorldMap map={this.state.map}
+                        updateAppMap={this.updateState.bind(this)}
+                        ticker={this.state.ticker}
+                        activateCity={this.activateCity.bind(this)}
+                        fishFrenzy={this.state.fishFrenzy}
+                        flyingZombies={this.state.flyingZombies}
+                        worldWarZ={this.state.worldWarZ}
+                        currentHeadline={this.state.currentHeadline}
+                        />
+              <div id="button-container">
+                {this.renderButtons()}
+              </div>
             </div>
-            <p id="headline">
-              {this.state.currentHeadline}
-            </p>
-            <button id="stats" onClick={() => {this.enterStats()}}>Stats</button>
+              <button id="stats" onClick={() => {this.enterStats()}}>STATS</button>
           </div>
       )
     }
