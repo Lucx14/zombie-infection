@@ -58,13 +58,14 @@ class WorldMap extends PureComponent {
     } 
   }
 
-  pauseGame() {
+  pauseGame(state) {
     if (this.state.paused) {
       this.interval = setInterval(() => this.tick(), 1000)
     } else {
       clearInterval(this.interval)
     }
     this.setState({paused: !this.state.paused})
+    this.props.toggleHeadlineInterval(state)
   }
 
   populateGrid() {
@@ -180,8 +181,8 @@ class WorldMap extends PureComponent {
         <div className="map">
           {this.state.renderGrid}
         </div>
-          {this.state.paused ? <div id="pause-indicator">paused</div> : null}
-          <button id="pause" onClick={() => { this.pauseGame() }}></button>
+            {this.state.paused ? <div onClick={() => { this.pauseGame(true) }} id="pause-indicator">paused</div> : null}
+          <button id="pause" onClick={() => { this.pauseGame(false) }}></button>
       </div>
     );
   }

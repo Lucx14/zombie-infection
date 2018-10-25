@@ -31,7 +31,7 @@ class App extends Component {
       worldWarZ: false,
       gameOver: false
     }
-    setInterval(() => this.getHeadline(headlines, this.state.playableCities), 5000);
+    this.HeadlineInterval = setInterval(() => this.getHeadline(headlines, this.state.playableCities), 5000);
   }
 
   gameOver() {
@@ -42,6 +42,14 @@ class App extends Component {
     audio.currentTime = 0
     audio.loop = true
     audio.play()
+  }
+
+  toggleHeadlineInterval(state) {
+    if (state) {
+      this.HeadlineInterval = setInterval(() => this.getHeadline(headlines, this.state.playableCities), 5000);
+    } else {
+      clearInterval(this.HeadlineInterval)
+    }
   }
 
   setSelected(city) {
@@ -202,6 +210,7 @@ class App extends Component {
                         worldWarZ={this.state.worldWarZ}
                         currentHeadline={this.state.currentHeadline}
                         gameOver={this.gameOver.bind(this)}
+                        toggleHeadlineInterval={this.toggleHeadlineInterval.bind(this)}
                         testEnv={false}
                         />
               <div id="button-container">
