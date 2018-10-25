@@ -76,5 +76,12 @@ describe('App', () => {
     expect(instance.state.fishFrenzy).toEqual(true);
     expect(instance.state.tokens).toEqual(0);
   });
+
+
+  it('randomizes headlines on the main page', () => {
+    const instance = wrapper.instance();
+    instance.getHeadline({ "london": ["testing"] },["london"]);
+    expect(instance.state.currentHeadline).toEqual("BREAKING NEWS: testing");
+  });
 });
 
