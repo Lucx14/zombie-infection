@@ -204,6 +204,10 @@ LocalGameModel.prototype._npcMovement = function() {
         else if (!otherNpcs.isInfected() &&
                  npc.isNear(otherNpcs, 10 + local.aggrBonus)) {
           npc.move(otherNpcs, 'towards')
+          if (npc.isNear(otherNpcs, 10)) {
+            otherNpcs.infect()
+            local._zombieCount += 1
+          }
         }
       }
     })
