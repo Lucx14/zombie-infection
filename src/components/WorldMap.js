@@ -44,6 +44,12 @@ class WorldMap extends PureComponent {
     this.populateGrid();
   }
 
+  incrementHour() {
+    if(this.state.ticker % 60 === 0 && this.state.ticker > 0) {
+      this.setState({hour: this.state.hour +1})
+    } 
+  }
+
   pauseGame() {
     if (this.state.paused) {
       this.interval = setInterval(() => this.tick(), 1000)
@@ -51,12 +57,6 @@ class WorldMap extends PureComponent {
       clearInterval(this.interval)
     }
     this.setState({paused: !this.state.paused})
-  }
-
-  incrementHour() {
-    if(this.state.ticker % 60 === 0 && this.state.ticker > 0) {
-      this.setState({hour: this.state.hour +1})
-    } 
   }
 
   populateGrid() {
@@ -150,7 +150,6 @@ class WorldMap extends PureComponent {
       <div>
         <div id="grid">
           <div id="time">31 October 1986 {this.state.hour + 12}:{this.state.ticker - (this.state.hour * 60) <10 ? "0":null}{this.state.ticker - (this.state.hour * 60)}</div>
-          <button id="pause" onClick={() => { this.pauseGame() }}></button>
           <div id="headline">{this.props.currentHeadline ? this.props.currentHeadline.toUpperCase() : null}</div>
           <div id="world-population-stats">
             <h4>INFECTED</h4>
@@ -176,6 +175,7 @@ class WorldMap extends PureComponent {
         <p>
           {this.state.paused ? <div id="pause-indicator">paused</div> : null}
         </p>
+          <button id="pause" onClick={() => { this.pauseGame() }}></button>
       </div>
     );
   }

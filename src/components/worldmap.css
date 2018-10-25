@@ -24,14 +24,16 @@ h4 {
 
 #pause {
   position: absolute;
-  margin: 15px -36px;
+  margin: -60px -36px;
   border-width: 0px 5px 0px 5px;
   border-color: white;;
-  width: 10px;
   height:12px;
   padding:2px;
   background-color: rgba(0, 0, 0, 0);
-  grid-column-start: 5;
+}
+
+#pause:hover {
+  border-color: grey;
 }
 
 #pause:active {
