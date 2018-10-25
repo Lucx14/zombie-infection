@@ -14,7 +14,7 @@ class App extends Component {
       headlines: props.headlines || headlines,
       playableCities: props.playableCities || [],
       map: InitialGrid(),
-      ticker: -1,
+      ticker: -2,
       zombieTotal: 0,
       // ___V I E W  C H A N G E R S___
       city: false,
@@ -51,6 +51,10 @@ class App extends Component {
   startGame() {
     this.playMusic('./soundEffects/horrorMusic.mp3')
     this.setState({ playing: true });
+  }
+
+  exitIntro() {
+    this.setState({ ticker: -1 });
   }
 
   updateState(map, ticker) {
@@ -148,14 +152,27 @@ class App extends Component {
       case (this.state.gameOver):
         return (<GameOver score={this.state.zombieCount}/>);
       case (!this.state.playing):
-        return (
-          <div>
-            <div id="main-title">
-              <img src={"./mainTitle.png"} alt="title-screen" id="title-screen"/>
-              <button onClick={() => { this.startGame() }} id="start-button" className="center">START</button>
+          return (
+            <div>
+              <div id="main-title">
+                <img src={"./mainTitle.png"} alt="title-screen" id="title-screen"/>
+                <button onClick={() => { this.startGame() }} className="center start-button">START</button>
+              </div>
             </div>
-          </div>
-        );
+          );
+      case (this.state.ticker === -2):
+          return (
+            <div>
+              <div id="instructions">
+                <img src={"./instructionsScreen.jpg"} alt="instructions"/>
+                <button onClick={() => { this.exitIntro() }} 
+                  id="intro-start-button" 
+                  className="center start-button">
+                  PLAY
+                </button>
+              </div>
+            </div>
+          );
       case (typeof this.state.city == 'string'):
         return (
           <div>

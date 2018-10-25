@@ -14,6 +14,7 @@ html {
   margin-right: auto;
   width: 100%;
   margin-top: 250px;
+  background-color: greenyellow;
 }
 
 .ability-desc {
@@ -30,7 +31,7 @@ html {
   height:375px;
 }
 
-#start-button {
+.start-button {
   width: 120px;
   height: 30px;
   position:relative;
@@ -43,6 +44,16 @@ html {
 #world-map{
   z-index: 0;
 }
+
+#instructions  {
+  width: 100%;
+  text-align: center;
+}
+
+#intro-start-button {
+  margin-top: -50px;
+}
+
 #button-container{
   width: 800px;
   height: 400px;

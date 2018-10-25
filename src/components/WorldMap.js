@@ -16,7 +16,7 @@ class WorldMap extends PureComponent {
       renderGrid : [],
       loading: true,
       paused: false,
-      infectionChance: 0.01,
+      infectionChance: 0.03,
       hour: 0,
     }
   }
@@ -186,14 +186,6 @@ class WorldMap extends PureComponent {
     );
   }
 }
-
-// <p>North America: {this.infectedPopulations(1)}%, Survivors: {this.infectionData(1)}</p>
-// <p>South America: {this.infectedPopulations(2)}%, Survivors: {this.infectionData(2)}</p>
-// <p>Europe: {this.infectedPopulations(3)}%, Survivors: {this.infectionData(3)}</p>
-// <p>Africa: {this.infectedPopulations(4)}%, Survivors: {this.infectionData(4)}</p>
-// <p>Asia: {this.infectedPopulations(5)}%, Survivors: {this.infectionData(5)}</p>
-// <p>Oceana: {this.infectedPopulations(6)}%, Survivors: {this.infectionData(6)}</p>
-// <p>Middle East: {this.infectedPopulations(7)}%, Survivors: {this.infectionData(7)}</p>
 
 WorldMap.propTypes = {
   ticker: PropTypes.number,
