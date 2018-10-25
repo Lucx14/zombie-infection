@@ -11,7 +11,7 @@ class LocalGame extends Component {
     localGameModel.eventListen();
     localGameModel.tickDraw();
     document.getElementById("canvas").addEventListener('keydown',
-      function(e) {
+      function() {
         if (localGameModel.gameEnd === true) {
           this.props.endGame(localGameModel._zombieCount)
         }

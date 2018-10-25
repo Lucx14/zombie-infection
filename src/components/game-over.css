@@ -1,0 +1,47 @@
+#black-screen {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.733);
+  width: 100%;
+  height: 626px;
+}
+
+.scroll-up {
+  color: white;
+  height: 50px;	
+  overflow: hidden;
+  position: relative;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  line-height: 20px;
+  text-align: center;
+  -webkit-transform:translateY(100%);	
+  -webkit-animation: scroll-up 15s linear infinite;
+}
+/* Move it (define the animation) */
+@-webkit-keyframes scroll-up {
+  0%   { -webkit-transform: translateY(100%); }
+  100% { -webkit-transform: translateY(-100%); }
+}
+
+.scroll-up p {
+  text-align: center;
+  line-height: 40px;
+  margin-top: -20px;
+}
+
+.scroll-up h6 {
+  margin-top: 50px;
+}
+
+.smaller {
+  text-size: 8px;
+}
+
+h4 {
+  margin-top: 150px;
+}
+
+h4 {
+  margin-top: 50px;
+}

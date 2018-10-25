@@ -33,7 +33,7 @@ describe('WorldMap', () => {
 
 
   beforeAll(() => {
-    wrapper = shallow(<WorldMap map={testGrid1} ticker={60} map2={testGrid3}/>)
+    wrapper = shallow(<WorldMap map={testGrid1} ticker={60} gameOver={function() { }} testEnv={true}/>)
   });
 
   describe('pause', () => {
@@ -45,8 +45,6 @@ describe('WorldMap', () => {
       expect(wrapper.state('paused')).toBe(false);
     })
   })
-
- 
 
   it('increments hour', () => {
     const instance = wrapper.instance();
@@ -62,8 +60,14 @@ describe('WorldMap', () => {
     expect(wrapper.state('ticker')).toBe(61);
   })
 
-
   it('renders the map grid', () => {
-      expect(wrapper.instance().renderGrid().length).toEqual(5)
-    });
+    expect(wrapper.instance().renderGrid().length).toEqual(5)
+  });
+
+  it('checks neighbouring cells', () => {
+    const instance = wrapper.instance();
+    let row = 0;
+    let col = 0;
+    expect(instance.checkNeighbours(row, col)).toEqual(false);
+  });
 });

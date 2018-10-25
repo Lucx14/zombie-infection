@@ -4,7 +4,7 @@ describe('Local Game', () => {
     cy.visit('http://localhost:3000')
     cy.get('#start-button').click()
     cy.wait(2000)
-    cy.get('.city-button:first').click()
+    cy.get('.city-button-active:first').click()
   })
 
   it('shows the game title', () => {

@@ -43,22 +43,47 @@ describe('Npc', () => {
         expect(npc.isNear(otherNpc, 10)).toEqual(true)
       })
     })
+    describe('when another npc is far away', () => {
+      it('returns false', () => {
+        otherNpc.x += 50
+        otherNpc.y += 50
+        expect(npc.isNear(otherNpc, 10)).toEqual(false)
+      })
+    })
   });
 
   describe('.move', () => {
     describe("when passed the argument 'towards'", () => {
       it('moves npc towards the target', () => {
         npc.x = otherNpc.x - 20
+        npc.y = otherNpc.y - 20
         npc.move(otherNpc, 'towards')
-        expect(npc.x).toEqual(otherNpc.x - 20 + npc.speed)
+        expect(npc.x).toEqual(otherNpc.x - 20 + npc.speed) 
+        expect(npc.y).toEqual(otherNpc.y - 20 + npc.speed)
+      })
+      it('moves npc towards the target', () => {
+        npc.x = otherNpc.x + 20
+        npc.y = otherNpc.y + 20
+        npc.move(otherNpc, 'towards')
+        expect(npc.x).toEqual(otherNpc.x + 20 - npc.speed)
+        expect(npc.y).toEqual(otherNpc.y + 20 - npc.speed)
       })
     })
 
     describe("when passed the argument 'away'", () => {
       it('moves npc away from the target', () => {
         npc.x = otherNpc.x - 20
+        npc.y = otherNpc.y - 20
         npc.move(otherNpc, 'away')
         expect(npc.x).toEqual(otherNpc.x - 20 - npc.speed)
+        expect(npc.y).toEqual(otherNpc.y - 20 - npc.speed)
+      })
+      it('moves npc away from the target', () => {
+        npc.x = otherNpc.x + 20
+        npc.y = otherNpc.y + 20
+        npc.move(otherNpc, 'away')
+        expect(npc.x).toEqual(otherNpc.x + 20 + npc.speed)
+        expect(npc.y).toEqual(otherNpc.y + 20 + npc.speed)
       })
     })
   });

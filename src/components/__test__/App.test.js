@@ -8,6 +8,8 @@ describe('App', () => {
   let wrapper;
 
   beforeAll(() => {
+    window.HTMLMediaElement.prototype.load = () => {}
+    window.HTMLMediaElement.prototype.play = () => {}
     let testCities = ["london"]
     let testHeadlines = {"london": ["testing"]}
     wrapper = shallow(<App headlines={testHeadlines} playableCities={testCities} map={"test map"}/>);
@@ -22,7 +24,6 @@ describe('App', () => {
   it('renders a headline', () => {
     expect(wrapper.findWhere(n => n.type() === 'p' && n.contains('testing')))
   });
-
 
   it('can set the city', () => {
     const instance = wrapper.instance();

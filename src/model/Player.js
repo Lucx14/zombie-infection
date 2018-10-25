@@ -8,15 +8,19 @@ export default function Player(speed = 2) {
 
 Player.prototype.moveUp = function() {
   this.y -= this.speed
+  return this.y
 }
 Player.prototype.moveDown = function() {
   this.y += this.speed
+  return this.y
 }
 Player.prototype.moveLeft = function() {
   this.x -= this.speed
+  return this.x
 }
 Player.prototype.moveRight = function() {
   this.x += this.speed
+  return this.x
 }
 
 Player.prototype.isAtBoundary = function(width, height) {

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import WorldMap from './WorldMap';
 import LocalGame from './LocalGame';
 import Stats from './Stats';
+import GameOver from './GameOver';
 import "./app.css"
 import headlines from '../Headlines';
 import cities from '../model/Cities';
@@ -28,8 +29,19 @@ class App extends Component {
       flyingZombies: false,
       fishFrenzy: false,
       worldWarZ: false,
+      gameOver: false
     }
     setInterval(() => this.getHeadline(headlines, this.state.playableCities), 5000);
+  }
+
+  gameOver() {
+    this.setState({ gameOver: true });
+  }
+
+  playMusic(audioFile, audio = new Audio(audioFile)) {
+    audio.currentTime = 0
+    audio.loop = true
+    audio.play()
   }
 
   setSelected(city) {
@@ -37,6 +49,7 @@ class App extends Component {
   }
 
   startGame() {
+    this.playMusic('./soundEffects/horrorMusic.mp3')
     this.setState({ playing: true });
   }
 
@@ -105,7 +118,7 @@ class App extends Component {
       city: false,
       zombieTotal: this.state.zombieTotal + zombieCount,
       showStats: true,
-      tokens: Math.floor(zombieCount/10)
+      tokens: this.state.tokens + Math.floor(zombieCount/10)
     })
   }
 
@@ -127,11 +140,13 @@ class App extends Component {
           this.setState({ aggression: this.state.aggression +1})
           break;
       }
-    };
+    }
   }
 
   render() {
     switch (true) {
+      case (this.state.gameOver):
+        return (<GameOver score={this.state.zombieCount}/>);
       case (!this.state.playing):
         return (
           <div>
@@ -155,11 +170,11 @@ class App extends Component {
         return (
           <div>
             <Stats tokens={this.state.tokens} increaseStat={this.increaseStat.bind(this)} done={this.enterStats.bind(this)}
-                  speed={this.state.speed} resilience={this.state.resilience} aggression={this.state.aggression}
-                  specialAbility={this.specialAbility.bind(this)} playableCities={this.state.playableCities}/>
+                   speed={this.state.speed} resilience={this.state.resilience} aggression={this.state.aggression}
+                   specialAbility={this.specialAbility.bind(this)} playableCities={this.state.playableCities}/>
           </div>
-        );
-      default:
+        ); 
+      default: 
         return (
           <div>
             <div id="world-map">
@@ -172,6 +187,8 @@ class App extends Component {
                         flyingZombies={this.state.flyingZombies}
                         worldWarZ={this.state.worldWarZ}
                         currentHeadline={this.state.currentHeadline}
+                        gameOver={this.gameOver.bind(this)}
+                        testEnv={false}
                         />
               <div id="button-container">
                 {this.renderButtons()}
