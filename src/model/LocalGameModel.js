@@ -13,9 +13,12 @@ export default function LocalGameModel(speedBonus,
   this._soundEffects = soundEffects
   this._zombieCount = 0
   this.gameSpeed = 15
-  this.speedBonus = speedBonus /3
+  this.speedBonus = speedBonus /40
   this.resBonus = resBonus /3
-  this.aggrBonus = aggrBonus /3
+  this.aggrBonus = aggrBonus /5
+
+  this._player.speed = 2 + this.speedBonus
+  console.log(this._player.speed)
 
   this._canvas = document.getElementById("canvas");
   this._canvas.width = 800;

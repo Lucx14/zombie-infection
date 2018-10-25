@@ -107,7 +107,6 @@ class App extends Component {
       showStats: true,
       tokens: Math.floor(zombieCount/10)
     })
-    console.log(this.state.zombieTotal)
   }
 
   enterStats() {
