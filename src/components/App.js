@@ -27,7 +27,7 @@ class App extends Component {
       tokens: 1,
       // ___A B I L I T I E S___
       flyingZombies: false,
-      fishFrenzy: true,
+      fishFrenzy: false,
       worldWarZ: false,
       gameOver: false
     }
@@ -37,7 +37,7 @@ class App extends Component {
   gameOver() {
     this.setState({ gameOver: true });
   }
-  
+
   playMusic(audioFile, audio = new Audio(audioFile)) {
     audio.currentTime = 0
     audio.loop = true
