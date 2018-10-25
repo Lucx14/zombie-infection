@@ -27,7 +27,7 @@ class App extends Component {
       tokens: 1,
       // ___A B I L I T I E S___
       flyingZombies: false,
-      fishFrenzy: false,
+      fishFrenzy: true,
       worldWarZ: false,
       gameOver: false
     }

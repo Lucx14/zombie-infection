@@ -94,11 +94,11 @@ class WorldMap extends PureComponent {
     ) {
       return true;
     } else if (
-      this.props.fishFrenzy && Math.random() < 0.005 &&
+      this.props.fishFrenzy && Math.random() < 0.1 &&
       [this.state.grid[row-1][col-1], this.state.grid[row-1][col], this.state.grid[row-1][col+1],
       this.state.grid[row][col-1], this.state.grid[row][col+1], this.state.grid[row+1][col-1],
       this.state.grid[row+1][col], this.state.grid[row+1][col+1]]
-        .filter(x => x===0).length > 4
+        .filter(x => x===0).length > 6
     ) {
       return true;
     }
