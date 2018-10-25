@@ -105,7 +105,7 @@ class App extends Component {
       city: false,
       zombieTotal: this.state.zombieTotal + zombieCount,
       showStats: true,
-      tokens: Math.floor(zombieCount/10)
+      tokens: this.state.tokens + Math.floor(zombieCount/10)
     })
   }
 
