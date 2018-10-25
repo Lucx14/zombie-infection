@@ -6,6 +6,7 @@ h2 {
 #loading-container{
   height: 800px;
   line-height: 600px; /* <-- this is what you must define */
+  z-index: 10;
 }
 
 ::-webkit-scrollbar { 

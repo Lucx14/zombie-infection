@@ -3,12 +3,13 @@ describe('Local Game', () => {
   beforeEach(function () {
     cy.visit('http://localhost:3000')
     cy.get('#start-button').click()
+    cy.wait(2000)
     cy.get('.city-button:first').click()
   })
 
   it('shows the game title', () => {
-    cy.get('h1')
-      .should('contain', 'Local Map');
+    cy.get('p')
+      .should('contain', 'London');
   });
 });
 
@@ -52,7 +53,7 @@ describe ('canvas accepts movement keys', () => {
 
   describe ('game timer end local game', () => {
     it ('responds to space bar to take user back to world map', () => {
-      cy.wait(11000)
+      cy.wait(46000)
       cy.get('#holder').find('#local-game-over').contains('TIMES UP!')
     });
   });

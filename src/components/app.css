@@ -1,5 +1,13 @@
 @import 'https://fonts.googleapis.com/css?family=Press+Start+2P';
 
+h3 {
+  color: white;
+  font-size: 17px;
+}
+html { 
+  background: url("https://i.imgur.com/7lntYD8.jpg") no-repeat center center fixed; 
+  background-size: cover;
+}
 .center {
   display: block;
   margin-left: auto;
@@ -8,16 +16,27 @@
   margin-top: 250px;
 }
 
+.ability-desc {
+  text-align: left;
+  font-size: 11px;
+  color: gainsboro;
+}
+
 #main-title {
-  font-size: 250%;
+  display:block;
+  position:relative;
+  margin: 0 auto 0 auto;
+  width:600px;
+  height:375px;
 }
 
 #start-button {
   width: 120px;
   height: 30px;
+  position:relative;
   border-radius: 5px;
   font-family: 'Press Start 2P';
-  margin-top: 80px;
+  margin-top: 5px;
   font-size: 110%;
 }
 
@@ -28,60 +47,58 @@
   width: 800px;
   height: 400px;
   margin: 0 auto 0 auto;
-  background-color:rgba(255, 255, 255, 0.15);
-  z-index: 1;
+  background-color:rgba(255, 255, 255, 0);
+  z-index: 5;
 }
 
-#london {
-  position: relative;
-  top: -293px;
-  left: 369px;
+#zombie-total {
+  font-size: x-small;
 }
-#paris {
-  position: relative;
-  top: -283px;
-  left: 365px;
+
+#title-screen {
+  width: 100%;
 }
-#rome {
-  position: relative;
-  top: -264px;
-  left: 369px;
+
+.city-button {
+  -webkit-transition-duration: 0.3s; 
+  transition-duration: 0.3s;
+  background-color: rgba(158, 158, 158, 0.822);
+  border:none;  
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  z-index: 0;
+  box-shadow: 2px 2px rgba(0, 0, 0, 0.7);
+  border: 1px;
 }
-#oslo {
-  position: relative;
-  top: -338px;
-  left: 340px;
+
+.city-button:hover {
+  background-color: rgb(36, 41, 36); /* Green */
 }
-#reykjavik {
-  position: relative;
-  top: -345px;
-  left: 100px;
+.city-button-active{
+  -webkit-transition-duration: 0.3s; 
+  transition-duration: 0.3s;
+  background-color: rgba(8, 201, 1, 0.959);
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  z-index: 0;
+  box-shadow: 2px 2px rgba(0, 0, 0, 0.7);
+  border: 1px;
 }
-#new-york {
-  position: relative;
-  top: -260px;
-  left: -75px;
+.city-button:focus {
+  outline: none; 
 }
-#madrid {
-  position: relative;
-  top: -270px;
-  left: 310px;
+.city-button-active:hover {
+  background-color: rgb(5, 136, 0); /* Green */
 }
-#marrakech {}
-#cairo {}
-#nairobi {}
-#istanbul {}
-#dubai {}
-#cape-town {}
-#los-angeles {}
-#mexico-city {}
-#bogota {}
-#rio-de-janeiro {}
-#tehran {}
-#new-dehli {}
-#bangkok {}
-#shanghai {}
-#tokyo {}
-#hong-kong {}
-#melbourne {}
-#wellington {}
+
+.city-button-active:focus {
+  background-color: rgb(0, 0, 0); /* Green */
+  outline: none; 
+}
+
+#stats {
+  border: none;
+  background-color: rgba(0, 0, 0, 0)
+}

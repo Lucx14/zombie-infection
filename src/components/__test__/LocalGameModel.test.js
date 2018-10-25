@@ -30,9 +30,9 @@ describe('LocalGameModel', () => {
                 width: 800,
                 height: 600,
             };
-        } else if (tagName == 'timer') {
+        } else if (tagName == 'timer' || tagName == 'zombie-count') {
             return {
-              innerHTML: () => ({})
+              innerHTML: ""
             }
         }
     };
@@ -51,6 +51,11 @@ describe('LocalGameModel', () => {
       this.moveRight = function() { this.x += this.speed }
     }
 
+    function mockSounds() {
+      this.zombieBite = function() {"zombieBite"}
+      this.scream = function() {"scream"}
+    }
+
     function mockNpc() {
       this.x = 390
       this.y = 290
@@ -58,7 +63,7 @@ describe('LocalGameModel', () => {
       this.h = 10
     }
 
-    localGameModel = new LocalGameModel(new mockPlayer(), new mockNpc())
+    localGameModel = new LocalGameModel(0, 0, 0,new mockPlayer(), new mockNpc(), new mockSounds())
 
   });
 

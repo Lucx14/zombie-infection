@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import WorldMap from './WorldMap';
 import LocalGame from './LocalGame';
+import Stats from './Stats';
 import "./app.css"
-
-const headlines = {
-  "london": ["East London Pub attacked by Horde of Ravenous flesh-munchers", "Queen seen roaming Westminster in a tank wearing full-body armour"],
-  "paris": ["Zombies spotted sampling wine in local vineyard", "Holiday makers leave 2-star tripadvisor review due to zombie in soup"]
-}
+import headlines from '../Headlines';
+import cities from '../model/Cities';
 
 class App extends Component {
   constructor (props) {
@@ -14,22 +12,29 @@ class App extends Component {
     this.state = {
       headlines: props.headlines || headlines,
       playableCities: props.playableCities || [],
-    }
-  }
-  componentWillMount() {
-    this.setState({ 
-      city: false, 
-      playing: false,
       map: InitialGrid(),
       ticker: -1,
-      playableCities: [],
+      zombieTotal: 0,
+      // ___V I E W  C H A N G E R S___
+      city: false,
+      showStats: false,
+      playing: false,
+      // ___S T A T S___
+      speed: 0,
+      resilience: 0,
+      aggression: 0,
+      tokens: 1,
+      // ___A B I L I T I E S___
       flyingZombies: false,
-    });
+      fishFrenzy: false,
+      worldWarZ: false,
+    }
+    setInterval(() => this.getHeadline(headlines, this.state.playableCities), 5000);
   }
 
   setSelected(city) {
     this.setState({ city: city });
-  };
+  }
 
   startGame() {
     this.setState({ playing: true });
@@ -50,82 +55,143 @@ class App extends Component {
   }
 
   flyingZombies() {
-    if (this.state.playableCities.length > 10 && this.state.flyingZombies ===false) {
+    if (this.state.playableCities.length > 10 && this.state.flyingZombies === false) {
       this.setState({ flyingZombies: true });
     }
   }
-  
+
+  specialAbility(ability) {
+    if (this.state.tokens > 19 && ability === "fishFrenzy") {
+      this.setState({ fishFrenzy: true, tokens: this.state.tokens -20 });
+    } else if (this.state.tokens > 29 && ability === "flyingZombies") {
+      this.setState({ flyingZombies: true, tokens: this.state.tokens -30 });
+    } else if (this.state.tokens > 39 && ability === "worldWarZ") {
+      this.setState({ worldWarZ: true, tokens: this.state.tokens -40 });
+    }
+  }
+
   getHeadline(headlines, playableCities) {
     if (playableCities.length > 0) {
       let cityHeadlines = headlines[playableCities[Math.floor(Math.random() * playableCities.length)]]
-      return cityHeadlines[Math.floor(Math.random() * cityHeadlines.length)];
+      this.setState({ currentHeadline: "BREAKING NEWS: " + cityHeadlines[Math.floor(Math.random() * cityHeadlines.length)] })
     }
   }
 
   renderButtons() {
-    const cities = ["london","paris","rome","oslo",
-    "reykjavik","new york","madrid","marrakech",
-    "cairo","nairobi","istanbul" ,"dubai","cape town",
-    "los angeles","mexico city","bogota","rio de janeiro",
-    "tehran","new dehli","bangkok","shanghai","tokyo",
-    "hong kong","melbourne","wellington"]
     return(cities.map((city, index) => {
-      return(
-        <button className="city-button" 
-                id={city}
-                key={index}
-                title={city} 
-                onClick={() => { this.setSelected(city) }}></button>
-      )
+      if (this.state.playableCities.includes(city)) {
+        return(
+          <button className="city-button-active"
+                  id={city}
+                  key={index}
+                  title={city}
+                  onClick={() => { this.setSelected(city) }}></button>
+        )
+      } else {
+        return(
+          <button className="city-button"
+                  id={city}
+                  key={index}
+                  title={city}
+                  ></button>
+        )
+      }
+
     }))
   }
 
-  endGame = () => {
-    this.setState({city: false})
-    console.log('in here')
+  endGame = (zombieCount) => {
+    this.setState({
+      city: false,
+      zombieTotal: this.state.zombieTotal + zombieCount,
+      showStats: true,
+      tokens: Math.floor(zombieCount/10)
+    })
+  }
+
+  enterStats() {
+    this.setState({ showStats: !this.state.showStats })
+  }
+
+  increaseStat(stat) {
+    if (this.state.tokens > 0) {
+      this.setState({ tokens: this.state.tokens -1})
+      switch (stat) {
+        case "speed":
+        this.setState({ speed: this.state.speed +1})
+          break;
+        case "resilience":
+          this.setState({ resilience: this.state.resilience +1})
+          break;
+        default:
+          this.setState({ aggression: this.state.aggression +1})
+          break;
+      }
+    };
   }
 
   render() {
-    this.flyingZombies()
-    if (!this.state.playing) {
-      return (
-        <div>
-          <h1 id="main-title" className="center">TRICK OR EAT BRAINS</h1>
-          <button onClick={() => { this.startGame() }} id="start-button" className="center">START</button>  
-        </div>
-      );
-    } else if (this.state.city) {
-      return (
-        <div>
-          <LocalGame city={this.state.city} endGame={this.endGame.bind(this)}/>
-        </div>
-      );
-    } else {
-      return (
-        <div id="world-map">
-          {this.state.city}
-          <WorldMap map={this.state.map}
-                    updateAppMap={this.updateState.bind(this)}
-                    ticker={this.state.ticker}
-                    activateCity={this.activateCity.bind(this)}
-                    flyingZombies={this.state.flyingZombies}
-                    />
-          <div id="button-container">
-            {this.renderButtons()}
+    switch (true) {
+      case (!this.state.playing):
+        return (
+          <div>
+            <div id="main-title">
+              <img src={"./mainTitle.png"} alt="title-screen" id="title-screen"/>
+              <button onClick={() => { this.startGame() }} id="start-button" className="center">START</button>
+            </div>
           </div>
-          <p id="headline">
-            {/* {this.getHeadline(this.state.headlines, this.state.playableCities)} */}
-          </p>
-        </div>
+        );
+      case (typeof this.state.city == 'string'):
+        return (
+          <div>
+            <LocalGame city={this.state.city}
+                       speed={this.state.speed}
+                       aggression={this.state.aggression}
+                       resilience={this.state.resilience}
+                       endGame={this.endGame.bind(this)}/>
+          </div>
+        );
+      case (this.state.showStats):
+        return (
+          <div>
+            <Stats tokens={this.state.tokens} increaseStat={this.increaseStat.bind(this)} done={this.enterStats.bind(this)}
+                  speed={this.state.speed} resilience={this.state.resilience} aggression={this.state.aggression}
+                  specialAbility={this.specialAbility.bind(this)} playableCities={this.state.playableCities}/>
+          </div>
+        );
+      default:
+        return (
+          <div>
+            <div id="world-map">
+              {this.state.city}
+              <WorldMap map={this.state.map}
+                        updateAppMap={this.updateState.bind(this)}
+                        ticker={this.state.ticker}
+                        activateCity={this.activateCity.bind(this)}
+                        fishFrenzy={this.state.fishFrenzy}
+                        flyingZombies={this.state.flyingZombies}
+                        worldWarZ={this.state.worldWarZ}
+                        currentHeadline={this.state.currentHeadline}
+                        />
+              <div id="button-container">
+                {this.renderButtons()}
+              </div>
+            </div>
+              <button id="stats" onClick={() => {this.enterStats()}}>STATS</button>
+          </div>
       )
     }
   }
 }
 
+// App.propTypes = {
+//   playableCities: PropTypes.array,
+// };
+
 export default App;
 
 function InitialGrid() {
-  const array = [ 
+  const array = [
   //                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
   //                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
   //                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
