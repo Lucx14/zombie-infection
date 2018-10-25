@@ -15,7 +15,7 @@ describe('LocalGameModel', () => {
       beginPath: () => {},
       rect: () => {},
       fill: () => {},
-      setTransform: () => {},
+      resetTransform: () => {},
       translate: () => {},
       scale: () => {},
       drawImage: () => {}
@@ -88,6 +88,11 @@ describe('LocalGameModel', () => {
   })
 
   describe("_playerMovement", () => {
+    // describe('if the player is near a boundry', () => {
+      // stub mockPlayer to return true when .isAtBoundary called
+      // test mockPlayer recieves call for .moveFromBoundary
+    //   })
+    
     it("keystroke 'w'", () => {
       localGameModel._keys[87] = true
       localGameModel._playerMovement()
