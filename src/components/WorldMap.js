@@ -16,7 +16,7 @@ class WorldMap extends PureComponent {
       renderGrid : [],
       loading: true,
       paused: false,
-      infectionChance: 0.03,
+      infectionChance: 0.1,
       hour: 0,
     }
   }
@@ -143,7 +143,7 @@ class WorldMap extends PureComponent {
   }
   
   render() {
-    
+    if (this.state.ticker === 30) {this.setState({infectionChance: 0.01})};
     if (this.state.loading) {
       return (
         <div>
