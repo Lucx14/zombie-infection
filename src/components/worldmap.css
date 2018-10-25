@@ -61,6 +61,7 @@ p {
   width: 5px;
   height: 5px;
   background-color: orangered;
+  transition: background-color 1s ease;
   outline-style: solid;
   outline-width: 1px;
 }
@@ -141,7 +142,7 @@ p {
 .city-button {
   -webkit-transition-duration: 0.3s; /* Safari */
   transition-duration: 0.3s;
-  background-color: rgb(240, 236, 30);
+  background-color: rgba(240, 236, 30, 0.926);
   border:none;  
   border-radius: 50%;
   width: 15px;

@@ -14,7 +14,6 @@ class App extends Component {
       playableCities: props.playableCities || [],
       map: InitialGrid(),
       ticker: -1,
-      musicPlaying: false,
       zombieTotal: 0,
       // ___V I E W  C H A N G E R S___
       city: false,
@@ -90,22 +89,22 @@ class App extends Component {
         )
       } else {
         return(
-          <button className="city-button" 
+          <button className="city-button"
                   id={city}
                   key={index}
-                  title={city} 
+                  title={city}
                   ></button>
         )
       }
-        
+
     }))
   }
 
   endGame = (zombieCount) => {
     this.setState({
-      city: false, 
-      zombieTotal: this.state.zombieTotal + zombieCount, 
-      showStats: true, 
+      city: false,
+      zombieTotal: this.state.zombieTotal + zombieCount,
+      showStats: true,
       tokens: Math.floor(zombieCount/10)
     })
   }
@@ -124,54 +123,50 @@ class App extends Component {
         case "resilience":
           this.setState({ resilience: this.state.resilience +1})
           break;
-        default: 
+        default:
           this.setState({ aggression: this.state.aggression +1})
           break;
       }
     }
   }
 
-  playMusic = (audioFilePath) => {
-    var audio = new Audio(audioFilePath);
-    audio.currentTime = 0;
-    audio.loop = true
-    audio.play();
-    this.setState({musicPlaying: true})
-  }
-
-  playCheck = () => {
-    if (!this.state.musicPlaying) {
-      this.playMusic('./soundEffects/HorrorMusic.mp3')
-    }
-  }
-
   render() {
     switch (true) {
-      case (!this.state.playing): 
+      case (!this.state.playing):
         return (
           <div>
-            <h1 id="main-title" className="center">TRICK OR EAT BRAINS</h1>
-            <button onClick={() => { this.startGame() }} id="start-button" className="center">START</button>
+            <audio autoPlay>
+              <source src='./soundEffects/HorrorMusic.mp3'/>
+            </audio>
+            <div id="main-title">
+              <img src={"./titleScreen.jpg"} alt="title-screen"/>
+              <button onClick={() => { this.startGame() }} id="start-button" className="center">START</button>
+            </div>
           </div>
         );
       case (typeof this.state.city == 'string'):
         return (
           <div>
+            <audio autoPlay>
+              <source src='./soundEffects/HorrorMusic.mp3'/>
+            </audio>
             <LocalGame city={this.state.city} endGame={this.endGame.bind(this)}/>
           </div>
-        ); 
+        );
       case (this.state.showStats):
         return (
           <div>
-            <Stats tokens={this.state.tokens} increaseStat={this.increaseStat.bind(this)} done={this.enterStats.bind(this)} 
+            <Stats tokens={this.state.tokens} increaseStat={this.increaseStat.bind(this)} done={this.enterStats.bind(this)}
                   speed={this.state.speed} resilience={this.state.resilience} aggression={this.state.aggression}
                   specialAbility={this.specialAbility.bind(this)} playableCities={this.state.playableCities}/>
           </div>
         ); 
       default: 
-        this.playCheck()
         return (
           <div id="world-map">
+            <audio autoPlay>
+              <source src='./soundEffects/HorrorMusic.mp3'/>
+            </audio>
             {this.state.city}
             <WorldMap map={this.state.map}
                       updateAppMap={this.updateState.bind(this)}
