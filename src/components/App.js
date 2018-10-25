@@ -18,15 +18,15 @@ class App extends Component {
       // ___V I E W  C H A N G E R S___
       city: false,
       showStats: false,
-      playing: true,
+      playing: false,
       // ___S T A T S___
       speed: 0,
       resilience: 0,
       aggression: 0,
       tokens: 1,
       // ___A B I L I T I E S___
-      flyingZombies: true,
-      fishFrenzy: true,
+      flyingZombies: false,
+      fishFrenzy: false,
       worldWarZ: false,
     }
     setInterval(() => this.getHeadline(headlines, this.state.playableCities), 5000);
