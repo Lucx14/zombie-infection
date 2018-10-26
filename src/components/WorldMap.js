@@ -39,7 +39,7 @@ class WorldMap extends PureComponent {
 
   tick() {
     this.checkGameOver();
-    this.setState({ticker: this.state.ticker + 1});
+    this.setState({ticker: this.state.ticker + 2});
     if (this.props.worldWarZ) { this.setState({infectionChance: 0.5}) };
     this.incrementHour();
     this.populateGrid();
