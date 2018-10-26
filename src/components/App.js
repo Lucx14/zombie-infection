@@ -13,6 +13,7 @@ class App extends Component {
     this.state = {
       headlines: props.headlines || headlines,
       playableCities: props.playableCities || [],
+      defeatedCities: [],
       map: InitialGrid(),
       ticker: -2,
       zombieTotal: 0,
@@ -54,6 +55,7 @@ class App extends Component {
 
   setSelected(city) {
     this.setState({ city: city });
+    !this.props.test && this.setState({ defeatedCities: [this.state.defeatedCities, city].flat() })
   }
 
   startGame() {
@@ -98,13 +100,22 @@ class App extends Component {
 
   renderButtons() {
     return(cities.map((city, index) => {
-      if (this.state.playableCities.includes(city)) {
+      if (this.state.defeatedCities.includes(city)) {
         return(
-          <button className="city-button-active"
+          <button className="city-button defeated"
                   id={city}
                   key={index}
                   title={city}
                   onClick={() => { this.setSelected(city) }}></button>
+        )
+      } else if (this.state.playableCities.includes(city)) {
+        return(
+          <button className="city-button activated"
+                  id={city}
+                  key={index}
+                  title={city}
+                  onClick={() => { this.setSelected(city) }}>
+                  </button>
         )
       } else {
         return(
@@ -115,7 +126,6 @@ class App extends Component {
                   ></button>
         )
       }
-
     }))
   }
 
@@ -152,13 +162,13 @@ class App extends Component {
   render() {
     switch (true) {
       case (this.state.gameOver):
-        return (<GameOver score={this.state.zombieCount}/>);
+        return (<GameOver score={this.state.zombieCount} zombieCount={this.state.zombieTotal}/>);
       case (!this.state.playing):
           return (
             <div>
               <div id="main-title">
-                <img src={"./titleScreen.jpg"} alt="title-screen" id="title-screen"/>
-                <button onClick={() => { this.startGame() }}
+                <img src={"./maintitle.png"} alt="title-screen" id="title-screen"/>
+                <button onClick={() => { this.startGame() }} 
                   className="center start-button"
                   id="main-start-button">START
                 </button>

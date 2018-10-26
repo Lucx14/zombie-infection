@@ -29,13 +29,13 @@ html {
 }
 
 #main-title {
-  width: 72%;
+  width: 50%;
   text-align: center;
   margin: 0 auto 0 auto;
 }
 
 #main-start-button {
-  margin-top: -120px;
+  margin-top: 5px;
 }
 
 #title-screen {
@@ -60,6 +60,13 @@ html {
 #instructions  {
   width: 100%;
   text-align: center;
+  margin-top: 16px;
+}
+
+#instructions img {
+  border-style: solid;
+  border-width: 5px;
+  border-color: black;
 }
 
 #intro-start-button {
@@ -94,17 +101,17 @@ html {
 .city-button:hover {
   background-color: rgb(36, 41, 36); /* Green */
 }
-.city-button-active{
-  -webkit-transition-duration: 0.3s; 
-  transition-duration: 0.3s;
-  background-color: rgba(8, 201, 1, 0.959);
-  border-radius: 50%;
-  width: 15px;
-  height: 15px;
-  z-index: 0;
-  box-shadow: 2px 2px rgba(0, 0, 0, 0.7);
-  border: 1px;
+.activated {
+  background-color: rgba(8, 201, 1, 0.836);
 }
+
+.activated:active {
+  background-color: rgba(4, 110, 0, 0.836);
+}
+.defeated {
+  background-color: rgba(44, 22, 22, 0.959);
+}
+
 .city-button:focus {
   outline: none; 
 }
@@ -119,5 +126,6 @@ html {
 
 #stats {
   border: none;
-  background-color: rgba(0, 0, 0, 0)
+  background-color: rgba(0, 0, 0, 0);
+  color: rgba(0, 0, 0, 0.055);
 }
