@@ -167,13 +167,8 @@ class App extends Component {
           return (
             <div>
               <div id="main-title">
-<<<<<<< HEAD
                 <img src={"./maintitle.png"} alt="title-screen" id="title-screen"/>
                 <button onClick={() => { this.startGame() }} 
-=======
-                <img src={"./titleScreen.jpg"} alt="title-screen" id="title-screen"/>
-                <button onClick={() => { this.startGame() }}
->>>>>>> origin/development
                   className="center start-button"
                   id="main-start-button">START
                 </button>
