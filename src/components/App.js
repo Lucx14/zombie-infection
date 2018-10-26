@@ -53,17 +53,23 @@ class App extends Component {
     }
   }
 
+  clickCityNoise(audioFile, audio = new Audio(audioFile)) {
+    audio.play();
+  }
+
   setSelected(city) {
     this.setState({ city: city });
     !this.props.test && this.setState({ defeatedCities: [this.state.defeatedCities, city].flat() })
   }
 
   startGame() {
+    this.clickCityNoise("./soundEffects/buttonPress.mp3");
     this.playMusic('./soundEffects/HorrorMusicMain.mp3')
     this.setState({ playing: true });
   }
 
   exitIntro() {
+    this.clickCityNoise("./soundEffects/buttonPress.mp3");
     this.setState({ ticker: -1 });
   }
 
@@ -106,7 +112,7 @@ class App extends Component {
                   id={city}
                   key={index}
                   title={city}
-                  onClick={() => { this.setSelected(city) }}></button>
+                  onClick={() => { this.clickCityNoise("./soundEffects/buttonPress.mp3"); this.setSelected(city) }}></button>
         )
       } else if (this.state.playableCities.includes(city)) {
         return(
@@ -114,7 +120,7 @@ class App extends Component {
                   id={city}
                   key={index}
                   title={city}
-                  onClick={() => { this.setSelected(city) }}>
+                  onClick={() => { this.clickCityNoise("./soundEffects/buttonPress.mp3"); this.setSelected(city) }}>
                   </button>
         )
       } else {
@@ -168,7 +174,7 @@ class App extends Component {
             <div>
               <div id="main-title">
                 <img src={"./maintitle.png"} alt="title-screen" id="title-screen"/>
-                <button onClick={() => { this.startGame() }} 
+                <button onClick={() => { this.startGame() }}
                   className="center start-button"
                   id="main-start-button">START
                 </button>
