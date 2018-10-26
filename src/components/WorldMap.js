@@ -16,7 +16,7 @@ class WorldMap extends PureComponent {
       renderGrid : [],
       loading: true,
       paused: false,
-      infectionChance: 0.01,
+      infectionChance: 0.1,
       hour: 0,
     }
   }
@@ -58,13 +58,14 @@ class WorldMap extends PureComponent {
     } 
   }
 
-  pauseGame() {
+  pauseGame(state) {
     if (this.state.paused) {
       this.interval = setInterval(() => this.tick(), 1000)
     } else {
       clearInterval(this.interval)
     }
     this.setState({paused: !this.state.paused})
+    this.props.toggleHeadlineInterval(state)
   }
 
   populateGrid() {
@@ -102,6 +103,11 @@ class WorldMap extends PureComponent {
     ) {
       return true;
     }
+  }
+
+  pad2(number) {
+    number = '0' + number;
+    return number.substr(number.length - 2)
   }
 
   renderGrid() {
@@ -143,7 +149,7 @@ class WorldMap extends PureComponent {
   }
   
   render() {
-    
+    if (this.state.ticker === 30) {this.setState({infectionChance: 0.01})};
     if (this.state.loading) {
       return (
         <div>
@@ -157,7 +163,7 @@ class WorldMap extends PureComponent {
     return (
       <div>
         <div id="grid">
-          <div id="time">31 October 1986 {this.state.hour + 12}:{this.state.ticker - (this.state.hour * 60) <10 ? "0":null}{this.state.ticker - this.state.hour * 60}</div>
+          <div id="time">31 October 1986 {(Math.floor((this.state.ticker % 3600) / 60)) + 12}:{this.pad2(this.state.ticker % 60)}</div>
           <div id="headline">{this.props.currentHeadline ? this.props.currentHeadline.toUpperCase() : null}</div>
           <div id="world-population-stats">
             <h4 id="h4-infected">INFECTED</h4>
@@ -180,20 +186,12 @@ class WorldMap extends PureComponent {
         <div className="map">
           {this.state.renderGrid}
         </div>
-          {this.state.paused ? <div id="pause-indicator">paused</div> : null}
-          <button id="pause" onClick={() => { this.pauseGame() }}></button>
+            {this.state.paused ? <div onClick={() => { this.pauseGame(true) }} id="pause-indicator">paused</div> : null}
+          <button id="pause" onClick={() => { this.pauseGame(false) }}></button>
       </div>
     );
   }
 }
-
-// <p>North America: {this.infectedPopulations(1)}%, Survivors: {this.infectionData(1)}</p>
-// <p>South America: {this.infectedPopulations(2)}%, Survivors: {this.infectionData(2)}</p>
-// <p>Europe: {this.infectedPopulations(3)}%, Survivors: {this.infectionData(3)}</p>
-// <p>Africa: {this.infectedPopulations(4)}%, Survivors: {this.infectionData(4)}</p>
-// <p>Asia: {this.infectedPopulations(5)}%, Survivors: {this.infectionData(5)}</p>
-// <p>Oceana: {this.infectedPopulations(6)}%, Survivors: {this.infectionData(6)}</p>
-// <p>Middle East: {this.infectedPopulations(7)}%, Survivors: {this.infectionData(7)}</p>
 
 WorldMap.propTypes = {
   ticker: PropTypes.number,

@@ -33,7 +33,13 @@ describe('WorldMap', () => {
 
 
   beforeAll(() => {
-    wrapper = shallow(<WorldMap map={testGrid1} ticker={60} gameOver={function() { }} testEnv={true}/>)
+    wrapper = shallow(<WorldMap 
+      map={testGrid1} 
+      ticker={60} 
+      gameOver={function() { }} 
+      testEnv={true}
+      toggleHeadlineInterval={function() { }} 
+    />)
   });
 
   describe('pause', () => {
@@ -69,5 +75,10 @@ describe('WorldMap', () => {
     let row = 0;
     let col = 0;
     expect(instance.checkNeighbours(row, col)).toEqual(false);
+  });
+
+  it('formats minutes correctly', () => {
+    const instance = wrapper.instance();
+    expect(instance.pad2(225)).toEqual("25");
   });
 });

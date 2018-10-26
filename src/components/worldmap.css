@@ -42,8 +42,17 @@ h4 {
 
 #pause-indicator {
   position: absolute;
-  text-align: center;
+  left: 50%;
+  margin-left: -400px;
+  margin-top: -59px;
+  padding-top: 280px;
+  width: 800px;
+  height: 320px;
+  background-color: rgba(0, 0, 0, 0.363);
+  border-radius: 10px;
   color: white;
+  z-index: 10;
+  text-align: center;
 }
 
 #grid {

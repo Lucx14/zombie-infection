@@ -13,8 +13,9 @@ class App extends Component {
     this.state = {
       headlines: props.headlines || headlines,
       playableCities: props.playableCities || [],
+      defeatedCities: [],
       map: InitialGrid(),
-      ticker: -1,
+      ticker: -2,
       zombieTotal: 0,
       // ___V I E W  C H A N G E R S___
       city: false,
@@ -31,7 +32,7 @@ class App extends Component {
       worldWarZ: false,
       gameOver: false
     }
-    setInterval(() => this.getHeadline(headlines, this.state.playableCities), 5000);
+    this.HeadlineInterval = setInterval(() => this.getHeadline(headlines, this.state.playableCities), 5000);
   }
 
   gameOver() {
@@ -44,13 +45,32 @@ class App extends Component {
     audio.play()
   }
 
+  toggleHeadlineInterval(state) {
+    if (state) {
+      this.HeadlineInterval = setInterval(() => this.getHeadline(headlines, this.state.playableCities), 5000);
+    } else {
+      clearInterval(this.HeadlineInterval)
+    }
+  }
+
+  clickCityNoise(audioFile, audio = new Audio(audioFile)) {
+    audio.play();
+  }
+
   setSelected(city) {
     this.setState({ city: city });
+    !this.props.test && this.setState({ defeatedCities: [this.state.defeatedCities, city].flat() })
   }
 
   startGame() {
-    this.playMusic('./soundEffects/horrorMusic.mp3')
+    this.clickCityNoise("./soundEffects/buttonPress.mp3");
+    this.playMusic('./soundEffects/HorrorMusicMain.mp3')
     this.setState({ playing: true });
+  }
+
+  exitIntro() {
+    this.clickCityNoise("./soundEffects/buttonPress.mp3");
+    this.setState({ ticker: -1 });
   }
 
   updateState(map, ticker) {
@@ -64,12 +84,6 @@ class App extends Component {
   activateCity(newCity) {
     if(this.state.playableCities.includes(newCity) === false) {
       this.setState({ playableCities: [this.state.playableCities, newCity].flat()});
-    }
-  }
-
-  flyingZombies() {
-    if (this.state.playableCities.length > 10 && this.state.flyingZombies === false) {
-      this.setState({ flyingZombies: true });
     }
   }
 
@@ -92,13 +106,22 @@ class App extends Component {
 
   renderButtons() {
     return(cities.map((city, index) => {
-      if (this.state.playableCities.includes(city)) {
+      if (this.state.defeatedCities.includes(city)) {
         return(
-          <button className="city-button-active"
+          <button className="city-button defeated"
                   id={city}
                   key={index}
                   title={city}
-                  onClick={() => { this.setSelected(city) }}></button>
+                  onClick={() => { this.clickCityNoise("./soundEffects/buttonPress.mp3"); this.setSelected(city) }}></button>
+        )
+      } else if (this.state.playableCities.includes(city)) {
+        return(
+          <button className="city-button activated"
+                  id={city}
+                  key={index}
+                  title={city}
+                  onClick={() => { this.clickCityNoise("./soundEffects/buttonPress.mp3"); this.setSelected(city) }}>
+                  </button>
         )
       } else {
         return(
@@ -109,7 +132,6 @@ class App extends Component {
                   ></button>
         )
       }
-
     }))
   }
 
@@ -146,16 +168,32 @@ class App extends Component {
   render() {
     switch (true) {
       case (this.state.gameOver):
-        return (<GameOver score={this.state.zombieCount}/>);
+        return (<GameOver score={this.state.zombieCount} zombieCount={this.state.zombieTotal}/>);
       case (!this.state.playing):
-        return (
-          <div>
-            <div id="main-title">
-              <img src={"./mainTitle.png"} alt="title-screen" id="title-screen"/>
-              <button onClick={() => { this.startGame() }} id="start-button" className="center">START</button>
+          return (
+            <div>
+              <div id="main-title">
+                <img src={"./mainTitle.png"} alt="title-screen" id="title-screen"/>
+                <button onClick={() => { this.startGame() }}
+                  className="center start-button"
+                  id="main-start-button">START
+                </button>
+              </div>
             </div>
-          </div>
-        );
+          );
+      case (this.state.ticker === -2):
+          return (
+            <div>
+              <div id="instructions">
+                <img src={"./instructionsScreen.jpg"} alt="instructions"/>
+                <button onClick={() => { this.exitIntro() }}
+                  id="intro-start-button"
+                  className="center start-button">
+                  PLAY
+                </button>
+              </div>
+            </div>
+          );
       case (typeof this.state.city == 'string'):
         return (
           <div>
@@ -173,8 +211,8 @@ class App extends Component {
                    speed={this.state.speed} resilience={this.state.resilience} aggression={this.state.aggression}
                    specialAbility={this.specialAbility.bind(this)} playableCities={this.state.playableCities}/>
           </div>
-        ); 
-      default: 
+        );
+      default:
         return (
           <div>
             <div id="world-map">
@@ -188,6 +226,7 @@ class App extends Component {
                         worldWarZ={this.state.worldWarZ}
                         currentHeadline={this.state.currentHeadline}
                         gameOver={this.gameOver.bind(this)}
+                        toggleHeadlineInterval={this.toggleHeadlineInterval.bind(this)}
                         testEnv={false}
                         />
               <div id="button-container">

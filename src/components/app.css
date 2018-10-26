@@ -14,6 +14,12 @@ html {
   margin-right: auto;
   width: 100%;
   margin-top: 250px;
+  background-color: rgba(172, 255, 47, 0.822);
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
 .ability-desc {
@@ -23,14 +29,21 @@ html {
 }
 
 #main-title {
-  display:block;
-  position:relative;
+  width: 50%;
+  text-align: center;
   margin: 0 auto 0 auto;
-  width:600px;
-  height:375px;
 }
 
-#start-button {
+#main-start-button {
+  margin-top: 5px;
+}
+
+#title-screen {
+  width: 100%;
+  object-fit: cover;
+}
+
+.start-button {
   width: 120px;
   height: 30px;
   position:relative;
@@ -43,6 +56,23 @@ html {
 #world-map{
   z-index: 0;
 }
+
+#instructions  {
+  width: 100%;
+  text-align: center;
+  margin-top: 16px;
+}
+
+#instructions img {
+  border-style: solid;
+  border-width: 5px;
+  border-color: black;
+}
+
+#intro-start-button {
+  margin-top: -50px;
+}
+
 #button-container{
   width: 800px;
   height: 400px;
@@ -53,10 +83,6 @@ html {
 
 #zombie-total {
   font-size: x-small;
-}
-
-#title-screen {
-  width: 100%;
 }
 
 .city-button {
@@ -73,19 +99,19 @@ html {
 }
 
 .city-button:hover {
-  background-color: rgb(36, 41, 36); /* Green */
+  background-color: rgba(5, 139, 0, 0.836);
 }
-.city-button-active{
-  -webkit-transition-duration: 0.3s; 
-  transition-duration: 0.3s;
-  background-color: rgba(8, 201, 1, 0.959);
-  border-radius: 50%;
-  width: 15px;
-  height: 15px;
-  z-index: 0;
-  box-shadow: 2px 2px rgba(0, 0, 0, 0.7);
-  border: 1px;
+.activated {
+  background-color: rgba(8, 201, 1, 0.836);
 }
+
+.activated:active {
+  background-color: rgba(3, 83, 0, 0.836);
+}
+.defeated {
+  background-color: rgba(44, 22, 22, 0.959);
+}
+
 .city-button:focus {
   outline: none; 
 }
@@ -100,5 +126,6 @@ html {
 
 #stats {
   border: none;
-  background-color: rgba(0, 0, 0, 0)
+  background-color: rgba(0, 0, 0, 0);
+  color: rgba(0, 0, 0, 0.055);
 }
