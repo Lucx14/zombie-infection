@@ -59,7 +59,7 @@ class App extends Component {
   }
 
   startGame() {
-    this.playMusic('./soundEffects/horrorMusic.mp3')
+    this.playMusic('./soundEffects/HorrorMusicMain.mp3')
     this.setState({ playing: true });
   }
 
@@ -167,8 +167,13 @@ class App extends Component {
           return (
             <div>
               <div id="main-title">
+<<<<<<< HEAD
                 <img src={"./maintitle.png"} alt="title-screen" id="title-screen"/>
                 <button onClick={() => { this.startGame() }} 
+=======
+                <img src={"./titleScreen.jpg"} alt="title-screen" id="title-screen"/>
+                <button onClick={() => { this.startGame() }}
+>>>>>>> origin/development
                   className="center start-button"
                   id="main-start-button">START
                 </button>
@@ -180,8 +185,8 @@ class App extends Component {
             <div>
               <div id="instructions">
                 <img src={"./instructionsScreen.jpg"} alt="instructions"/>
-                <button onClick={() => { this.exitIntro() }} 
-                  id="intro-start-button" 
+                <button onClick={() => { this.exitIntro() }}
+                  id="intro-start-button"
                   className="center start-button">
                   PLAY
                 </button>
@@ -205,8 +210,8 @@ class App extends Component {
                    speed={this.state.speed} resilience={this.state.resilience} aggression={this.state.aggression}
                    specialAbility={this.specialAbility.bind(this)} playableCities={this.state.playableCities}/>
           </div>
-        ); 
-      default: 
+        );
+      default:
         return (
           <div>
             <div id="world-map">

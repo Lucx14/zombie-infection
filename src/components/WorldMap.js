@@ -105,6 +105,11 @@ class WorldMap extends PureComponent {
     }
   }
 
+  pad2(number) {
+    number = '0' + number;
+    return number.substr(number.length - 2)
+  }
+
   renderGrid() {
     return (
       this.state.grid.map((row, rowIndex) => (
@@ -158,7 +163,7 @@ class WorldMap extends PureComponent {
     return (
       <div>
         <div id="grid">
-          <div id="time">31 October 1986 {this.state.hour + 12}:{this.state.ticker - (this.state.hour * 60) <10 ? "0":null}{this.state.ticker - this.state.hour * 60}</div>
+          <div id="time">31 October 1986 {(Math.floor((this.state.ticker % 3600) / 60)) + 12}:{this.pad2(this.state.ticker % 60)}</div>
           <div id="headline">{this.props.currentHeadline ? this.props.currentHeadline.toUpperCase() : null}</div>
           <div id="world-population-stats">
             <h4 id="h4-infected">INFECTED</h4>
