@@ -8,7 +8,7 @@ describe('Stats', () => {
   beforeAll(() => {
     window.HTMLMediaElement.prototype.load = () => {}
     window.HTMLMediaElement.prototype.play = () => {}
-  })
+  });
 
   it('renders a cell dependent on land prop', () => {
     const wrapper = shallow(<Stats playableCities={[]}/>)
