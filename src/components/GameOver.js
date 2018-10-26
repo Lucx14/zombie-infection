@@ -9,7 +9,7 @@ class GameOver extends Component {
         <div id="black-screen" >
         <div className="scroll-up">
           <h1>Game Over</h1>
-          <h5>YOUR SCORE: </h5>
+          <h5>YOUR SCORE: {this.props.zombieCount}</h5>
           <h4>TRICK OR EAT BRAINS</h4>
           <h6>Dev Team</h6>
           <p>James Sutherland</p>

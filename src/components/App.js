@@ -126,7 +126,6 @@ class App extends Component {
                   ></button>
         )
       }
-
     }))
   }
 
@@ -163,7 +162,7 @@ class App extends Component {
   render() {
     switch (true) {
       case (this.state.gameOver):
-        return (<GameOver score={this.state.zombieCount}/>);
+        return (<GameOver score={this.state.zombieCount} zombieCount={this.state.zombieTotal}/>);
       case (!this.state.playing):
           return (
             <div>
