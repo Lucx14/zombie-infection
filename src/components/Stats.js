@@ -7,9 +7,14 @@ class Stats extends Component {
   increaseStat(ability) {
     this.props.increaseStat(ability);
   }
+
+  clickCityNoise(audioFile, audio = new Audio(audioFile)) {
+    audio.play();
+  }
+
   render() {
-    const level = this.props.playableCities.length 
-  
+    const level = this.props.playableCities.length
+
     return (
       <div>
         <div id="stats-grid">
@@ -53,7 +58,7 @@ class Stats extends Component {
               </button>
           </div>
           </div>
-          <button onClick={() => { this.props.done() }} id="done" className="center start-button">Done</button>
+          <button onClick={() => { this.clickCityNoise("./soundEffects/buttonPress.mp3"); this.props.done() }} id="done" className="center start-button">Done</button>
         </div>
       </div>
     );

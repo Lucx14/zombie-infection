@@ -4,7 +4,12 @@ import { spy, stub } from 'sinon';
 import Stats from '../Stats.js'
 
 describe('Stats', () => {
-  
+
+  beforeAll(() => {
+    window.HTMLMediaElement.prototype.load = () => {}
+    window.HTMLMediaElement.prototype.play = () => {}
+  });
+
   it('renders a cell dependent on land prop', () => {
     const wrapper = shallow(<Stats playableCities={[]}/>)
     expect(wrapper.find('h1').text()).toMatch("STATS")
