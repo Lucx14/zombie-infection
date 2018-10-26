@@ -1,7 +1,7 @@
 const headlines = {
-    "london": ["East London Pub attacked by Horde of Ravenous flesh-munchers", "Queen seen roaming Westminster in a tank wearing full-body armour", "Zombies infiltrate Buckingham Palace", "Lewisham bus stop damaged", ],
-    "paris": ["Zombies spotted sampling wine in local vineyard", "Holiday makers leave 2-star tripadvisor review due to zombie in soup", "Scientists in Paris working hard to identify cause of outbreak"],
-    "rome" : ["Romans swap spaghetti for human intestines", "Trevi fountain fills with corpses", "Walkers spotted in Tuscany", "Mamma Mia! The undead storm Milan fashion show"],
+    "london": ["East London Pub attacked by Horde of Ravenous flesh-munchers", "Queen seen roaming Westminster in a tank wearing full-body armour", "Zombies infiltrate Buckingham Palace", "Reports of fallout from the Chernobyl disaster spreading and causing strange behaviour in young people", "Lewisham bus stop damaged", "afternoon screening of Aliens interrupted after zombie kids invade theatre", "Schools sending kids home early due to illness", "Doctors begin investigating contageous infection in children",  "UK reports small meteorite landing just outside of london, emergency services on the scene"],
+    "paris": ["Zombies spotted sampling wine in local vineyard", "Holiday makers leave 2-star tripadvisor review due to zombie in soup", "Scientists in Paris working hard to identify cause of outbreak", "First case of Mad Cow disease identified", "Swiss punks on holiday in paris run for their lives as zombie hoard attack", "local patisserie starts selling ginger bread zombies", "Authorities to reconsider plans for a channel tunnel after concerns over UK disease outbreak"],
+    "rome" : ["Romans swap spaghetti for human intestines", "Trevi fountain fills with corpses", "Walkers spotted in Tuscany", "Mamma Mia! The undead storm Milan fashion show", "Vatican City release declaration that the end of the world has begun", "Italian authorities heard hundreds of zombies into the colosseum"],
     "oslo": ["Oslo resident begin city evacuation as zombie plague spreads"], 
     "reykjavik": ["Singer Bjork devoured by Zombie", "Undead unable to cope with Icelandic cold"],
     "new-york": ["Trick or treaters on the rampage in new york!", "Zombies hit Broadway", "Brooklyn resisdents fight back against the undead", "Madonna devoured by Zombie", "Michael Jackson bitten while filming 'Thriller' music video", "Ronald Reagan flees White House"],
@@ -23,7 +23,7 @@ const headlines = {
     "tokyo": ["Filming of new Resident Evil movie suspended after real zombies invade set and kill the fake zombies"], 
     "hong-kong": ["A Hong Kong doctor has started working on a possible cure but it might be too late!"], 
     "melbourne": ["Melbourne house prices take a turn for the worse after town over-run with flesh eating children"], 
-    "wellington": ["Sleepy wellington village residents lock themselves in a barn and radio for help"], 
+    "wellington": ["Sleepy Wellington village residents lock themselves in a barn and radio for help"], 
     "vancouver": ["Reports of crazed kids on the rampage on halloween evening"]
   }
 
