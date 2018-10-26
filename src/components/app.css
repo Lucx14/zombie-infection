@@ -94,17 +94,13 @@ html {
 .city-button:hover {
   background-color: rgb(36, 41, 36); /* Green */
 }
-.city-button-active{
-  -webkit-transition-duration: 0.3s; 
-  transition-duration: 0.3s;
-  background-color: rgba(8, 201, 1, 0.959);
-  border-radius: 50%;
-  width: 15px;
-  height: 15px;
-  z-index: 0;
-  box-shadow: 2px 2px rgba(0, 0, 0, 0.7);
-  border: 1px;
+.activated {
+  background-color: rgba(8, 201, 1, 0.836);
 }
+.defeated {
+  background-color: rgba(105, 17, 17, 0.959);
+}
+
 .city-button:focus {
   outline: none; 
 }
