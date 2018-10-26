@@ -29,13 +29,13 @@ html {
 }
 
 #main-title {
-  width: 72%;
+  width: 50%;
   text-align: center;
   margin: 0 auto 0 auto;
 }
 
 #main-start-button {
-  margin-top: -120px;
+  margin-top: 5px;
 }
 
 #title-screen {
@@ -60,6 +60,13 @@ html {
 #instructions  {
   width: 100%;
   text-align: center;
+  margin-top: 16px;
+}
+
+#instructions img {
+  border-style: solid;
+  border-width: 5px;
+  border-color: black;
 }
 
 #intro-start-button {
@@ -97,8 +104,12 @@ html {
 .activated {
   background-color: rgba(8, 201, 1, 0.836);
 }
+
+.activated:active {
+  background-color: rgba(4, 110, 0, 0.836);
+}
 .defeated {
-  background-color: rgba(105, 17, 17, 0.959);
+  background-color: rgba(44, 22, 22, 0.959);
 }
 
 .city-button:focus {
@@ -115,5 +126,6 @@ html {
 
 #stats {
   border: none;
-  background-color: rgba(0, 0, 0, 0)
+  background-color: rgba(0, 0, 0, 0);
+  color: rgba(0, 0, 0, 0.055);
 }
