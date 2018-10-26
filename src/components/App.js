@@ -88,11 +88,11 @@ class App extends Component {
   }
 
   specialAbility(ability) {
-    if (this.state.tokens > 29 && ability === "fishFrenzy") {
+    if (this.state.tokens > 29 && ability === "fishFrenzy" && !this.state.fishFrenzy) {
       this.setState({ fishFrenzy: true, tokens: this.state.tokens -30 });
-    } else if (this.state.tokens > 39 && ability === "flyingZombies") {
+    } else if (this.state.tokens > 39 && ability === "flyingZombies" && !this.state.flyingZombies) {
       this.setState({ flyingZombies: true, tokens: this.state.tokens -40 });
-    } else if (this.state.tokens > 49 && ability === "worldWarZ") {
+    } else if (this.state.tokens > 49 && ability === "worldWarZ" && !this.state.worldWarZ) {
       this.setState({ worldWarZ: true, tokens: this.state.tokens -50 });
     }
   }

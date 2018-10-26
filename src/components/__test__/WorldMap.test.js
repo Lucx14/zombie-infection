@@ -63,7 +63,7 @@ describe('WorldMap', () => {
     const instance = wrapper.instance();
     expect(wrapper.state('ticker')).toBe(60);
     instance.tick();
-    expect(wrapper.state('ticker')).toBe(61);
+    expect(wrapper.state('ticker')).toBe(62);
   })
 
   it('renders the map grid', () => {
