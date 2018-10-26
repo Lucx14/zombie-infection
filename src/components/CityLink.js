@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 class CityLink extends PureComponent { 
   determineClass() {
     if (this.props.active) {
-      return "clickable"
+      return "land clickable"
     }
-    return "unclickable"
+    return "land unclickable"
   }
 
   render() {
