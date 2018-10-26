@@ -17,6 +17,7 @@ position:absolute;
 display:block;
 border: solid 2px black;
 position:relative;
+top: 20px;
 background:transparent;
 margin: 0 auto 0 auto;
 width:800px;
