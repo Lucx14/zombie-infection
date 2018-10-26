@@ -14,7 +14,7 @@ class App extends Component {
       headlines: props.headlines || headlines,
       playableCities: props.playableCities || [],
       map: InitialGrid(),
-      ticker: -1,
+      ticker: -2,
       zombieTotal: 0,
       // ___V I E W  C H A N G E R S___
       city: false,
@@ -31,7 +31,7 @@ class App extends Component {
       worldWarZ: false,
       gameOver: false
     }
-    setInterval(() => this.getHeadline(headlines, this.state.playableCities), 5000);
+    this.HeadlineInterval = setInterval(() => this.getHeadline(headlines, this.state.playableCities), 5000);
   }
 
   gameOver() {
@@ -44,6 +44,14 @@ class App extends Component {
     audio.play()
   }
 
+  toggleHeadlineInterval(state) {
+    if (state) {
+      this.HeadlineInterval = setInterval(() => this.getHeadline(headlines, this.state.playableCities), 5000);
+    } else {
+      clearInterval(this.HeadlineInterval)
+    }
+  }
+
   setSelected(city) {
     this.setState({ city: city });
   }
@@ -51,6 +59,10 @@ class App extends Component {
   startGame() {
     this.playMusic('./soundEffects/horrorMusic.mp3')
     this.setState({ playing: true });
+  }
+
+  exitIntro() {
+    this.setState({ ticker: -1 });
   }
 
   updateState(map, ticker) {
@@ -64,12 +76,6 @@ class App extends Component {
   activateCity(newCity) {
     if(this.state.playableCities.includes(newCity) === false) {
       this.setState({ playableCities: [this.state.playableCities, newCity].flat()});
-    }
-  }
-
-  flyingZombies() {
-    if (this.state.playableCities.length > 10 && this.state.flyingZombies === false) {
-      this.setState({ flyingZombies: true });
     }
   }
 
@@ -148,14 +154,30 @@ class App extends Component {
       case (this.state.gameOver):
         return (<GameOver score={this.state.zombieCount}/>);
       case (!this.state.playing):
-        return (
-          <div>
-            <div id="main-title">
-              <img src={"./mainTitle.png"} alt="title-screen" id="title-screen"/>
-              <button onClick={() => { this.startGame() }} id="start-button" className="center">START</button>
+          return (
+            <div>
+              <div id="main-title">
+                <img src={"./titleScreen.jpg"} alt="title-screen" id="title-screen"/>
+                <button onClick={() => { this.startGame() }} 
+                  className="center start-button"
+                  id="main-start-button">START
+                </button>
+              </div>
             </div>
-          </div>
-        );
+          );
+      case (this.state.ticker === -2):
+          return (
+            <div>
+              <div id="instructions">
+                <img src={"./instructionsScreen.jpg"} alt="instructions"/>
+                <button onClick={() => { this.exitIntro() }} 
+                  id="intro-start-button" 
+                  className="center start-button">
+                  PLAY
+                </button>
+              </div>
+            </div>
+          );
       case (typeof this.state.city == 'string'):
         return (
           <div>
@@ -188,6 +210,7 @@ class App extends Component {
                         worldWarZ={this.state.worldWarZ}
                         currentHeadline={this.state.currentHeadline}
                         gameOver={this.gameOver.bind(this)}
+                        toggleHeadlineInterval={this.toggleHeadlineInterval.bind(this)}
                         testEnv={false}
                         />
               <div id="button-container">
