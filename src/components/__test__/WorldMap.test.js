@@ -76,4 +76,9 @@ describe('WorldMap', () => {
     let col = 0;
     expect(instance.checkNeighbours(row, col)).toEqual(false);
   });
+
+  it('formats minutes correctly', () => {
+    const instance = wrapper.instance();
+    expect(instance.pad2(225)).toEqual("25");
+  });
 });
