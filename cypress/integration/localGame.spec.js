@@ -9,8 +9,8 @@ describe('Local Game', () => {
     })
     cy.get('button:first').click()
     cy.get('button:first').click()
-    cy.wait(5000)
-    cy.get('.city-button-active:first').click()
+    cy.wait(2000)
+    cy.get('#london').click()
   })
 
   it('shows the game title', () => {
