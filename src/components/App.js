@@ -55,7 +55,7 @@ class App extends Component {
 
   setSelected(city) {
     this.setState({ city: city });
-    this.setState({ defeatedCities: [this.state.defeatedCities, city].flat() })
+    !this.props.test && this.setState({ defeatedCities: [this.state.defeatedCities, city].flat() })
   }
 
   startGame() {

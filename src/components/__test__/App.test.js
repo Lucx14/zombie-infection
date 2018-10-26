@@ -12,7 +12,7 @@ describe('App', () => {
     window.HTMLMediaElement.prototype.play = () => {}
     let testCities = ["london"]
     let testHeadlines = {"london": ["testing"]}
-    wrapper = shallow(<App headlines={testHeadlines} playableCities={testCities} map={"test map"}/>);
+    wrapper = shallow(<App headlines={testHeadlines} playableCities={testCities} map={"test map"} test={true}/>);
   });
   
   it('renders without crashing', () => {
