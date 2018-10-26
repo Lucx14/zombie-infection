@@ -99,14 +99,14 @@ html {
 }
 
 .city-button:hover {
-  background-color: rgb(36, 41, 36); /* Green */
+  background-color: rgba(5, 139, 0, 0.836);
 }
 .activated {
   background-color: rgba(8, 201, 1, 0.836);
 }
 
 .activated:active {
-  background-color: rgba(4, 110, 0, 0.836);
+  background-color: rgba(3, 83, 0, 0.836);
 }
 .defeated {
   background-color: rgba(44, 22, 22, 0.959);
