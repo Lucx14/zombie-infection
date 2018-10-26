@@ -15,7 +15,7 @@ class App extends Component {
       playableCities: props.playableCities || [],
       defeatedCities: [],
       map: InitialGrid(),
-      ticker: -2,
+      ticker: -3,
       zombieTotal: 0,
       // ___V I E W  C H A N G E R S___
       city: false,
@@ -70,7 +70,7 @@ class App extends Component {
 
   exitIntro() {
     this.clickCityNoise("./soundEffects/buttonPress.mp3");
-    this.setState({ ticker: -1 });
+    this.setState({ ticker: -2 });
   }
 
   updateState(map, ticker) {
@@ -88,12 +88,12 @@ class App extends Component {
   }
 
   specialAbility(ability) {
-    if (this.state.tokens > 19 && ability === "fishFrenzy") {
-      this.setState({ fishFrenzy: true, tokens: this.state.tokens -20 });
-    } else if (this.state.tokens > 29 && ability === "flyingZombies") {
-      this.setState({ flyingZombies: true, tokens: this.state.tokens -30 });
-    } else if (this.state.tokens > 39 && ability === "worldWarZ") {
-      this.setState({ worldWarZ: true, tokens: this.state.tokens -40 });
+    if (this.state.tokens > 29 && ability === "fishFrenzy" && !this.state.fishFrenzy) {
+      this.setState({ fishFrenzy: true, tokens: this.state.tokens -30 });
+    } else if (this.state.tokens > 39 && ability === "flyingZombies" && !this.state.flyingZombies) {
+      this.setState({ flyingZombies: true, tokens: this.state.tokens -40 });
+    } else if (this.state.tokens > 49 && ability === "worldWarZ" && !this.state.worldWarZ) {
+      this.setState({ worldWarZ: true, tokens: this.state.tokens -50 });
     }
   }
 
@@ -181,7 +181,7 @@ class App extends Component {
               </div>
             </div>
           );
-      case (this.state.ticker === -2):
+      case (this.state.ticker === -3):
           return (
             <div>
               <div id="instructions">

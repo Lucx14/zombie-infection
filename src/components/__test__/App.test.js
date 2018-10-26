@@ -64,7 +64,7 @@ describe('App', () => {
 
   it('can spend tokens to activate a special ability- fish frenzy', () => {
     const instance = wrapper.instance();
-    instance.setState({ tokens: 20 });
+    instance.setState({ tokens: 30 });
     instance.specialAbility("fishFrenzy");
     expect(instance.state.fishFrenzy).toEqual(true);
     expect(instance.state.tokens).toEqual(0);
@@ -75,12 +75,12 @@ describe('App', () => {
     instance.setState({ tokens: 40 });
     instance.specialAbility("flyingZombies");
     expect(instance.state.flyingZombies).toEqual(true);
-    expect(instance.state.tokens).toEqual(10);
+    expect(instance.state.tokens).toEqual(0);
   });
 
   it('can spend tokens to activate a special ability - wwZ', () => {
     const instance = wrapper.instance();
-    instance.setState({ tokens: 40 });
+    instance.setState({ tokens: 50 });
     instance.specialAbility("worldWarZ");
     expect(instance.state.worldWarZ).toEqual(true);
     expect(instance.state.tokens).toEqual(0);
