@@ -33,7 +33,7 @@ class Stats extends Component {
           <div id="fish-frenzy" className="special-ability-box">
             <img src="./fishicon_360.png" alt="fish frenzy"></img>
             <h4>FISH FRENZY </h4>
-            <h6>(20 Tokens)</h6>
+            <h6>(30 Tokens)</h6>
             <p className="ability-desc">Zombie infection spreads to the seas! Allows for infection spread across water. Unlocked after 12 cities destroyed.</p>
               <button onClick={() => { this.props.specialAbility("fishFrenzy") }} className={level > 11 ? "unlocked" : "locked"} id="fishFrenzy">
                 {level > 11 ? "Buy" : "Locked"}
@@ -42,7 +42,7 @@ class Stats extends Component {
           <div id="death-from-above" className="special-ability-box">
             <img src="./flyingicon_360.png" alt="death from above"></img>
             <h4>DEATH FROM ABOVE</h4>
-            <h6>(20 Tokens)</h6>
+            <h6>(40 Tokens)</h6>
             <p className="ability-desc">Infection becomes airborne! Birds can now carry the Zombie infection across land and sea. Unlocked after 18 cities destroyed.</p>
               <button onClick={() => { this.props.specialAbility("flyingZombies") }} className={level > 17 ? "unlocked" : "locked"} id="flyingZombies">
                 {level > 17 ? "Buy" : "Locked"}
@@ -51,7 +51,7 @@ class Stats extends Component {
           <div id="world-war-z" className="special-ability-box">
             <img src="./wwzicon_360.png" alt="world war z"></img>
             <h4>WORLD WAR Z</h4>
-            <h6>(40 Tokens)</h6>
+            <h6>(50 Tokens)</h6>
             <p className="ability-desc">Send the infection spread into overdrive. Unlocked after 24 cities destroyed.</p>
               <button onClick={() => { this.props.specialAbility("worldWarZ") }} className={level > 23 ? "unlocked" : "locked"} id="worldWarZ">
                 {level > 23 ? "Buy" : "Locked"}
