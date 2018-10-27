@@ -1,9 +1,9 @@
-export function Npc(speed = 1, civilian = true) {
+export function Npc(speed = 1, civilian = true, resBonus) {
   this.x = Math.random() * 800;
   this.y = Math.random() * 600;
   this.w = 10;
   this.h = 10;
-  this.hitPoints = 1;
+  this.hitPoints = 1 + resBonus;
   this.speed = speed;
   this.zombie = false;
   this.civilian = civilian;
@@ -23,7 +23,7 @@ export function Npc(speed = 1, civilian = true) {
 }
 
 Npc.prototype.shoot = function() {
-  if (Math.random() > 0.995) {
+  if (Math.random() > 0.99) {
     return true
   } else {
     return false
