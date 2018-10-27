@@ -13,12 +13,11 @@ export default function LocalGameModel(speedBonus,
   this._soundEffects = soundEffects
   this._zombieCount = 0
   this.gameSpeed = 15
-  this.speedBonus = speedBonus /40
-  this.resBonus = resBonus /6
+  this.speedBonus = speedBonus /50
+  this.resBonus = resBonus /18
   this.aggrBonus = aggrBonus /5
 
   this._player.speed = 2 + this.speedBonus
-  this._player.hitPoints = 1 + this.resBonus
 
   this._canvas = document.getElementById("canvas");
   this._canvas.width = 800;
@@ -32,8 +31,8 @@ export default function LocalGameModel(speedBonus,
   this._underCanvas.height = 600;
   this._underCanvasDraw = this._underCanvas.getContext("2d");
 
-  this._civilians = Array.from({length:200}, () => new Npc(Math.random() * 2))
-  this._nonCivilians = Array.from({length:25}, () => new Npc(Math.random() * 2, false))
+  this._civilians = Array.from({length:200}, () => new Npc(Math.random() * 2, true, this.resBonus))
+  this._nonCivilians = Array.from({length:25}, () => new Npc(Math.random() * 2, false, this.resBonus))
   this._groupNpc = this._civilians.concat(this._nonCivilians)
 
   this._keys = []
@@ -152,13 +151,10 @@ LocalGameModel.prototype._npcMovement = function() {
   const local = this
 
   this._groupNpc.forEach(function(npc) {
-    if ( npc.isNear(local._player, 10) && 
+    if ( npc.isNear(local._player, 10) &&
          !npc.isInfected() ) {
       npc.infect()
-      local._zombieCount += 1
-      local._bloodsplats.push({x: npc.x - 2.5, y: npc.y - 12.5})
-      local._soundEffects.zombieBite()
-      local._soundEffects.scream()
+      local.zombieConverter(npc)
     }
 
     local._groupNpc.forEach((otherNpcs) => {
@@ -186,12 +182,11 @@ LocalGameModel.prototype._npcMovement = function() {
         } else if (!otherNpcs.isInfected() &&
                     npc.isNear(otherNpcs, 15)) {
           npc.move(otherNpcs, 'away')
-        } else if ( otherNpcs.isInfected() && 
-                    npc.isNear(otherNpcs, 10) && 
+        } else if ( otherNpcs.isInfected() &&
+                    npc.isNear(otherNpcs, 10) &&
                     !npc.isInfected() ) {
           npc.infect()
-          local._zombieCount += 1
-          local._bloodsplats.push({x: npc.x - 2.5, y: npc.y - 12.5})
+          local.zombieConverter(npc)
         }
 
       } else if (npc.isInfected()) {
@@ -206,7 +201,7 @@ LocalGameModel.prototype._npcMovement = function() {
           npc.move(otherNpcs, 'towards')
           if (npc.isNear(otherNpcs, 10)) {
             otherNpcs.infect()
-            local._zombieCount += 1
+            local.zombieConverter(npc)
           }
         }
       }
@@ -217,6 +212,13 @@ LocalGameModel.prototype._npcMovement = function() {
       npc.move(local._player, 'towards')
     }
   })
+}
+
+LocalGameModel.prototype.zombieConverter = function(npc) {
+  this._zombieCount += 1
+  this._bloodsplats.push({x: npc.x - 2.5, y: npc.y - 12.5})
+  this._soundEffects.zombieBite()
+  if (Math.random() > 0.6) { this._soundEffects.scream() }
 }
 
 LocalGameModel.prototype.bulletRender = function(shooterX, shooterY, targetX, targetY) {
