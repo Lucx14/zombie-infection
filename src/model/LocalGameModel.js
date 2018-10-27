@@ -13,8 +13,8 @@ export default function LocalGameModel(speedBonus,
   this._soundEffects = soundEffects
   this._zombieCount = 0
   this.gameSpeed = 15
-  this.speedBonus = speedBonus /50
-  this.resBonus = resBonus /18
+  this.speedBonus = speedBonus /80
+  this.resBonus = resBonus /30
   this.aggrBonus = aggrBonus /5
 
   this._player.speed = 2 + this.speedBonus
