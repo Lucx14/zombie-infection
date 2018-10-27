@@ -55,7 +55,7 @@ class WorldMap extends PureComponent {
   incrementHour() {
     if(this.state.ticker % 60 === 0 && this.state.ticker > 0) {
       this.setState({hour: this.state.hour +1})
-    } 
+    }
   }
 
   pauseGame(state) {
@@ -119,15 +119,15 @@ class WorldMap extends PureComponent {
               return <div className="sea" key={index} />;
             } else {
               return this.renderCell(index, cell);
-            } 
+            }
           } else if (cell !== "END") {
             if (this.checkNeighbours(rowIndex, index) === true) {
               this.props.activateCity(cell);
             }
-            return <CityLink 
-              key={index} 
-              city={cell} 
-              active={this.checkNeighbours(rowIndex, index)}/>; 
+            return <CityLink
+              key={index}
+              city={cell}
+              active={this.checkNeighbours(rowIndex, index)}/>;
           } else {
             this.setState({loading: false})
             return null
@@ -147,7 +147,7 @@ class WorldMap extends PureComponent {
      populations[allContinents[i]] - Math.floor(populations[allContinents[i]]*this.infectedPopulations(i)*0.01)
     );
   }
-  
+
   render() {
     if (this.state.ticker === 30) {this.setState({infectionChance: 0.01})};
     if (this.state.loading) {
@@ -157,7 +157,7 @@ class WorldMap extends PureComponent {
             <Loading city={this.state.city} />
           </div>
         </div>
-        
+
       );
     }
     return (
