@@ -1,4 +1,4 @@
-# Zombie infection
+# Trick or Eat Brains
 
 [![Build Status](https://travis-ci.com/Lucx14/zombie-infection.svg?branch=master)](https://travis-ci.com/Lucx14/zombie-infection)
 
@@ -10,10 +10,13 @@ Code by:
 - [James Sutherland](https://github.com/LondonJim)
 - [Lucien Najev](https://github.com/Lucx14)
 
+Music by:
+- [Ross Bugden](https://www.youtube.com/channel/UCQKGLOK2FqmVgVwYferltKQ)
+
 ## Technologies
 
 - Javascript, HTML, CSS
-- React, (Redux)
+- React
 - Cypress, Jest, Enzyme
 - ESLint
 
@@ -54,7 +57,7 @@ npm run lint
 ## Gameplay
 
 ### Game Story
-It is Halloween of 1986, a time when the boundary between physical and spiritual realms blurs. John is out with his fiance buying candy for the night's trick or treating when a hit and run puts his wife to be in a coma. At the emergency unit John notices a dark figure watching his partner; Death has come for her. John intervenes and makes a deal for his partners life. It turns out that the Reaper wants a day off to enjoy Halloween. Death decides John can take over for a night and if he can reap enough souls before the end of Halloween he can have what he wants. John must leave his soul with Death and send his zombified body through the streets to collect the denizens of towns and cities. John returns to Death with a horde to be reaped, but Death rescinds on the deal and John must use his horde to fight Death and bring back his partner.
+It is Halloween of 1986, a time when the boundary between physical and spiritual realms blurs. John is out with his fiance buying candy for the night's trick or treating when a hit and run puts his fiance to be in to a coma. At the emergency unit John notices a dark figure watching his partner; Death has come for her. John intervenes and makes a deal for his partners life. It turns out that the Reaper wants a day off to enjoy Halloween. Death decides John can take over for a night and if he can reap enough souls before the end of Halloween he can have what he wants. John must leave his soul with Death and send his zombified body through the streets to collect the denizens of towns and cities. 
 
 ### World Map Domination
 Infection spreads across the map with a probability function that is modified based on random gameplay events, game success and player stat selection.
@@ -74,7 +77,6 @@ Trick or Eat Brains is hosted on heroku at
 ```
 https://trick-or-eat-brains.herokuapp.com/
 ```
-![Image description](./public/gameOverScreen.jpg)
 
 
 
