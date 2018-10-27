@@ -26,7 +26,7 @@ class Stats extends Component {
             <h3 className="stat-margin">Resilience: {this.props.resilience}</h3>
               <button onClick={() => { this.increaseStat("resilience") }} id="resilienceUp" className={this.props.tokens > 0 ? "unlocked" : "locked"}>+</button>
             <h3 className="stat-margin">Aggression: {this.props.aggression}</h3>
-              <button onClick={() => { this.increaseStat("agression") }} id="aggressionUp" className={this.props.tokens > 0 ? "unlocked" : "locked"}>+</button>
+              <button onClick={() => { this.increaseStat("aggression") }} id="aggressionUp" className={this.props.tokens > 0 ? "unlocked" : "locked"}>+</button>
           </div>
           <h2>SPECIAL ABILITIES</h2>
           <div id="special-ability-section" >
