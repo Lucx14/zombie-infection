@@ -10,17 +10,22 @@ describe('App', () => {
   beforeAll(() => {
     window.HTMLMediaElement.prototype.load = () => {}
     window.HTMLMediaElement.prototype.play = () => {}
-    let testCities = ["london"]
+    let testCities = ["london","paris","rome","oslo",
+                      "reykjavik","new-york","madrid","marrakech",
+                      "cairo","nairobi","istanbul" ,"dubai","cape-town",
+                      "los-angeles","mexico-city","bogota","rio-de-janeiro",
+                      "tehran","new-dehli","bangkok","shanghai","tokyo",
+                      "hong-kong","melbourne","wellington","vancouver"]
     let testHeadlines = {"london": ["testing"]}
     wrapper = shallow(<App headlines={testHeadlines} playableCities={testCities} map={"test map"} test={true}/>);
   });
-  
+
   it('renders without crashing', () => {
     const div = document.createElement('div');
     ReactDOM.render(<App />, div);
     ReactDOM.unmountComponentAtNode(div);
   });
-  
+
   it('renders a headline', () => {
     expect(wrapper.findWhere(n => n.type() === 'p' && n.contains('testing')))
   });
@@ -58,8 +63,14 @@ describe('App', () => {
 
   it('can set the playable cities', () => {
     const instance = wrapper.instance();
-    instance.activateCity('london');
-    expect(instance.state.playableCities).toEqual(['london']);
+    instance.activateCity('vancouver');
+    expect(instance.state.playableCities).toEqual(
+      ["london","paris","rome","oslo",
+       "reykjavik","new-york","madrid","marrakech",
+       "cairo","nairobi","istanbul" ,"dubai","cape-town",
+       "los-angeles","mexico-city","bogota","rio-de-janeiro",
+       "tehran","new-dehli","bangkok","shanghai","tokyo",
+       "hong-kong","melbourne","wellington","vancouver"]);
   });
 
   it('can spend tokens to activate a special ability- fish frenzy', () => {
@@ -107,4 +118,3 @@ describe('App', () => {
     expect(instance.state.showStats).toBe(true);
   });
 });
-
