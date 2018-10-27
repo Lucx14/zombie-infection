@@ -88,11 +88,11 @@ class App extends Component {
   }
 
   specialAbility(ability) {
-    if (this.state.tokens > 29 && ability === "fishFrenzy" && !this.state.fishFrenzy) {
+    if (this.state.tokens > 29 && ability === "fishFrenzy" && !this.state.fishFrenzy && this.state.playableCities > 11) {
       this.setState({ fishFrenzy: true, tokens: this.state.tokens -30 });
-    } else if (this.state.tokens > 39 && ability === "flyingZombies" && !this.state.flyingZombies) {
+    } else if (this.state.tokens > 39 && ability === "flyingZombies" && !this.state.flyingZombies && this.state.playableCities > 17) {
       this.setState({ flyingZombies: true, tokens: this.state.tokens -40 });
-    } else if (this.state.tokens > 49 && ability === "worldWarZ" && !this.state.worldWarZ) {
+    } else if (this.state.tokens > 49 && ability === "worldWarZ" && !this.state.worldWarZ && this.state.playableCities > 23) {
       this.setState({ worldWarZ: true, tokens: this.state.tokens -50 });
     }
   }
